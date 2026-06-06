@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://handbuch.cloud/schema.json",
+  "title": "Handbuch Package Documentation Metadata",
+  "description": "Schema for curated documentation metadata entries in the handbuch.cloud library. Each JSON file represents a single open-source package and its hand-picked documentation sources.",
+  "type": "object",
+  "required": ["name", "registry", "updatedAt", "checkedAt", "docs"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Package name exactly as published in the registry (e.g. 'react', '@effect-ts/core')."
+    },
+    "registry": {
+      "type": "string",
+      "enum": ["npm", "packagist", "cargo", "pypi", "go", "maven", "nuget", "gem", "hex", "docker"],
+      "description": "The package registry this package is published on."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the last time this metadata entry was updated."
+    },
+    "checkedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the last time the URLs in this entry were verified reachable."
+    },
+    "readme": {
+      "type": "string",
+      "format": "uri",
+      "description": "Direct URL to the package's README.md (raw Markdown preferred). Used as a fallback when no curated docs are registered."
+    },
+    "docs": {
+      "type": "array",
+      "description": "Curated documentation sources for this package, ordered by quality and relevance. Highest-quality sources first.",
+      "items": {
+        "type": "object",
+        "required": ["url", "title"],
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Canonical URL of the documentation source."
+          },
+          "title": {
+            "type": "string",
+            "description": "Short human-readable title for the documentation source."
+          },
+          "description": {
+            "type": "string",
+            "description": "One- or two-sentence summary of what this source covers and why it is useful."
+          },
+          "kind": {
+            "type": "string",
+            "enum": ["official", "community", "tutorial", "api", "guide", "blog", "video", "course", "cheatsheet"],
+            "description": "The kind of documentation source. 'official' is reserved for first-party docs maintained by the project authors."
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Optional tags for filtering and search. Common values: guide, api, reference, tutorial, beginner, advanced, examples, migration."
+          }
+        }
+      }
+    }
+  }
+}

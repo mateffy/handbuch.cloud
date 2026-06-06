@@ -1,0 +1,17 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "@mateffy/sandkasten",
+  "registry": "npm",
+  "updatedAt": "2024-06-01T12:00:00Z",
+  "checkedAt": "2024-06-01T12:00:00Z",
+  "readme": "https://raw.githubusercontent.com/mateffy/sandkasten/main/README.md",
+  "docs": [
+    {
+      "url": "https://www.npmjs.com/package/@mateffy/sandkasten",
+      "title": "NPM Package Page",
+      "description": "General documentation, usage instructions, and API overview on the NPM registry page.",
+      "kind": "official",
+      "tags": ["reference", "npm"]
+    }
+  ]
+}
