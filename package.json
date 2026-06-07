@@ -1,10 +1,13 @@
 {
   "scripts": {
+    "build:index": "bun run scripts/build-index.ts",
     "css": "NODE_ENV=production tailwindcss -i docs/input.css -o docs/output.css",
     "css:watch": "NODE_ENV=development tailwindcss -i docs/input.css -o docs/output.css --watch"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.0",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "typescript": "^5.0.0",
+    "@types/bun": "^1.0.0"
   }
 }

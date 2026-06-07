@@ -1,0 +1,26 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "maatwebsite/excel",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/SpartnerNL/Laravel-Excel/3.1/README.md",
+  "docs": [
+    {
+      "url": "https://docs.laravel-excel.com/",
+      "title": "Laravel Excel Documentation",
+      "description": "Official docs for importing and exporting Excel and CSV files with Eloquent collections, chunking, and queued jobs.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "excel",
+        "csv",
+        "import",
+        "export",
+        "official"
+      ]
+    }
+  ]
+}

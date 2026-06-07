@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-sitemap",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-sitemap/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-sitemap",
+      "title": "Laravel Sitemap Repository",
+      "description": "Generate XML sitemaps by crawling routes or manually adding URLs with images, videos, and alternates.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "seo",
+        "sitemap",
+        "official"
+      ]
+    }
+  ]
+}

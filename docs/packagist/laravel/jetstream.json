@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/jetstream",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/jetstream/main/README.md",
+  "docs": [
+    {
+      "url": "https://jetstream.laravel.com/",
+      "title": "Laravel Jetstream Documentation",
+      "description": "Official docs for the application starter kit with Livewire or Inertia, including two-factor auth and API tokens.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "scaffolding",
+        "authentication",
+        "official"
+      ]
+    }
+  ]
+}

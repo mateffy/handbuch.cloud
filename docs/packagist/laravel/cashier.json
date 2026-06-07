@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/cashier",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/cashier-stripe/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/billing",
+      "title": "Laravel Cashier (Stripe) Documentation",
+      "description": "Official docs for subscription billing services with Stripe, including coupons, swapping, and invoices.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "billing",
+        "stripe",
+        "official"
+      ]
+    }
+  ]
+}

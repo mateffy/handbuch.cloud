@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "illuminate/console",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/illuminate/console/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/artisan",
+      "title": "Laravel Artisan Documentation",
+      "description": "Official docs for writing Artisan commands, custom generators, and command I/O.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "cli",
+        "official"
+      ]
+    }
+  ]
+}

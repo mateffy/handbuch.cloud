@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "illuminate/collections",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/illuminate/collections/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/collections",
+      "title": "Laravel Collections Documentation",
+      "description": "Official docs for the powerful Collection class with fluent API for working with arrays of data.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "collections",
+        "official"
+      ]
+    }
+  ]
+}

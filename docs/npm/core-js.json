@@ -1,0 +1,32 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "core-js",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/zloirock/core-js/master/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/zloirock/core-js",
+      "title": "core-js Documentation",
+      "description": "Modular standard library for JavaScript. README covers polyfills, presets, and usage with bundlers.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "polyfill"
+      ]
+    },
+    {
+      "url": "https://github.com/zloirock/core-js/blob/master/docs/2023-02-14-so-whats-next.md",
+      "title": "core-js Updates & Status",
+      "description": "Project updates, funding, and future plans.",
+      "kind": "official",
+      "tags": [
+        "blog",
+        "community"
+      ]
+    }
+  ]
+}

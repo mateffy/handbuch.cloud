@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "illuminate/session",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/illuminate/session/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/session",
+      "title": "Laravel Session Documentation",
+      "description": "Official docs for session handling, flash data, custom drivers, and configuration.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "session",
+        "official"
+      ]
+    }
+  ]
+}

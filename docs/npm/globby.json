@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "globby",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/sindresorhus/globby/main/readme.md",
+  "docs": [
+    {
+      "url": "https://github.com/sindresorhus/globby",
+      "title": "globby Documentation",
+      "description": "User-friendly glob matching based on fast-glob. README covers the API, gitignore support, and streaming.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "glob",
+        "filesystem"
+      ]
+    }
+  ]
+}

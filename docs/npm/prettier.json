@@ -1,0 +1,43 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "prettier",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/prettier/prettier/main/README.md",
+  "docs": [
+    {
+      "url": "https://prettier.io/docs/en/",
+      "title": "Prettier Documentation",
+      "description": "Opinionated code formatter. Official docs cover options, configuration, and editor integration.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "formatter",
+        "official"
+      ]
+    },
+    {
+      "url": "https://prettier.io/docs/en/options.html",
+      "title": "Prettier Options Reference",
+      "description": "Complete reference for all formatting options.",
+      "kind": "official",
+      "tags": [
+        "reference",
+        "configuration"
+      ]
+    },
+    {
+      "url": "https://prettier.io/docs/en/configuration.html",
+      "title": "Prettier Configuration",
+      "description": "Guide to configuring Prettier with config files and shared configs.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "configuration"
+      ]
+    }
+  ]
+}

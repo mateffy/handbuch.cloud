@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/socialite",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/socialite/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/socialite",
+      "title": "Laravel Socialite Documentation",
+      "description": "Official docs for Laravel's OAuth authentication with Facebook, Twitter, Google, LinkedIn, GitHub and more.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "oauth",
+        "authentication",
+        "official"
+      ]
+    }
+  ]
+}

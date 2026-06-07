@@ -1,0 +1,32 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "@typescript-eslint/eslint-plugin",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "docs": [
+    {
+      "url": "https://typescript-eslint.io/packages/eslint-plugin",
+      "title": "@typescript-eslint/eslint-plugin Documentation",
+      "description": "TypeScript plugin for ESLint with recommended rules and type-aware linting.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "typescript",
+        "eslint"
+      ]
+    },
+    {
+      "url": "https://typescript-eslint.io/rules/",
+      "title": "TypeScript ESLint Rules",
+      "description": "Complete list of rules with descriptions and configuration examples.",
+      "kind": "official",
+      "tags": [
+        "reference",
+        "rules"
+      ]
+    }
+  ]
+}

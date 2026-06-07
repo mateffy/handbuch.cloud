@@ -1,0 +1,43 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "rollup",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/rollup/rollup/master/README.md",
+  "docs": [
+    {
+      "url": "https://rollupjs.org/",
+      "title": "Rollup Documentation",
+      "description": "Next-generation ES module bundler. Official docs cover configuration, plugins, JavaScript API, and output formats.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "bundler",
+        "official"
+      ]
+    },
+    {
+      "url": "https://rollupjs.org/configuration-options/",
+      "title": "Rollup Configuration Options",
+      "description": "Complete reference for all rollup.config.js options.",
+      "kind": "official",
+      "tags": [
+        "reference",
+        "configuration"
+      ]
+    },
+    {
+      "url": "https://rollupjs.org/tutorial/",
+      "title": "Rollup Tutorial",
+      "description": "Step-by-step guide to bundling your first project with Rollup.",
+      "kind": "official",
+      "tags": [
+        "tutorial",
+        "beginner"
+      ]
+    }
+  ]
+}

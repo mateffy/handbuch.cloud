@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-multitenancy",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-multitenancy/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-multitenancy",
+      "title": "Laravel Multitenancy",
+      "description": "Make Laravel apps multitenant with support for single database, multiple databases, and tenant identification.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "multitenancy",
+        "saas",
+        "official"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-backup",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-backup/main/README.md",
+  "docs": [
+    {
+      "url": "https://spatie.be/docs/laravel-backup",
+      "title": "Laravel Backup Documentation",
+      "description": "Official docs for backing up applications and databases to various filesystems, with monitoring and notifications.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "backup",
+        "monitoring",
+        "official"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "illuminate/container",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/illuminate/container/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/container",
+      "title": "Laravel Service Container Documentation",
+      "description": "Official docs for dependency injection, binding, contextual binding, and container resolution.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "di",
+        "official"
+      ]
+    }
+  ]
+}

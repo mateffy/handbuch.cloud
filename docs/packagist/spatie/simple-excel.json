@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/simple-excel",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/simple-excel/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/simple-excel",
+      "title": "Simple Excel Repository",
+      "description": "Read and write CSV and Excel files with a minimal, memory-efficient streaming API built on top of OpenSpout.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "csv",
+        "excel",
+        "official"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "dotenv",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/motdotla/dotenv/master/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/motdotla/dotenv",
+      "title": "dotenv Documentation",
+      "description": "Loads environment variables from .env file. README covers configuration, multiline values, and CLI usage.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "configuration"
+      ]
+    },
+    {
+      "url": "https://www.dotenv.org/docs/",
+      "title": "Dotenv Docs",
+      "description": "Extended documentation for dotenv vault and advanced features.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "tutorial"
+      ]
+    }
+  ]
+}

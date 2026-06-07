@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/horizon",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/horizon/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/horizon",
+      "title": "Laravel Horizon Documentation",
+      "description": "Official docs for Laravel's beautiful dashboard and configuration system for Redis queues.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "queues",
+        "monitoring",
+        "official"
+      ]
+    }
+  ]
+}

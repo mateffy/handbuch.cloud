@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-failed-job-monitor",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-failed-job-monitor/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-failed-job-monitor",
+      "title": "Laravel Failed Job Monitor",
+      "description": "Get notified when a queued job fails via mail, Slack, or custom notification channels.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "queues",
+        "monitoring",
+        "official"
+      ]
+    }
+  ]
+}

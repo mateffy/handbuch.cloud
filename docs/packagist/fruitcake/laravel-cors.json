@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "fruitcake/laravel-cors",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/fruitcake/laravel-cors/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/fruitcake/laravel-cors",
+      "title": "Laravel CORS Repository",
+      "description": "Handle CORS (Cross-Origin Resource Sharing) headers in Laravel with configurable origins, methods, and headers.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "cors",
+        "security",
+        "official"
+      ]
+    }
+  ]
+}

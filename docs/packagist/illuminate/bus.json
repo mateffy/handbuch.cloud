@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "illuminate/bus",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/illuminate/bus/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/queues#dispatching-jobs",
+      "title": "Laravel Bus & Job Dispatching",
+      "description": "Official docs for command buses, job chaining, batching, and job middleware.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "queues",
+        "official"
+      ]
+    }
+  ]
+}

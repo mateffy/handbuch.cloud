@@ -1,0 +1,35 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "illuminate/http",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/illuminate/http/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/requests",
+      "title": "HTTP Requests Documentation",
+      "description": "Official docs for handling incoming HTTP requests, input retrieval, and file uploads.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "http",
+        "official"
+      ]
+    },
+    {
+      "url": "https://laravel.com/docs/responses",
+      "title": "HTTP Responses Documentation",
+      "description": "Official docs for generating responses, redirects, JSON responses, and response macros.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "http"
+      ]
+    }
+  ]
+}

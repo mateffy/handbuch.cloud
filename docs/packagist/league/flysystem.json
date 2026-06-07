@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "league/flysystem",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/thephpleague/flysystem/main/README.md",
+  "docs": [
+    {
+      "url": "https://flysystem.thephpleague.com/",
+      "title": "Flysystem Documentation",
+      "description": "Official docs for the filesystem abstraction library with adapters for local, AWS S3, Azure, Dropbox, and more.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "filesystem",
+        "storage",
+        "official"
+      ]
+    }
+  ]
+}

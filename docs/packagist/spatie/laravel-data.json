@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-data",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-data/main/README.md",
+  "docs": [
+    {
+      "url": "https://spatie.be/docs/laravel-data",
+      "title": "Laravel Data Documentation",
+      "description": "Official docs for creating structured data objects with automatic validation, transformation, and typing.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "data-transfer-objects",
+        "validation",
+        "official"
+      ]
+    }
+  ]
+}

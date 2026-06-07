@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/breeze",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/breeze/main/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/starter-kits#laravel-breeze",
+      "title": "Laravel Breeze Documentation",
+      "description": "Official docs for the minimal, simple implementation of Laravel's authentication features.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "scaffolding",
+        "authentication",
+        "official"
+      ]
+    }
+  ]
+}

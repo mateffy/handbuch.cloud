@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "illuminate/validation",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/illuminate/validation/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/validation",
+      "title": "Laravel Validation Documentation",
+      "description": "Official docs for form request validation, custom rules, error messages, and validation logic.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "validation",
+        "forms",
+        "official"
+      ]
+    }
+  ]
+}

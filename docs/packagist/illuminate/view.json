@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "illuminate/view",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/illuminate/view/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/blade",
+      "title": "Laravel Blade Documentation",
+      "description": "Official docs for the Blade templating engine, including components, slots, conditionals, and directives.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "templating",
+        "official"
+      ]
+    }
+  ]
+}

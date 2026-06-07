@@ -1,0 +1,21 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "@babel/runtime",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "docs": [
+    {
+      "url": "https://babel.dev/docs/en/babel-runtime",
+      "title": "@babel/runtime Documentation",
+      "description": "Babel's modular runtime helpers. Official Babel docs on when and how to use the runtime plugin.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "babel"
+      ]
+    }
+  ]
+}

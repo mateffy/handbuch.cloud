@@ -1,0 +1,21 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "emoji-regex",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/mathiasbynens/emoji-regex/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/mathiasbynens/emoji-regex",
+      "title": "emoji-regex Documentation",
+      "description": "Regular expression matching all Emoji symbols. README covers Unicode version updates and usage.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "unicode"
+      ]
+    }
+  ]
+}

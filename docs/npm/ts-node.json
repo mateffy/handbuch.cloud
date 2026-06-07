@@ -1,0 +1,33 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "ts-node",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/TypeStrong/ts-node/main/README.md",
+  "docs": [
+    {
+      "url": "https://typestrong.org/ts-node/docs/",
+      "title": "ts-node Documentation",
+      "description": "TypeScript execution environment for Node.js. Official docs cover installation, configuration, and compiler options.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "typescript",
+        "official"
+      ]
+    },
+    {
+      "url": "https://typestrong.org/ts-node/docs/configuration",
+      "title": "ts-node Configuration",
+      "description": "Comprehensive configuration options for ts-node.",
+      "kind": "official",
+      "tags": [
+        "reference",
+        "configuration"
+      ]
+    }
+  ]
+}

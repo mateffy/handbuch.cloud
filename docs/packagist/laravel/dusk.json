@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/dusk",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/dusk/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/dusk",
+      "title": "Laravel Dusk Documentation",
+      "description": "Official docs for Laravel's expressive browser automation and testing API.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "testing",
+        "browser",
+        "official"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "illuminate/database",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/illuminate/database/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/eloquent",
+      "title": "Eloquent ORM Documentation",
+      "description": "Official Laravel docs for Eloquent ORM, including models, relationships, collections, and mutators.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "orm",
+        "database",
+        "official"
+      ]
+    },
+    {
+      "url": "https://laravel.com/docs/migrations",
+      "title": "Database Migrations",
+      "description": "Official docs for database migrations, schema building, and seeding.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "reference",
+        "database"
+      ]
+    }
+  ]
+}

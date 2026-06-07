@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/serializable-closure",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/serializable-closure/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/laravel/serializable-closure",
+      "title": "Laravel Serializable Closure Repository",
+      "description": "Official package for securely serializing PHP closures with support for signed and encrypted serialization.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "closures",
+        "official"
+      ]
+    }
+  ]
+}

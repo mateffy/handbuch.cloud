@@ -1,0 +1,21 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "resolve-from",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/sindresorhus/resolve-from/main/readme.md",
+  "docs": [
+    {
+      "url": "https://github.com/sindresorhus/resolve-from",
+      "title": "resolve-from Documentation",
+      "description": "Resolve module path from a given path. README covers the simple sync/async API.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "module-resolution"
+      ]
+    }
+  ]
+}

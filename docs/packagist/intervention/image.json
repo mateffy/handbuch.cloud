@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "intervention/image",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/intervention/image/main/README.md",
+  "docs": [
+    {
+      "url": "https://image.intervention.io/v3/",
+      "title": "Intervention Image Documentation",
+      "description": "Official docs for the PHP image handling and manipulation library with support for GD, Imagick, and VIPS.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "images",
+        "official"
+      ]
+    }
+  ]
+}

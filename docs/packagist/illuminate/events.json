@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "illuminate/events",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/illuminate/events/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/events",
+      "title": "Laravel Events Documentation",
+      "description": "Official docs for dispatching, listening, and subscribing to application events.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "events",
+        "official"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "tymon/jwt-auth",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/tymondesigns/jwt-auth/develop/README.md",
+  "docs": [
+    {
+      "url": "https://jwt-auth.readthedocs.io/en/docs/",
+      "title": "JWT Auth Documentation",
+      "description": "Official docs for JSON Web Token authentication in Laravel, covering setup, guards, claims, and refresh tokens.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "jwt",
+        "authentication",
+        "official"
+      ]
+    }
+  ]
+}

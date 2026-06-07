@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/telescope",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/telescope/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/telescope",
+      "title": "Laravel Telescope Documentation",
+      "description": "Official docs for Laravel's elegant debug assistant for local development.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "debugging",
+        "monitoring",
+        "official"
+      ]
+    }
+  ]
+}

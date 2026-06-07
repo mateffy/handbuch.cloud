@@ -1,0 +1,21 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "wrap-ansi",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/chalk/wrap-ansi/main/readme.md",
+  "docs": [
+    {
+      "url": "https://github.com/chalk/wrap-ansi",
+      "title": "wrap-ansi Documentation",
+      "description": "Wordwrap a string with ANSI escape codes. README covers the simple API for terminal text wrapping.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "terminal"
+      ]
+    }
+  ]
+}

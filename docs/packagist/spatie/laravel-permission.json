@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-permission",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-permission/main/README.md",
+  "docs": [
+    {
+      "url": "https://spatie.be/docs/laravel-permission",
+      "title": "Laravel Permission Documentation",
+      "description": "Official docs for associating users with roles and permissions in a database. Covers guards, teams, caching, and middleware.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "authorization",
+        "roles",
+        "official"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "inertiajs/inertia-laravel",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/inertiajs/inertia-laravel/main/README.md",
+  "docs": [
+    {
+      "url": "https://inertiajs.com/",
+      "title": "Inertia.js Documentation",
+      "description": "Official docs for creating modern single-page apps using classic server-side routing and controllers.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "frontend",
+        "spa",
+        "official"
+      ]
+    },
+    {
+      "url": "https://inertiajs.com/server-side-setup",
+      "title": "Inertia Server-Side Setup",
+      "description": "Guide to configuring Inertia on the Laravel server side with middleware and responses.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "tutorial",
+        "beginner"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-responsecache",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-responsecache/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-responsecache",
+      "title": "Laravel Response Cache Repository",
+      "description": "Speed up applications by caching the entire response. README covers middleware, cache profiles, and tags.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "cache",
+        "performance",
+        "official"
+      ]
+    }
+  ]
+}

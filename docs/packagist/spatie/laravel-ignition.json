@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-ignition",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-ignition/main/README.md",
+  "docs": [
+    {
+      "url": "https://flareapp.io/docs/ignition-for-laravel/introduction",
+      "title": "Laravel Ignition Documentation",
+      "description": "Official docs for the beautiful error page for Laravel, with stack traces, solutions, and shareable error pages.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "debugging",
+        "error-handling",
+        "official"
+      ]
+    }
+  ]
+}

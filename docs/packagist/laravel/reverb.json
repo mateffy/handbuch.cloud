@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/reverb",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/reverb/main/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/reverb",
+      "title": "Laravel Reverb Documentation",
+      "description": "Official docs for the first-party WebSocket server for Laravel applications.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "websockets",
+        "realtime",
+        "official"
+      ]
+    }
+  ]
+}

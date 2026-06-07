@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-analytics",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-analytics/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-analytics",
+      "title": "Laravel Analytics Repository",
+      "description": "Retrieve page views and other data from Google Analytics with a clean Laravel API.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "analytics",
+        "google",
+        "official"
+      ]
+    }
+  ]
+}

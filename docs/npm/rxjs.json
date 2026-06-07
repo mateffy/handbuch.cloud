@@ -1,0 +1,44 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "rxjs",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/ReactiveX/rxjs/master/README.md",
+  "docs": [
+    {
+      "url": "https://rxjs.dev/",
+      "title": "RxJS Documentation",
+      "description": "Reactive Extensions for JavaScript. Official site with guides, marble diagrams, and API reference.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "reactive",
+        "official"
+      ]
+    },
+    {
+      "url": "https://rxjs.dev/guide/overview",
+      "title": "RxJS Overview",
+      "description": "Introduction to Observables, Operators, and Schedulers.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "tutorial",
+        "beginner"
+      ]
+    },
+    {
+      "url": "https://rxjs.dev/api",
+      "title": "RxJS API Reference",
+      "description": "Complete API reference for all Observable creation functions and operators.",
+      "kind": "official",
+      "tags": [
+        "api",
+        "reference"
+      ]
+    }
+  ]
+}

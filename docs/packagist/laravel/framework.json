@@ -1,0 +1,33 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/framework",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/framework/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs",
+      "title": "Laravel Documentation",
+      "description": "Official Laravel framework documentation covering installation, routing, Eloquent, Blade, queues, testing, and deployment.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "tutorial",
+        "official"
+      ]
+    },
+    {
+      "url": "https://laravel.com/api/12.x",
+      "title": "Laravel API Reference",
+      "description": "Complete API reference for the Laravel framework source code.",
+      "kind": "official",
+      "tags": [
+        "api",
+        "reference"
+      ]
+    }
+  ]
+}

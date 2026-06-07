@@ -1,0 +1,46 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "next",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/vercel/next.js/canary/README.md",
+  "docs": [
+    {
+      "url": "https://nextjs.org/docs",
+      "title": "Next.js Documentation",
+      "description": "The React Framework. Official docs cover routing, rendering, data fetching, API routes, and deployment.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "react",
+        "framework",
+        "official"
+      ]
+    },
+    {
+      "url": "https://nextjs.org/learn",
+      "title": "Next.js Learn",
+      "description": "Interactive course for learning Next.js from scratch.",
+      "kind": "official",
+      "tags": [
+        "tutorial",
+        "beginner",
+        "interactive"
+      ]
+    },
+    {
+      "url": "https://nextjs.org/docs/app-router",
+      "title": "Next.js App Router",
+      "description": "Documentation for the App Router with React Server Components and Server Actions.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "reference",
+        "advanced"
+      ]
+    }
+  ]
+}

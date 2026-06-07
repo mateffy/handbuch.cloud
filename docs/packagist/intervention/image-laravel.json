@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "intervention/image-laravel",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/intervention/image-laravel/main/README.md",
+  "docs": [
+    {
+      "url": "https://image.intervention.io/v3/",
+      "title": "Intervention Image for Laravel",
+      "description": "Official docs for the image handling and manipulation library with Laravel integration and Fluent API.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "images",
+        "official"
+      ]
+    }
+  ]
+}

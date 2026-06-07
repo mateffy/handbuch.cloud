@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "illuminate/mail",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/illuminate/mail/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/mail",
+      "title": "Laravel Mail Documentation",
+      "description": "Official docs for sending email with Mailables, Markdown mail, attachments, and queueing.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "email",
+        "official"
+      ]
+    }
+  ]
+}

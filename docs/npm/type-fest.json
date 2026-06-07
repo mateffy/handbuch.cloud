@@ -1,0 +1,22 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "type-fest",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/sindresorhus/type-fest/main/readme.md",
+  "docs": [
+    {
+      "url": "https://github.com/sindresorhus/type-fest",
+      "title": "type-fest Documentation",
+      "description": "Collection of essential TypeScript types. README covers utility types, guard types, and template literals.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "typescript"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "path-exists",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/sindresorhus/path-exists/main/readme.md",
+  "docs": [
+    {
+      "url": "https://github.com/sindresorhus/path-exists",
+      "title": "path-exists Documentation",
+      "description": "Check if a path exists. Simple async/sync API reference in the README.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "filesystem"
+      ]
+    }
+  ]
+}

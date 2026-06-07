@@ -1,0 +1,32 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "browserslist",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/browserslist/browserslist/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/browserslist/browserslist#readme",
+      "title": "Browserslist Documentation",
+      "description": "Share target browsers between front-end tools. README covers queries, configuration files, and coverage.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "compatibility"
+      ]
+    },
+    {
+      "url": "https://browsersl.ist/",
+      "title": "Browserslist Query Coverage",
+      "description": "Interactive tool to check browser coverage for Browserslist queries.",
+      "kind": "community",
+      "tags": [
+        "tool",
+        "interactive"
+      ]
+    }
+  ]
+}

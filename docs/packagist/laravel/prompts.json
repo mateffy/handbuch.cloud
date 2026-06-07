@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/prompts",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/prompts/main/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/prompts",
+      "title": "Laravel Prompts Documentation",
+      "description": "Official docs for the beautiful and user-friendly form components for command-line applications.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "cli",
+        "ui",
+        "official"
+      ]
+    }
+  ]
+}

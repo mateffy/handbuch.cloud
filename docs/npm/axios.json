@@ -1,0 +1,44 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "axios",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/axios/axios/v1.x/README.md",
+  "docs": [
+    {
+      "url": "https://axios-http.com/",
+      "title": "Axios Documentation",
+      "description": "Promise-based HTTP client for browser and Node.js. Official docs cover requests, responses, interceptors, and config defaults.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "http",
+        "official"
+      ]
+    },
+    {
+      "url": "https://axios-http.com/docs/intro",
+      "title": "Axios Docs - Getting Started",
+      "description": "Quick-start guide and basic request patterns.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "tutorial",
+        "beginner"
+      ]
+    },
+    {
+      "url": "https://axios-http.com/docs/api_intro",
+      "title": "Axios API Reference",
+      "description": "Complete API reference for instance methods, request config, and response schema.",
+      "kind": "official",
+      "tags": [
+        "api",
+        "reference"
+      ]
+    }
+  ]
+}

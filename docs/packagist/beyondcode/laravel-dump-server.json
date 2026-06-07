@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "beyondcode/laravel-dump-server",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/beyondcode/laravel-dump-server/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/beyondcode/laravel-dump-server",
+      "title": "Laravel Dump Server",
+      "description": "Collect Symfony VarDumper output in a dedicated server window instead of mixing it with HTTP responses.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "debugging",
+        "cli",
+        "official"
+      ]
+    }
+  ]
+}

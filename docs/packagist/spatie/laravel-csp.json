@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-csp",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-csp/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-csp",
+      "title": "Laravel CSP",
+      "description": "Add Content Security Policy headers to Laravel responses with a fluent API for directives.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "security",
+        "csp",
+        "official"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "slash",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/sindresorhus/slash/main/readme.md",
+  "docs": [
+    {
+      "url": "https://github.com/sindresorhus/slash",
+      "title": "slash Documentation",
+      "description": "Convert Windows backslash paths to slash paths. Simple API reference in the README.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "filesystem"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "kind-of",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/jonschlinkert/kind-of/master/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/jonschlinkert/kind-of",
+      "title": "kind-of Documentation",
+      "description": "Get the native type of a value. README covers the typeof replacement API.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "utility"
+      ]
+    }
+  ]
+}

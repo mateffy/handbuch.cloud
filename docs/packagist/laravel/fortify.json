@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/fortify",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/fortify/main/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/fortify",
+      "title": "Laravel Fortify Documentation",
+      "description": "Official docs for the backend authentication implementation without views.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "authentication",
+        "official"
+      ]
+    }
+  ]
+}

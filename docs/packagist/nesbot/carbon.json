@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "nesbot/carbon",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/briannesbitt/Carbon/main/README.md",
+  "docs": [
+    {
+      "url": "https://carbon.nesbot.com/docs/",
+      "title": "Carbon Documentation",
+      "description": "Official docs for the DateTime extension with expressive methods for manipulation, comparison, formatting, and localization.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "datetime",
+        "official"
+      ]
+    }
+  ]
+}

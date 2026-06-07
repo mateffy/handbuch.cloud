@@ -1,0 +1,35 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "filament/filament",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/filamentphp/filament/main/README.md",
+  "docs": [
+    {
+      "url": "https://filamentphp.com/docs",
+      "title": "Filament Documentation",
+      "description": "Official docs for the Laravel admin panel, form builder, table builder, and notification system.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "admin-panel",
+        "ui",
+        "official"
+      ]
+    },
+    {
+      "url": "https://filamentphp.com/docs/panels",
+      "title": "Filament Panels Documentation",
+      "description": "Guide to building admin panels with resources, pages, widgets, and navigation.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "reference",
+        "admin-panel"
+      ]
+    }
+  ]
+}

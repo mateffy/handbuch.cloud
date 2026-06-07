@@ -1,0 +1,21 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "mkdirp",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/isaacs/node-mkdirp/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/isaacs/node-mkdirp",
+      "title": "mkdirp Documentation",
+      "description": "Recursively create directories, like mkdir -p. README covers the simple API and edge cases.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "filesystem"
+      ]
+    }
+  ]
+}

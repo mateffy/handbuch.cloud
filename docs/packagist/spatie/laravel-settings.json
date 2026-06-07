@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-settings",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-settings/main/README.md",
+  "docs": [
+    {
+      "url": "https://spatie.be/docs/laravel-settings",
+      "title": "Laravel Settings Documentation",
+      "description": "Official docs for managing application settings in a structured way with type safety and auto-discovery.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "configuration",
+        "official"
+      ]
+    }
+  ]
+}

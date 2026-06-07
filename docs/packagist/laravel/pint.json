@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/pint",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/pint/main/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/pint",
+      "title": "Laravel Pint Documentation",
+      "description": "Official docs for the opinionated PHP code style fixer for minimalists.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "formatting",
+        "official"
+      ]
+    }
+  ]
+}

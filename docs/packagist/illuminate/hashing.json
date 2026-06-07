@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "illuminate/hashing",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/illuminate/hashing/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/hashing",
+      "title": "Laravel Hashing Documentation",
+      "description": "Official docs for secure password hashing with Bcrypt and Argon2.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "security",
+        "hashing",
+        "official"
+      ]
+    }
+  ]
+}

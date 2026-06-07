@@ -1,0 +1,21 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "safe-buffer",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/feross/safe-buffer/master/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/feross/safe-buffer",
+      "title": "safe-buffer Documentation",
+      "description": "Safer Node.js Buffer API. README covers the constructor methods and zero-fill behavior.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "buffer"
+      ]
+    }
+  ]
+}

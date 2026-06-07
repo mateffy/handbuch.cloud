@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-translatable",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-translatable/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-translatable",
+      "title": "Laravel Translatable Repository",
+      "description": "Make Eloquent models translatable with JSON-backed storage and locale fallbacks.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "i18n",
+        "official"
+      ]
+    }
+  ]
+}

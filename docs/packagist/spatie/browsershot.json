@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/browsershot",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/browsershot/main/README.md",
+  "docs": [
+    {
+      "url": "https://spatie.be/docs/browsershot",
+      "title": "Browsershot Documentation",
+      "description": "Official docs for converting HTML to images or PDFs using a headless Chrome instance.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "pdf",
+        "screenshots",
+        "official"
+      ]
+    }
+  ]
+}

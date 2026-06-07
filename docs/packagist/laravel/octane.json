@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/octane",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/octane/main/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/octane",
+      "title": "Laravel Octane Documentation",
+      "description": "Official docs for the supercharged application runtime using Swoole or RoadRunner.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "performance",
+        "swoole",
+        "official"
+      ]
+    }
+  ]
+}

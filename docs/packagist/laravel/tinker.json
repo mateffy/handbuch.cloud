@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/tinker",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/tinker/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/artisan#tinker",
+      "title": "Laravel Tinker Documentation",
+      "description": "Official docs for the powerful REPL for interacting with Laravel applications.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "cli",
+        "official"
+      ]
+    }
+  ]
+}

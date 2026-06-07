@@ -1,0 +1,22 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/ui",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/ui/master/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/laravel/ui",
+      "title": "Laravel UI Repository",
+      "description": "Official scaffolding for login, registration, and password reset views with Bootstrap or Vue.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "scaffolding",
+        "official"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/envoy",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/envoy/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/envoy",
+      "title": "Laravel Envoy Documentation",
+      "description": "Official docs for the task runner and deployment tool using Blade syntax.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "deployment",
+        "ssh",
+        "official"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "js-tokens",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/lydell/js-tokens/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/lydell/js-tokens",
+      "title": "js-tokens Documentation",
+      "description": "Tiny JavaScript tokenizer. README covers token types and regex matching.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "parser"
+      ]
+    }
+  ]
+}

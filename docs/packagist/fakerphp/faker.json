@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "fakerphp/faker",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/fakerphp/faker/main/README.md",
+  "docs": [
+    {
+      "url": "https://fakerphp.org/",
+      "title": "Faker Documentation",
+      "description": "Official docs for generating fake data for testing and seeding, with formatters for names, addresses, text, and more.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "testing",
+        "fixtures",
+        "official"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "path-to-regexp",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/pillarjs/path-to-regexp/master/Readme.md",
+  "docs": [
+    {
+      "url": "https://github.com/pillarjs/path-to-regexp",
+      "title": "path-to-regexp Documentation",
+      "description": "Express-style path to RegExp utility. README covers parameter syntax, options, and compilation.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "routing"
+      ]
+    }
+  ]
+}

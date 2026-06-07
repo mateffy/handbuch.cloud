@@ -1,0 +1,38 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "h3",
+  "registry": "npm",
+  "updatedAt": "2026-06-07T11:46:49.000Z",
+  "checkedAt": "2026-06-07T11:46:49.000Z",
+  "readme": "https://raw.githubusercontent.com/h3js/h3/main/README.md",
+  "docs": [
+    {
+      "url": "https://h3.dev/",
+      "title": "H3 Official Documentation",
+      "description": "Minimal H(TTP) framework built for high performance and portability. Web-standards-based, works on Node.js, Deno, Bun, and edge runtimes. Core of the UnJS ecosystem (Nitro, Nuxt).",
+      "kind": "official",
+      "tags": ["guide", "api", "reference"]
+    },
+    {
+      "url": "https://h3.dev/guide",
+      "title": "H3 Getting Started",
+      "description": "Quick-start guide covering installation, basic routing, event handling, and request/response utilities.",
+      "kind": "official",
+      "tags": ["guide", "tutorial", "beginner"]
+    },
+    {
+      "url": "https://h3.dev/guide/api/h3",
+      "title": "H3 API Reference",
+      "description": "Complete API reference for the H3 app factory, event handlers, response helpers, and error handling.",
+      "kind": "official",
+      "tags": ["api", "reference"]
+    },
+    {
+      "url": "https://unjs.io/packages/h3",
+      "title": "H3 on UnJS",
+      "description": "H3 package overview on the UnJS ecosystem site with links to related packages.",
+      "kind": "official",
+      "tags": ["reference"]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/sail",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/sail/main/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/sail",
+      "title": "Laravel Sail Documentation",
+      "description": "Official docs for the Docker development environment for Laravel, including CLI commands and services.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "docker",
+        "development",
+        "official"
+      ]
+    }
+  ]
+}

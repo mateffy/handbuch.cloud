@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "jsonwebtoken",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/auth0/node-jsonwebtoken/master/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/auth0/node-jsonwebtoken",
+      "title": "jsonwebtoken Documentation",
+      "description": "JSON Web Token implementation. README covers sign, verify, decode, and algorithm options.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "jwt",
+        "security"
+      ]
+    }
+  ]
+}

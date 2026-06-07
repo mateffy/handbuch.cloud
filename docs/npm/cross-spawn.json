@@ -1,0 +1,22 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "cross-spawn",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/moxystudio/node-cross-spawn/master/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/moxystudio/node-cross-spawn",
+      "title": "cross-spawn Documentation",
+      "description": "Cross-platform child_process spawn. README covers the API and Windows/shebang compatibility.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "child-process"
+      ]
+    }
+  ]
+}

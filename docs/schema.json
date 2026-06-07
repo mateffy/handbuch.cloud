@@ -10,6 +10,11 @@
       "type": "string",
       "description": "Package name exactly as published in the registry (e.g. 'react', '@effect-ts/core')."
     },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional tags for categorising the package across registry boundaries. Used for cross-registry grouping in the index (e.g. 'react', 'laravel', 'ide')."
+    },
     "registry": {
       "type": "string",
       "enum": ["npm", "packagist", "cargo", "pypi", "go", "maven", "nuget", "gem", "hex", "docker"],

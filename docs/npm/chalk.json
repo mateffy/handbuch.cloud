@@ -1,0 +1,32 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "chalk",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/chalk/chalk/main/readme.md",
+  "docs": [
+    {
+      "url": "https://github.com/chalk/chalk",
+      "title": "Chalk Documentation",
+      "description": "Terminal string styling library. README covers all APIs, color support detection, and chaining.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "terminal"
+      ]
+    },
+    {
+      "url": "https://www.npmjs.com/package/chalk",
+      "title": "Chalk on npm",
+      "description": "Package registry page with installation and quick-start.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "beginner"
+      ]
+    }
+  ]
+}

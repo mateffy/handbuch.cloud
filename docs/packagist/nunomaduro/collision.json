@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "nunomaduro/collision",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/nunomaduro/collision/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/nunomaduro/collision",
+      "title": "Collision Repository",
+      "description": "Beautiful error reporting for console applications, including PHPUnit tests and Artisan commands.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "error-handling",
+        "cli",
+        "official"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "tightenco/jigsaw",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/tighten/jigsaw/main/README.md",
+  "docs": [
+    {
+      "url": "https://jigsaw.tighten.com/",
+      "title": "Jigsaw Documentation",
+      "description": "Official docs for the simple static site generator for Laravel developers using Blade and Markdown.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "static-site",
+        "official"
+      ]
+    },
+    {
+      "url": "https://jigsaw.tighten.com/docs/installation",
+      "title": "Jigsaw Installation",
+      "description": "Getting started guide for building your first static site with Jigsaw.",
+      "kind": "official",
+      "tags": [
+        "tutorial",
+        "beginner",
+        "guide"
+      ]
+    }
+  ]
+}

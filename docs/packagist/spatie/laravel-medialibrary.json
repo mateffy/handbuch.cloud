@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-medialibrary",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-medialibrary/main/README.md",
+  "docs": [
+    {
+      "url": "https://spatie.be/docs/laravel-medialibrary",
+      "title": "Laravel Media Library Documentation",
+      "description": "Official docs for associating files with Eloquent models, image conversions, responsive images, and media collections.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "media",
+        "images",
+        "official"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-html",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-html/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-html",
+      "title": "Laravel HTML Repository",
+      "description": "Fluent HTML and form builder for Laravel, replacing the native Form builder with a modern API.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "forms",
+        "html",
+        "official"
+      ]
+    }
+  ]
+}

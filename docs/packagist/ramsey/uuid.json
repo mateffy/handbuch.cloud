@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "ramsey/uuid",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/ramsey/uuid/main/README.md",
+  "docs": [
+    {
+      "url": "https://uuid.ramsey.dev/en/stable/",
+      "title": "Ramsey UUID Documentation",
+      "description": "Official docs for RFC 4122 UUID generation and manipulation with support for multiple versions and factories.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "uuid",
+        "official"
+      ]
+    }
+  ]
+}

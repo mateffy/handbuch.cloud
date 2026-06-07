@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-health",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-health/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-health",
+      "title": "Laravel Health",
+      "description": "Monitor application health with configurable checks for cache, database, filesystem, queues, and more.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "health-check",
+        "monitoring",
+        "official"
+      ]
+    }
+  ]
+}

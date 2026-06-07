@@ -1,0 +1,35 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "livewire/livewire",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/livewire/livewire/main/README.md",
+  "docs": [
+    {
+      "url": "https://livewire.laravel.com/docs",
+      "title": "Livewire Documentation",
+      "description": "Official docs for the full-stack framework for building dynamic UI components without leaving PHP.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "frontend",
+        "components",
+        "official"
+      ]
+    },
+    {
+      "url": "https://livewire.laravel.com/docs/quickstart",
+      "title": "Livewire Quickstart",
+      "description": "Step-by-step guide to building your first Livewire component.",
+      "kind": "official",
+      "tags": [
+        "tutorial",
+        "beginner",
+        "guide"
+      ]
+    }
+  ]
+}

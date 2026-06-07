@@ -1,0 +1,21 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "through2",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/rvagg/through2/master/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/rvagg/through2",
+      "title": "through2 Documentation",
+      "description": "Tiny wrapper around Node.js streams.Transform. README covers the simple constructor API.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "streams"
+      ]
+    }
+  ]
+}

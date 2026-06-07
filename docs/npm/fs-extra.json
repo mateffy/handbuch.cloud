@@ -1,0 +1,31 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "fs-extra",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/jprichardson/node-fs-extra/master/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/jprichardson/node-fs-extra",
+      "title": "fs-extra Documentation",
+      "description": "Drop-in replacement for fs with methods like copy, move, remove, and ensureDir.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "filesystem"
+      ]
+    },
+    {
+      "url": "https://www.npmjs.com/package/fs-extra",
+      "title": "fs-extra on npm",
+      "description": "Registry page with API overview.",
+      "kind": "official",
+      "tags": [
+        "guide"
+      ]
+    }
+  ]
+}

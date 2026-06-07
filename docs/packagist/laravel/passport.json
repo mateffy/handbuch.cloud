@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/passport",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/passport/master/README.md",
+  "docs": [
+    {
+      "url": "https://laravel.com/docs/passport",
+      "title": "Laravel Passport Documentation",
+      "description": "Official docs for Laravel's full OAuth2 server implementation for API authentication.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "oauth",
+        "authentication",
+        "official"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "larastan/larastan",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/larastan/larastan/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/larastan/larastan",
+      "title": "Larastan Repository",
+      "description": "PHPStan integration for Laravel with extensive stubs for Eloquent, facades, and container resolution.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "static-analysis",
+        "phpstan",
+        "official"
+      ]
+    }
+  ]
+}

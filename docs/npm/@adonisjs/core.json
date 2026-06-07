@@ -1,0 +1,38 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "@adonisjs/core",
+  "registry": "npm",
+  "updatedAt": "2026-06-07T11:46:49.000Z",
+  "checkedAt": "2026-06-07T11:46:49.000Z",
+  "readme": "https://raw.githubusercontent.com/adonisjs/core/7.x/README.md",
+  "docs": [
+    {
+      "url": "https://docs.adonisjs.com/",
+      "title": "AdonisJS Official Documentation",
+      "description": "Full-featured Node.js framework with a rich ecosystem. Covers routing, controllers, ORM (Lucid), authentication, validation, testing, and deployment.",
+      "kind": "official",
+      "tags": ["guide", "api", "reference"]
+    },
+    {
+      "url": "https://docs.adonisjs.com/installation",
+      "title": "AdonisJS Installation Guide",
+      "description": "Set up a new AdonisJS application from scratch, including prerequisites and project creation.",
+      "kind": "official",
+      "tags": ["guide", "tutorial", "beginner"]
+    },
+    {
+      "url": "https://docs.adonisjs.com/guides/routing",
+      "title": "AdonisJS Routing Guide",
+      "description": "Routes, route groups, route parameters, and controller binding in AdonisJS.",
+      "kind": "official",
+      "tags": ["guide"]
+    },
+    {
+      "url": "https://docs.adonisjs.com/guides/digging-deeper",
+      "title": "AdonisJS Advanced Guides",
+      "description": "Digging deeper into encryption, hashing, events, mail, queues, and more.",
+      "kind": "official",
+      "tags": ["guide", "advanced"]
+    }
+  ]
+}

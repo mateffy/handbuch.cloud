@@ -1,0 +1,31 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "@babel/core",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "docs": [
+    {
+      "url": "https://babel.dev/docs/en/babel-core",
+      "title": "@babel/core Documentation",
+      "description": "Babel compiler core. Official docs on programmatic usage, configuration, and transform API.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "babel"
+      ]
+    },
+    {
+      "url": "https://babel.dev/docs/en/configuration",
+      "title": "Babel Configuration",
+      "description": "Guide to configuring Babel with config files, presets, and plugins.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "configuration"
+      ]
+    }
+  ]
+}

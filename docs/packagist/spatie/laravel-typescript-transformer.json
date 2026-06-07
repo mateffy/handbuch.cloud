@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-typescript-transformer",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-typescript-transformer/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-typescript-transformer",
+      "title": "Laravel TypeScript Transformer",
+      "description": "Transform PHP classes into TypeScript definitions with support for enums, resources, and DTOs.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "typescript",
+        "official"
+      ]
+    }
+  ]
+}

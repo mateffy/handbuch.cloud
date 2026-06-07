@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-activitylog",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-activitylog/main/README.md",
+  "docs": [
+    {
+      "url": "https://spatie.be/docs/laravel-activitylog",
+      "title": "Laravel Activity Log Documentation",
+      "description": "Official docs for logging user activity inside Laravel apps with causer tracking and customizable logs.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "logging",
+        "audit",
+        "official"
+      ]
+    }
+  ]
+}

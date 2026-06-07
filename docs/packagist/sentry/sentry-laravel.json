@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "sentry/sentry-laravel",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/getsentry/sentry-laravel/main/README.md",
+  "docs": [
+    {
+      "url": "https://docs.sentry.io/platforms/php/guides/laravel/",
+      "title": "Sentry Laravel Documentation",
+      "description": "Official Sentry docs for Laravel error tracking, performance monitoring, and release health.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "error-tracking",
+        "monitoring",
+        "official"
+      ]
+    }
+  ]
+}

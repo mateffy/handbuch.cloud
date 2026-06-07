@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "tightenco/ziggy",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/tighten/ziggy/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/tighten/ziggy",
+      "title": "Ziggy Repository",
+      "description": "Use Laravel routes in JavaScript by generating a named route list with Blade directives or Vite plugins.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "routing",
+        "javascript",
+        "official"
+      ]
+    }
+  ]
+}

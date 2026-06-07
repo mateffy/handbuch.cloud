@@ -1,0 +1,21 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "has-flag",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/sindresorhus/has-flag/main/readme.md",
+  "docs": [
+    {
+      "url": "https://github.com/sindresorhus/has-flag",
+      "title": "has-flag Documentation",
+      "description": "Check if argv has a specific flag. Simple API reference in the README.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "cli"
+      ]
+    }
+  ]
+}

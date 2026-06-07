@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-markdown",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-markdown/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-markdown",
+      "title": "Laravel Markdown",
+      "description": "Render Markdown to HTML with syntax highlighting, Blade components, and cache support.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "markdown",
+        "official"
+      ]
+    }
+  ]
+}

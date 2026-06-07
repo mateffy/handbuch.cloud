@@ -1,0 +1,32 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "acorn",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/acornjs/acorn/master/acorn/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/acornjs/acorn",
+      "title": "Acorn Documentation",
+      "description": "Tiny, fast JavaScript parser. README covers AST output, plugins, and command-line usage.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "parser"
+      ]
+    },
+    {
+      "url": "https://github.com/acornjs/acorn/blob/master/acorn/README.md",
+      "title": "Acorn Parser API",
+      "description": "Parser options, tokenization, and AST node types.",
+      "kind": "official",
+      "tags": [
+        "api",
+        "reference"
+      ]
+    }
+  ]
+}

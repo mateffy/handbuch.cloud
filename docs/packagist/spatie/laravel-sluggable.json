@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-sluggable",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-sluggable/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-sluggable",
+      "title": "Laravel Sluggable Repository",
+      "description": "Generate slugs from another attribute using Eloquent model traits, with unique and language support.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "seo",
+        "official"
+      ]
+    }
+  ]
+}

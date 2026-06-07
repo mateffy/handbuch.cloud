@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "laravel/slack-notification-channel",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/laravel/slack-notification-channel/master/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/laravel/slack-notification-channel",
+      "title": "Laravel Slack Notification Channel",
+      "description": "Official Slack notification channel for Laravel, supporting Slack API and webhooks.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "notifications",
+        "slack",
+        "official"
+      ]
+    }
+  ]
+}

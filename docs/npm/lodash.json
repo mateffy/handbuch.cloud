@@ -1,0 +1,32 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "lodash",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/lodash/lodash/master/README.md",
+  "docs": [
+    {
+      "url": "https://lodash.com/",
+      "title": "Lodash Official Documentation",
+      "description": "Modular utility library delivering consistency, customization, and performance. API docs for all functions.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "official"
+      ]
+    },
+    {
+      "url": "https://lodash.com/docs/",
+      "title": "Lodash API Reference",
+      "description": "Complete API reference for all Lodash utilities organized by category.",
+      "kind": "official",
+      "tags": [
+        "api",
+        "reference"
+      ]
+    }
+  ]
+}

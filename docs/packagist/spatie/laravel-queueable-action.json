@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-queueable-action",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-queueable-action/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-queueable-action",
+      "title": "Laravel Queueable Action",
+      "description": "Execute actions as queueable jobs with support for chaining, unique jobs, and middleware.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "queues",
+        "actions",
+        "official"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "beyondcode/laravel-websockets",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/beyondcode/laravel-websockets/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/beyondcode/laravel-websockets",
+      "title": "Laravel WebSockets Repository",
+      "description": "Self-hosted WebSocket server for Laravel with Pusher API compatibility, dashboard, and SSL support.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "websockets",
+        "realtime",
+        "official"
+      ]
+    }
+  ]
+}

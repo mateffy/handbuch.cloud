@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-tags",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-tags/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-tags",
+      "title": "Laravel Tags Repository",
+      "description": "Attach tags to Eloquent models with support for translations, types, and sorting.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "tagging",
+        "official"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-uptime-monitor",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-uptime-monitor/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-uptime-monitor",
+      "title": "Laravel Uptime Monitor",
+      "description": "Monitor uptime and SSL certificates of websites and get notified when something goes down.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "monitoring",
+        "ssl",
+        "official"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "nanoid",
+  "registry": "npm",
+  "updatedAt": "2026-06-06T18:37:42.522Z",
+  "checkedAt": "2026-06-06T18:37:42.522Z",
+  "readme": "https://raw.githubusercontent.com/ai/nanoid/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/ai/nanoid",
+      "title": "nanoid Documentation",
+      "description": "Tiny secure URL-friendly unique string ID generator. README covers custom alphabets, length, and non-secure mode.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference"
+      ]
+    },
+    {
+      "url": "https://zelark.github.io/nano-id-cc/",
+      "title": "Nano ID Collision Calculator",
+      "description": "Interactive tool to estimate collision probability for Nano IDs.",
+      "kind": "community",
+      "tags": [
+        "tool",
+        "interactive"
+      ]
+    }
+  ]
+}

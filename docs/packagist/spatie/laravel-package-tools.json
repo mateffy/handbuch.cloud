@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-package-tools",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-package-tools/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-package-tools",
+      "title": "Laravel Package Tools",
+      "description": "Helper classes for building Laravel packages with automatic service provider setup and package discovery.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "package-development",
+        "official"
+      ]
+    }
+  ]
+}

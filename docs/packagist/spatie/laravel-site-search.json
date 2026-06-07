@@ -1,0 +1,23 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "spatie/laravel-site-search",
+  "registry": "packagist",
+  "updatedAt": "2026-06-06T18:52:33.276Z",
+  "checkedAt": "2026-06-06T18:52:33.276Z",
+  "readme": "https://raw.githubusercontent.com/spatie/laravel-site-search/main/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/spatie/laravel-site-search",
+      "title": "Laravel Site Search",
+      "description": "Create a search index for your site with Meilisearch or Elasticsearch and a Livewire search component.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api",
+        "reference",
+        "search",
+        "official"
+      ]
+    }
+  ]
+}
