@@ -338,6 +338,33 @@ var registrySelect = document.querySelector("#registry-select");
 var resultsEl = document.querySelector("#results");
 var autocompleteEl = document.querySelector("#autocomplete-list");
 var inputSpinnerEl = document.querySelector("#input-spinner");
+var wasmUrl = new URL("/dist/sql-wasm.wasm?v=5", window.location.origin).toString();
+var wasmBlobUrlPromise = null;
+async function getWasmBlobUrl() {
+  if (wasmBlobUrlPromise)
+    return wasmBlobUrlPromise;
+  wasmBlobUrlPromise = (async () => {
+    console.log("[search-db] preloading wasm binary…");
+    const res = await fetch(wasmUrl, { credentials: "same-origin" });
+    if (!res.ok)
+      throw new Error(`WASM preload failed: ${res.status}`);
+    const buf = await res.arrayBuffer();
+    const blob = new Blob([buf], { type: "application/wasm" });
+    const url = URL.createObjectURL(blob);
+    console.log("[search-db] wasm blob url ready");
+    return url;
+  })();
+  return wasmBlobUrlPromise;
+}
+getWasmBlobUrl();
+var DB_CONFIG = {
+  from: "inline",
+  config: {
+    serverMode: "full",
+    requestChunkSize: 8192,
+    url: "https://static.handbuch.cloud/full.sqlite3"
+  }
+};
 var searchSeq = 0;
 var dbReady = false;
 var delayMs = new URLSearchParams(window.location.search).get("delay");
@@ -354,27 +381,10 @@ function packageUrl(name, registry) {
 }
 function restoreDefault() {
   resultsEl.innerHTML = `
-    <h2 class="font-semibold">
-      Search for up-to-date documentation sources for a given
-      open-source package.
-    </h2>
-    <p>
-      The URLs are manually curated for accuracy, quality and
-      relevance. You can also contribute to the library by
-      submitting new URLs or reporting broken links by opening
-      a GitHub PR.
-    </p>
-    <h2 class="font-semibold mt-10">
-      Static analysis of source code suggests relevant
-      documentation based on your code.
-    </h2>
-    <p>
-      By analyzing your source code, we can suggest relevant
-      documentation that matches the libraries and frameworks
-      you are using. This allows you to quickly find the
-      information you need without having to manually search
-      for it.
-    </p>
+    <h2 class="font-semibold">Search for up-to-date documentation sources for a given open-source package.</h2>
+    <p>The URLs are manually curated for accuracy, quality and relevance. You can also contribute to the library by submitting new URLs or reporting broken links by opening a GitHub PR.</p>
+    <h2 class="font-semibold mt-10">Static analysis of source code suggests relevant documentation based on your code.</h2>
+    <p>By analyzing your source code, we can suggest relevant documentation that matches the libraries and frameworks you are using. This allows you to quickly find the information you need without having to manually search for it.</p>
   `;
 }
 function showError(message) {
@@ -384,9 +394,7 @@ function showError(message) {
         <svg class="w-5 h-5 text-red-500 mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
         </svg>
-        <div>
-          <p class="font-semibold text-gray-800">${escapeHtml(message)}</p>
-        </div>
+        <div><p class="font-semibold text-gray-800">${escapeHtml(message)}</p></div>
       </div>
     </div>
   `;
@@ -398,25 +406,11 @@ async function getDb() {
   dbPromise = (async () => {
     console.log("[search-db] init start");
     const workerUrl = new URL("/dist/sqlite.worker.js?v=5", window.location.origin).toString();
-    const wasmUrl = new URL("/dist/sql-wasm.wasm?v=5", window.location.origin).toString();
-    let configData;
-    try {
-      const cfgRes = await fetch("/db/config.json");
-      configData = await cfgRes.json();
-      console.log("[search-db] config loaded:", configData);
-    } catch (err) {
-      console.error("[search-db] config fetch failed:", err);
-      throw err;
-    }
     console.log("[search-db] creating worker …");
+    const wasmBlobUrl = await getWasmBlobUrl();
     let worker;
     try {
-      worker = await import_sql.createDbWorker([
-        {
-          from: "jsonconfig",
-          configUrl: "/db/config.json"
-        }
-      ], workerUrl, wasmUrl);
+      worker = await import_sql.createDbWorker([DB_CONFIG], workerUrl, wasmBlobUrl);
     } catch (err) {
       console.error("[search-db] createDbWorker failed:", err);
       throw err;
@@ -446,18 +440,17 @@ async function getDb() {
 async function queryAutocomplete(pattern, registry) {
   await maybeDelay();
   const db = await getDb();
-  const result = await db.exec(`SELECT p.name
-     FROM packages_fts f
-     JOIN packages p ON p.id = f.rowid
-     WHERE f.name MATCH $pattern
-       AND p.registry = $registry
+  const result = await db.exec(`SELECT name
+     FROM packages
+     WHERE registry = $registry
+       AND instr(lower(name), lower($pattern)) > 0
      ORDER BY
        CASE
-         WHEN lower(p.name) = lower($pattern) THEN 0
-         WHEN instr(lower(p.name), lower($pattern)) = 1 THEN 1
+         WHEN lower(name) = lower($pattern) THEN 0
+         WHEN instr(lower(name), lower($pattern)) = 1 THEN 1
          ELSE 2
        END ASC,
-       length(p.name) ASC
+       length(name) ASC
      LIMIT 5`, { $registry: registry, $pattern: pattern });
   const rows = result?.[0]?.values ?? [];
   return rows.map((r) => r[0]);
@@ -472,19 +465,37 @@ async function exactMatch(name, registry) {
 var activeIndex = -1;
 var autocompleteItems = [];
 var autocompleteVisible = false;
-function showDropdownSpinner() {
+function showDropdownLoading() {
   autocompleteItems = [];
   activeIndex = -1;
-  autocompleteVisible = false;
+  autocompleteVisible = true;
   autocompleteEl.innerHTML = `
     <div class="flex items-center gap-2 px-3 py-2 text-sm text-zinc-400">
       <svg class="animate-spin text-zinc-400 shrink-0" style="width:12px;height:12px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
       </svg>
-      <span>Loading index…</span>
+      <span>Loading SQLite package index...</span>
     </div>
   `;
+  autocompleteEl.classList.remove("hidden");
+  autocompleteEl.setAttribute("aria-expanded", "true");
+  input.removeAttribute("aria-activedescendant");
+}
+function showMinChars() {
+  autocompleteItems = [];
+  activeIndex = -1;
+  autocompleteVisible = true;
+  autocompleteEl.innerHTML = `<div class="px-3 py-2 text-sm text-zinc-400">Enter more than 3 characters to search</div>`;
+  autocompleteEl.classList.remove("hidden");
+  autocompleteEl.setAttribute("aria-expanded", "true");
+  input.removeAttribute("aria-activedescendant");
+}
+function showNoResults(query) {
+  autocompleteItems = [];
+  activeIndex = -1;
+  autocompleteVisible = true;
+  autocompleteEl.innerHTML = `<div class="px-3 py-2 text-sm text-zinc-400">No results for "${escapeHtml(query)}"</div>`;
   autocompleteEl.classList.remove("hidden");
   autocompleteEl.setAttribute("aria-expanded", "true");
   input.removeAttribute("aria-activedescendant");
@@ -577,31 +588,59 @@ function moveUp() {
   }
 }
 async function doAutocomplete(query, registry) {
-  if (!query.trim()) {
+  const trimmed = query.trim();
+  if (!trimmed) {
     hideAutocomplete();
     setInputSpinner(false);
     return;
   }
   const seq = ++searchSeq;
   if (!dbReady) {
-    showDropdownSpinner();
-  } else {
-    setInputSpinner(true);
+    showDropdownLoading();
+    try {
+      await getDb();
+      if (seq !== searchSeq)
+        return;
+    } catch {
+      if (seq !== searchSeq)
+        return;
+      hideAutocomplete();
+      return;
+    }
   }
+  const currentQuery = input.value.trim();
+  if (!currentQuery) {
+    hideAutocomplete();
+    return;
+  }
+  if (currentQuery.length < 3) {
+    showMinChars();
+    return;
+  }
+  if (document.activeElement !== input) {
+    hideAutocomplete();
+    return;
+  }
+  setInputSpinner(true);
   try {
-    const suggestions = await queryAutocomplete(query.trim(), registry);
+    const suggestions = await queryAutocomplete(currentQuery, registry);
     if (seq !== searchSeq)
       return;
-    if (suggestions.length > 0 && document.activeElement === input) {
+    const latestQuery = input.value.trim();
+    if (latestQuery.length < 3) {
+      showMinChars();
+      return;
+    }
+    if (suggestions.length > 0) {
       showAutocomplete(suggestions);
     } else {
-      hideAutocomplete();
+      showNoResults(latestQuery);
     }
   } catch (err) {
     console.error("[search-db] autocomplete error:", err);
     if (seq !== searchSeq)
       return;
-    hideAutocomplete();
+    showNoResults(input.value.trim());
   } finally {
     if (seq === searchSeq)
       setInputSpinner(false);

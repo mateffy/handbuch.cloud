@@ -101,6 +101,41 @@ function showError(message: string): void {
   `;
 }
 
+const wasmUrl = new URL("/dist/sql-wasm.wasm?v=5", window.location.origin).toString();
+
+/** Pre-fetch the WASM binary in the main thread so the worker can load it from a
+ *  blob URL (instant, no duplicate network request). */
+let wasmBlobUrlPromise: Promise<string> | null = null;
+async function getWasmBlobUrl(): Promise<string> {
+  if (wasmBlobUrlPromise) return wasmBlobUrlPromise;
+
+  wasmBlobUrlPromise = (async () => {
+    console.log("[library-db] preloading wasm binary…");
+    const res = await fetch(wasmUrl, { credentials: "same-origin" });
+    if (!res.ok) throw new Error(`WASM preload failed: ${res.status}`);
+    const buf = await res.arrayBuffer();
+    const blob = new Blob([buf], { type: "application/wasm" });
+    const url = URL.createObjectURL(blob);
+    console.log("[library-db] wasm blob url ready");
+    return url;
+  })();
+
+  return wasmBlobUrlPromise;
+}
+
+// Start preloading WASM immediately so it's ready when the user scrolls / filters.
+void getWasmBlobUrl();
+
+// ── Hardcoded HTTP-VFS config (no external config.json) ─────────
+const DB_CONFIG = {
+  from: "inline" as const,
+  config: {
+    serverMode: "full" as const,
+    requestChunkSize: 8192,
+    url: "https://static.handbuch.cloud/full.sqlite3",
+  },
+};
+
 /** Optional artificial delay for UX testing: ?delay=2000 (ms) */
 const delayMs = new URLSearchParams(window.location.search).get('delay');
 async function maybeDelay(): Promise<void> {
@@ -121,12 +156,12 @@ async function getDb(): Promise<DbHandle> {
 
   dbPromise = (async () => {
     const workerUrl = new URL("/dist/sqlite.worker.js?v=5", window.location.origin).toString();
-    const wasmUrl = new URL("/dist/sql-wasm.wasm?v=5", window.location.origin).toString();
 
+    const wasmBlobUrl = await getWasmBlobUrl();
     const worker: WorkerHttpvfs = await createDbWorker(
-      [{ from: "jsonconfig", configUrl: "/db/config.json" }],
+      [DB_CONFIG],
       workerUrl,
-      wasmUrl,
+      wasmBlobUrl,
     );
 
     const db = worker.db as unknown as { exec(sql: string, params?: unknown): Promise<QueryResult[]> };
@@ -166,14 +201,12 @@ async function fetchPage(filters: FilterState, offset: number): Promise<PackageR
   let result: QueryResult[];
 
   if (hasSearch) {
-    // FTS5 path — trigram index handles substring matching
     result = await db.exec(
       `SELECT p.name, p.registry, p.updated_at, GROUP_CONCAT(t.name, ',') AS tags
-       FROM packages_fts f
-       JOIN packages p ON p.id = f.rowid
+       FROM packages p
        LEFT JOIN package_tags pt ON pt.package_id = p.id
        LEFT JOIN tags t ON t.id = pt.tag_id
-       WHERE f.name MATCH $search
+       WHERE instr(lower(p.name), lower($search)) > 0
          AND ($registry = '' OR p.registry = $registry)
          AND ($category = '' OR EXISTS (
            SELECT 1 FROM package_tags pt2
@@ -181,7 +214,13 @@ async function fetchPage(filters: FilterState, offset: number): Promise<PackageR
            WHERE pt2.package_id = p.id AND t2.name = $category
          ))
        GROUP BY p.id
-       ORDER BY rank, p.name
+       ORDER BY
+         CASE
+           WHEN lower(p.name) = lower($search) THEN 0
+           WHEN instr(lower(p.name), lower($search)) = 1 THEN 1
+           ELSE 2
+         END ASC,
+         length(p.name) ASC
        LIMIT $limit OFFSET $offset`,
       { $search: search, $registry: registry, $category: category, $limit: PAGE_SIZE, $offset: offset },
     );
@@ -224,10 +263,9 @@ async function fetchCount(filters: FilterState): Promise<number> {
 
   if (search.length > 0) {
     result = await db.exec(
-      `SELECT COUNT(DISTINCT p.id)
-       FROM packages_fts f
-       JOIN packages p ON p.id = f.rowid
-       WHERE f.name MATCH $search
+      `SELECT COUNT(*)
+       FROM packages p
+       WHERE instr(lower(p.name), lower($search)) > 0
          AND ($registry = '' OR p.registry = $registry)
          AND ($category = '' OR EXISTS (
            SELECT 1 FROM package_tags pt2

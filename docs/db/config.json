@@ -1,5 +1,0 @@
-{
-  "serverMode": "full",
-  "requestChunkSize": 4096,
-  "url": "https://static.handbuch.cloud/full.sqlite3"
-}

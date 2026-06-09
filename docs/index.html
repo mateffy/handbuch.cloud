@@ -56,6 +56,12 @@
                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                             </svg>
                         </div>
+                        <div
+                            id="autocomplete-list"
+                            role="listbox"
+                            aria-label="Package suggestions"
+                            class="absolute left-0 right-0 top-full z-10 bg-white border border-zinc-200 shadow-lg hidden"
+                        ></div>
                     </div>
                     <select
                         id="registry-select"
@@ -65,12 +71,6 @@
                         <option value="packagist">Packagist</option>
                         <option value="cargo">Cargo</option>
                     </select>
-                    <div
-                        id="autocomplete-list"
-                        role="listbox"
-                        aria-label="Package suggestions"
-                        class="absolute left-0 right-0 top-full z-10 bg-white border border-zinc-200 shadow-lg hidden"
-                    ></div>
                 </form>
 
                 <div

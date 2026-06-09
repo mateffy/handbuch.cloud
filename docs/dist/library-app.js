@@ -390,6 +390,33 @@ function showError(message) {
     </div>
   `;
 }
+var wasmUrl = new URL("/dist/sql-wasm.wasm?v=5", window.location.origin).toString();
+var wasmBlobUrlPromise = null;
+async function getWasmBlobUrl() {
+  if (wasmBlobUrlPromise)
+    return wasmBlobUrlPromise;
+  wasmBlobUrlPromise = (async () => {
+    console.log("[library-db] preloading wasm binary…");
+    const res = await fetch(wasmUrl, { credentials: "same-origin" });
+    if (!res.ok)
+      throw new Error(`WASM preload failed: ${res.status}`);
+    const buf = await res.arrayBuffer();
+    const blob = new Blob([buf], { type: "application/wasm" });
+    const url = URL.createObjectURL(blob);
+    console.log("[library-db] wasm blob url ready");
+    return url;
+  })();
+  return wasmBlobUrlPromise;
+}
+getWasmBlobUrl();
+var DB_CONFIG = {
+  from: "inline",
+  config: {
+    serverMode: "full",
+    requestChunkSize: 8192,
+    url: "https://static.handbuch.cloud/full.sqlite3"
+  }
+};
 var delayMs = new URLSearchParams(window.location.search).get("delay");
 async function maybeDelay() {
   if (!delayMs)
@@ -402,8 +429,8 @@ async function getDb() {
     return dbPromise;
   dbPromise = (async () => {
     const workerUrl = new URL("/dist/sqlite.worker.js?v=5", window.location.origin).toString();
-    const wasmUrl = new URL("/dist/sql-wasm.wasm?v=5", window.location.origin).toString();
-    const worker = await import_sql.createDbWorker([{ from: "jsonconfig", configUrl: "/db/config.json" }], workerUrl, wasmUrl);
+    const wasmBlobUrl = await getWasmBlobUrl();
+    const worker = await import_sql.createDbWorker([DB_CONFIG], workerUrl, wasmBlobUrl);
     const db = worker.db;
     return {
       exec(sql, params) {
@@ -427,11 +454,10 @@ async function fetchPage(filters, offset) {
   let result;
   if (hasSearch) {
     result = await db.exec(`SELECT p.name, p.registry, p.updated_at, GROUP_CONCAT(t.name, ',') AS tags
-       FROM packages_fts f
-       JOIN packages p ON p.id = f.rowid
+       FROM packages p
        LEFT JOIN package_tags pt ON pt.package_id = p.id
        LEFT JOIN tags t ON t.id = pt.tag_id
-       WHERE f.name MATCH $search
+       WHERE instr(lower(p.name), lower($search)) > 0
          AND ($registry = '' OR p.registry = $registry)
          AND ($category = '' OR EXISTS (
            SELECT 1 FROM package_tags pt2
@@ -439,7 +465,13 @@ async function fetchPage(filters, offset) {
            WHERE pt2.package_id = p.id AND t2.name = $category
          ))
        GROUP BY p.id
-       ORDER BY rank, p.name
+       ORDER BY
+         CASE
+           WHEN lower(p.name) = lower($search) THEN 0
+           WHEN instr(lower(p.name), lower($search)) = 1 THEN 1
+           ELSE 2
+         END ASC,
+         length(p.name) ASC
        LIMIT $limit OFFSET $offset`, { $search: search, $registry: registry, $category: category, $limit: PAGE_SIZE, $offset: offset });
   } else {
     result = await db.exec(`SELECT p.name, p.registry, p.updated_at, GROUP_CONCAT(t.name, ',') AS tags
@@ -470,10 +502,9 @@ async function fetchCount(filters) {
   const { search, registry, category } = filters;
   let result;
   if (search.length > 0) {
-    result = await db.exec(`SELECT COUNT(DISTINCT p.id)
-       FROM packages_fts f
-       JOIN packages p ON p.id = f.rowid
-       WHERE f.name MATCH $search
+    result = await db.exec(`SELECT COUNT(*)
+       FROM packages p
+       WHERE instr(lower(p.name), lower($search)) > 0
          AND ($registry = '' OR p.registry = $registry)
          AND ($category = '' OR EXISTS (
            SELECT 1 FROM package_tags pt2

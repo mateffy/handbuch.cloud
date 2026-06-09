@@ -44,17 +44,6 @@ const server: Server = serve({
   port: PORT,
   fetch(req: Request): Response | Promise<Response> {
     const url = new URL(req.url);
-
-    // Override DB config to always use the local file in dev.
-    // Production config.json points at R2; here we redirect to the
-    // local copy served by this same server (with proper Range support).
-    if (url.pathname === "/db/config.json") {
-      return new Response(
-        JSON.stringify({ serverMode: "full", requestChunkSize: 4096, url: "/db/full.sqlite3" }),
-        { headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } },
-      );
-    }
-
     let filePath = join(ROOT, decodeURIComponent(url.pathname));
 
     // Directory → index.html

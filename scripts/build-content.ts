@@ -251,8 +251,6 @@ function createSchema(db: Database): void {
   db.run("CREATE INDEX idx_doc_tags_tag_id ON doc_tags(tag_id)");
 
   // ── FTS5 full-text search (trigram tokenizer for infix matching) ──
-  // tokenize='trigram' → MATCH 'react' finds any name *containing* "react".
-  // Case-insensitive by default. registry is stored but not tokenized.
   db.run(`
     CREATE VIRTUAL TABLE packages_fts USING fts5(
       name,
@@ -384,22 +382,9 @@ async function buildDatabase(packages: FlatPackage[]): Promise<void> {
   //
   // Production URL is hardcoded. The dev-server.ts overrides this locally
   // so local development never hits R2.
-  const dbUrl = "https://static.handbuch.cloud/full.sqlite3";
-
-  const dbConfig = {
-    serverMode: "full",
-    requestChunkSize: 4096,
-    url: dbUrl,
-  };
-  writeFileSync(
-    join(DB_PATH, "..", "config.json"),
-    JSON.stringify(dbConfig, null, 2) + "\n",
-  );
-
   console.log(
     `✓  db/full.sqlite3  (${dbSize.toFixed(0)} KB  •  ${pkgCount} packages  •  ${docCount} docs  •  ${tagCount} tags)`,
   );
-  console.log(`✓  db/config.json  →  ${dbUrl}`);
 }
 
 // ── JSON index builder ─────────────────────────────────────────────
