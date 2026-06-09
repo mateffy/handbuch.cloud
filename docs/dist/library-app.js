@@ -576,9 +576,9 @@ async function init() {
     const currentCategory = categorySelect.value;
     categorySelect.innerHTML = '<option value="">All categories</option>' + tags.map((t) => `<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`).join("");
     categorySelect.value = currentCategory;
-    hideInitialLoading();
     setupScrollObserver();
     await resetAndLoad();
+    hideInitialLoading();
   } catch (err) {
     console.error("[library-db] init error:", err);
     showError("Could not load package library. Check your connection and try again.");

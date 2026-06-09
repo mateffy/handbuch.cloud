@@ -362,7 +362,7 @@ async function init(): Promise<void> {
   showInitialLoading();
 
   try {
-    // Populate category dropdown from DB
+    // Populate category dropdown from DB (spinner still showing)
     const tags = await fetchAllTags();
     const currentCategory = categorySelect.value;
     categorySelect.innerHTML =
@@ -370,9 +370,10 @@ async function init(): Promise<void> {
       tags.map((t) => `<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`).join("");
     categorySelect.value = currentCategory;
 
-    hideInitialLoading();
     setupScrollObserver();
+    // Keep spinner up until the first page of data is actually in the DOM
     await resetAndLoad();
+    hideInitialLoading();
   } catch (err) {
     console.error("[library-db] init error:", err);
     showError("Could not load package library. Check your connection and try again.");

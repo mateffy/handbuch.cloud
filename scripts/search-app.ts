@@ -27,10 +27,13 @@ const input = form.querySelector<HTMLInputElement>('input[type="search"]')!;
 const registrySelect = document.querySelector<HTMLSelectElement>("#registry-select")!;
 const resultsEl = document.querySelector<HTMLDivElement>("#results")!;
 const autocompleteEl = document.querySelector<HTMLDivElement>("#autocomplete-list")!;
+const inputSpinnerEl = document.querySelector<HTMLDivElement>("#input-spinner")!;;
 
-// ── Race-condition guard ──────────────────────────────────────────
+// ── Race-condition guard + DB readiness ─────────────────────────
 
 let searchSeq = 0;
+/** True once the DB worker has fully initialised and the first query can run instantly. */
+let dbReady = false;
 
 // ── Helpers ───────────────────────────────────────────────────────
 
@@ -154,6 +157,7 @@ async function getDb(): Promise<DbHandle> {
       throw err;
     }
 
+    dbReady = true;
     return {
       exec(sql: string, params?: Record<string, unknown> | unknown[]) {
         return db.exec(sql, params);
@@ -224,6 +228,32 @@ async function exactMatch(
 let activeIndex = -1;
 let autocompleteItems: string[] = [];
 let autocompleteVisible = false;
+
+const SPINNER_SVG = `<svg class="animate-spin h-4 w-4 text-zinc-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+</svg>`;
+
+/** Show a loading state in the dropdown — used while DB is not yet ready. */
+function showDropdownSpinner(): void {
+  autocompleteItems = [];
+  activeIndex = -1;
+  autocompleteVisible = false;
+  autocompleteEl.innerHTML = `
+    <div class="flex items-center gap-2 px-3 py-2.5 text-sm text-zinc-400">
+      ${SPINNER_SVG}
+      <span>Loading index…</span>
+    </div>
+  `;
+  autocompleteEl.classList.remove("hidden");
+  autocompleteEl.setAttribute("aria-expanded", "true");
+  input.removeAttribute("aria-activedescendant");
+}
+
+/** Show/hide the inline spinner inside the input (used after DB is ready). */
+function setInputSpinner(visible: boolean): void {
+  inputSpinnerEl.classList.toggle("hidden", !visible);
+}
 
 function hideAutocomplete(): void {
   autocompleteEl.classList.add("hidden");
@@ -332,10 +362,21 @@ function moveUp(): void {
 async function doAutocomplete(query: string, registry: string): Promise<void> {
   if (!query.trim()) {
     hideAutocomplete();
+    setInputSpinner(false);
     return;
   }
 
   const seq = ++searchSeq;
+
+  if (!dbReady) {
+    // DB still loading — show dropdown spinner immediately so the user
+    // knows something is happening. Don't touch the input spinner yet.
+    showDropdownSpinner();
+  } else {
+    // DB ready — keep the current dropdown results visible while the new
+    // query runs; show a subtle spinner inside the input instead.
+    setInputSpinner(true);
+  }
 
   try {
     const suggestions = await queryAutocomplete(query.trim(), registry);
@@ -351,6 +392,8 @@ async function doAutocomplete(query: string, registry: string): Promise<void> {
     console.error("[search-db] autocomplete error:", err);
     if (seq !== searchSeq) return;
     hideAutocomplete();
+  } finally {
+    if (seq === searchSeq) setInputSpinner(false);
   }
 }
 
