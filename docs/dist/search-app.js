@@ -392,12 +392,8 @@ async function getDb() {
     const wasmUrl = new URL("/dist/sql-wasm.wasm", window.location.origin).toString();
     const worker = await import_sql.createDbWorker([
       {
-        from: "inline",
-        config: {
-          serverMode: "full",
-          requestChunkSize: 4096,
-          url: "/db/full.sqlite"
-        }
+        from: "jsonconfig",
+        configUrl: "/db/config.json"
       }
     ], workerUrl, wasmUrl);
     const db = worker.db;

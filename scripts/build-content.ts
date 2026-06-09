@@ -359,8 +359,23 @@ function buildDatabase(packages: FlatPackage[]): void {
   db.run("VACUUM");
   db.close();
 
-  const dbSize =
-    (existsSync(DB_PATH) ? readFileSync(DB_PATH).length : 0) / 1024;
+  const dbBytes = existsSync(DB_PATH) ? readFileSync(DB_PATH).length : 0;
+  const dbSize = dbBytes / 1024;
+
+  // ── HTTP-VFS config for sql.js-httpvfs ────────────────────
+  // GitHub Pages gzips HEAD responses but not Range responses,
+  // so we must supply the uncompressed file length explicitly.
+  const dbConfig = {
+    serverMode: "full",
+    requestChunkSize: 4096,
+    url: "/db/full.sqlite",
+    fileLength: dbBytes,
+  };
+  writeFileSync(
+    join(DB_PATH, "..", "config.json"),
+    JSON.stringify(dbConfig, null, 2) + "\n",
+  );
+
   console.log(
     `✓  db/full.sqlite  (${dbSize.toFixed(0)} KB  •  ${pkgCount} packages  •  ${docCount} docs  •  ${tagCount} tags)`,
   );
@@ -467,6 +482,7 @@ function buildPackagePages(packages: FlatPackage[]): void {
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>${escapeHtml(pkg.name)} — handbuch.cloud</title>
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;📚&lt;/text&gt;&lt;/svg&gt;" />
 <style>
 html { background-color: #f4f4f5; scrollbar-gutter: stable; }
 @view-transition { navigation: auto; }

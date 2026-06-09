@@ -1,0 +1,6 @@
+{
+  "serverMode": "full",
+  "requestChunkSize": 4096,
+  "url": "/db/full.sqlite",
+  "fileLength": 270336
+}

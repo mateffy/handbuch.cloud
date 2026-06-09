@@ -122,12 +122,8 @@ async function getDb(): Promise<DbHandle> {
     const worker: WorkerHttpvfs = await createDbWorker(
       [
         {
-          from: "inline",
-          config: {
-            serverMode: "full" as const,
-            requestChunkSize: 4096,
-            url: "/db/full.sqlite",
-          },
+          from: "jsonconfig",
+          configUrl: "/db/config.json",
         },
       ],
       workerUrl,
