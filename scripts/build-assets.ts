@@ -80,15 +80,37 @@ for (const [name, src] of ASSETS) {
 // https://github.com/phiresky/sql.js-httpvfs/issues/51
 const workerDest = join(DIST, "sqlite.worker.js");
 const workerSrc = readFileSync(workerDest, "utf-8");
-const patched = workerSrc.replace(
+let patched = workerSrc;
+
+// Patch 1: pass fileLength through for serverMode:"full"
+patched = patched.replace(
   'fileLength:"chunked"===e.serverMode?e.databaseLengthBytes:void 0',
   'fileLength:e.fileLength||("chunked"===e.serverMode?e.databaseLengthBytes:void 0)',
 );
+
+// Patch 2: skip HEAD checkServer() when fileLength is known
+// The constructor sets _length but leaves serverChecked=false,
+// so checkServer() still runs and overwrites _length with the
+// gzip-compressed length from HEAD. We set serverChecked=true
+// to bypass the HEAD request entirely.
+patched = patched.replace(
+  'e.fileLength&&(this._length=e.fileLength)',
+  'e.fileLength&&(this._length=e.fileLength,this.serverChecked=!0)',
+);
+
+// Patch 3: belt-and-suspenders — make checkServer() itself
+// early-return when _length is already known. Guards against
+// any code path that might reset serverChecked.
+patched = patched.replace(
+  'checkServer(){var e=new XMLHttpRequest',
+  'checkServer(){if(this._length)return this.serverChecked=!0,void 0;var e=new XMLHttpRequest',
+);
+
 if (patched === workerSrc) {
   console.warn("⚠  Could not apply sqlite.worker.js patch — fileLength may not work for serverMode:full");
 } else {
   writeFileSync(workerDest, patched);
-  console.log("✓  Patched sqlite.worker.js (fileLength now respected for serverMode:full)");
+  console.log("✓  Patched sqlite.worker.js (fileLength now skips HEAD for serverMode:full)");
 }
 
 console.log("\nDone  •  search app ready in docs/dist/");
