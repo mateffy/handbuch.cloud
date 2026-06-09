@@ -390,6 +390,12 @@ function showError(message) {
     </div>
   `;
 }
+var delayMs = new URLSearchParams(window.location.search).get("delay");
+async function maybeDelay() {
+  if (!delayMs)
+    return;
+  await new Promise((r) => setTimeout(r, parseInt(delayMs, 10)));
+}
 var dbPromise = null;
 async function getDb() {
   if (dbPromise)
@@ -412,6 +418,7 @@ async function getDb() {
   return dbPromise;
 }
 async function fetchPage(filters, offset) {
+  await maybeDelay();
   const db = await getDb();
   const { search, registry, category } = filters;
   const hasSearch = search.length > 0;
@@ -458,6 +465,7 @@ async function fetchPage(filters, offset) {
   }));
 }
 async function fetchCount(filters) {
+  await maybeDelay();
   const db = await getDb();
   const { search, registry, category } = filters;
   let result;
@@ -485,6 +493,7 @@ async function fetchCount(filters) {
   return result?.[0]?.values?.[0]?.[0] ?? 0;
 }
 async function fetchAllTags() {
+  await maybeDelay();
   const db = await getDb();
   const result = await db.exec("SELECT name FROM tags ORDER BY name");
   const rows = result?.[0]?.values ?? [];

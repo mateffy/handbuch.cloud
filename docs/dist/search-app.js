@@ -340,6 +340,12 @@ var autocompleteEl = document.querySelector("#autocomplete-list");
 var inputSpinnerEl = document.querySelector("#input-spinner");
 var searchSeq = 0;
 var dbReady = false;
+var delayMs = new URLSearchParams(window.location.search).get("delay");
+async function maybeDelay() {
+  if (!delayMs)
+    return;
+  await new Promise((r) => setTimeout(r, parseInt(delayMs, 10)));
+}
 function escapeHtml(str) {
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }
@@ -438,6 +444,7 @@ async function getDb() {
   return dbPromise;
 }
 async function queryAutocomplete(pattern, registry) {
+  await maybeDelay();
   const db = await getDb();
   const result = await db.exec(`SELECT p.name
      FROM packages_fts f
@@ -456,6 +463,7 @@ async function queryAutocomplete(pattern, registry) {
   return rows.map((r) => r[0]);
 }
 async function exactMatch(name, registry) {
+  await maybeDelay();
   const db = await getDb();
   const result = await db.exec("SELECT 1 FROM packages WHERE name = $name AND registry = $registry LIMIT 1", { $name: name, $registry: registry });
   const rows = result?.[0]?.values ?? [];
@@ -464,17 +472,16 @@ async function exactMatch(name, registry) {
 var activeIndex = -1;
 var autocompleteItems = [];
 var autocompleteVisible = false;
-var SPINNER_SVG = `<svg class="animate-spin h-4 w-4 text-zinc-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-</svg>`;
 function showDropdownSpinner() {
   autocompleteItems = [];
   activeIndex = -1;
   autocompleteVisible = false;
   autocompleteEl.innerHTML = `
-    <div class="flex items-center gap-2 px-3 py-2.5 text-sm text-zinc-400">
-      ${SPINNER_SVG}
+    <div class="flex items-center gap-2 px-3 py-2 text-sm text-zinc-400">
+      <svg class="animate-spin h-3 w-3 text-zinc-400 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
       <span>Loading index…</span>
     </div>
   `;

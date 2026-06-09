@@ -101,6 +101,13 @@ function showError(message: string): void {
   `;
 }
 
+/** Optional artificial delay for UX testing: ?delay=2000 (ms) */
+const delayMs = new URLSearchParams(window.location.search).get('delay');
+async function maybeDelay(): Promise<void> {
+  if (!delayMs) return;
+  await new Promise((r) => setTimeout(r, parseInt(delayMs, 10)));
+}
+
 // ── SQLite ────────────────────────────────────────────────────────
 
 interface DbHandle {
@@ -148,6 +155,7 @@ interface FilterState {
 
 /** Fetch one page of packages matching the current filters. */
 async function fetchPage(filters: FilterState, offset: number): Promise<PackageRow[]> {
+  await maybeDelay();
   const db = await getDb();
 
   const { search, registry, category } = filters;
@@ -208,6 +216,7 @@ async function fetchPage(filters: FilterState, offset: number): Promise<PackageR
 
 /** Get the total count for the current filters (for the counter display). */
 async function fetchCount(filters: FilterState): Promise<number> {
+  await maybeDelay();
   const db = await getDb();
   const { search, registry, category } = filters;
 
@@ -246,6 +255,7 @@ async function fetchCount(filters: FilterState): Promise<number> {
 
 /** Load all unique tag names for the category dropdown. */
 async function fetchAllTags(): Promise<string[]> {
+  await maybeDelay();
   const db = await getDb();
   const result = await db.exec("SELECT name FROM tags ORDER BY name");
   const rows = result?.[0]?.values ?? [];
