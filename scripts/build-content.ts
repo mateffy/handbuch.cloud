@@ -363,11 +363,32 @@ function buildDatabase(packages: FlatPackage[]): void {
   const dbSize = dbBytes / 1024;
 
   // ── HTTP-VFS config for sql.js-httpvfs ────────────────────
-  // GitHub Pages gzips HEAD responses but not Range responses,
-  // so we must supply the uncompressed file length explicitly.
+  //
+  // GitHub Pages / Fastly stores the file gzip-compressed (79 KB) and
+  // serves Range requests against the *compressed* byte offsets, returning
+  // raw gzip bytes with Content-Encoding: gzip.  The browser's XHR engine
+  // tries to decompress a 4 KB slice of a gzip stream as a standalone gzip
+  // file → fails → sql.js sees corrupt pages → "database disk image is
+  // malformed".
+  //
+  // Cloudflare "disable compression" rules only affect Cloudflare's own
+  // layer; the upstream GitHub Pages / Fastly gzip is outside its reach.
+  //
+  // The escape hatch lives in lazyFile.ts:
+  //
+  //   if (this.length !== this.chunkSize)
+  //     xhr.setRequestHeader("Range", "bytes=" + from + "-" + to);
+  //
+  // When requestChunkSize === fileLength the library issues a plain GET
+  // (no Range header).  The browser transparently decompresses the full
+  // gzip response and XHR delivers valid, uncompressed SQLite bytes.
+  // For a ~270 KB database this is a single ~80 KB compressed transfer,
+  // cached after the first query — perfectly acceptable.
   const dbConfig = {
     serverMode: "full",
-    requestChunkSize: 4096,
+    // Must equal fileLength so sql.js-httpvfs issues a plain GET instead
+    // of a Range request (see comment above).
+    requestChunkSize: dbBytes,
     url: "/db/full.sqlite3",
     fileLength: dbBytes,
   };

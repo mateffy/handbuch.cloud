@@ -388,21 +388,50 @@ async function getDb() {
   if (dbPromise)
     return dbPromise;
   dbPromise = (async () => {
+    console.log("[search-db] init start");
     const workerUrl = new URL("/dist/sqlite.worker.js?v=5", window.location.origin).toString();
     const wasmUrl = new URL("/dist/sql-wasm.wasm?v=5", window.location.origin).toString();
-    const worker = await import_sql.createDbWorker([
-      {
-        from: "jsonconfig",
-        configUrl: "/db/config.json"
-      }
-    ], workerUrl, wasmUrl);
+    let configData;
+    try {
+      const cfgRes = await fetch("/db/config.json");
+      configData = await cfgRes.json();
+      console.log("[search-db] config loaded:", configData);
+    } catch (err) {
+      console.error("[search-db] config fetch failed:", err);
+      throw err;
+    }
+    console.log("[search-db] creating worker …");
+    let worker;
+    try {
+      worker = await import_sql.createDbWorker([
+        {
+          from: "jsonconfig",
+          configUrl: "/db/config.json"
+        }
+      ], workerUrl, wasmUrl);
+    } catch (err) {
+      console.error("[search-db] createDbWorker failed:", err);
+      throw err;
+    }
+    console.log("[search-db] worker ready");
     const db = worker.db;
+    try {
+      const ping = await db.exec("SELECT 1");
+      console.log("[search-db] smoke-test ok:", ping);
+    } catch (err) {
+      console.error("[search-db] smoke-test FAILED — DB may be corrupt or gzip-mangled:", err);
+      throw err;
+    }
     return {
       exec(sql, params) {
         return db.exec(sql, params);
       }
     };
   })();
+  dbPromise.catch((err) => {
+    console.error("[search-db] DB initialisation failed — resetting promise:", err);
+    dbPromise = null;
+  });
   return dbPromise;
 }
 async function queryAutocomplete(pattern, registry) {
@@ -541,7 +570,8 @@ async function doAutocomplete(query, registry) {
     } else {
       hideAutocomplete();
     }
-  } catch {
+  } catch (err) {
+    console.error("[search-db] autocomplete error:", err);
     if (seq !== searchSeq)
       return;
     hideAutocomplete();

@@ -100,6 +100,8 @@ async function getDb(): Promise<DbHandle> {
   if (dbPromise) return dbPromise;
 
   dbPromise = (async () => {
+    console.log("[search-db] init start");
+
     const workerUrl = new URL(
       "/dist/sqlite.worker.js?v=5",
       window.location.origin,
@@ -109,20 +111,48 @@ async function getDb(): Promise<DbHandle> {
       window.location.origin,
     ).toString();
 
-    const worker: WorkerHttpvfs = await createDbWorker(
-      [
-        {
-          from: "jsonconfig",
-          configUrl: "/db/config.json",
-        },
-      ],
-      workerUrl,
-      wasmUrl,
-    );
+    // Fetch config first so we can log it before the worker starts.
+    let configData: unknown;
+    try {
+      const cfgRes = await fetch("/db/config.json");
+      configData = await cfgRes.json();
+      console.log("[search-db] config loaded:", configData);
+    } catch (err) {
+      console.error("[search-db] config fetch failed:", err);
+      throw err;
+    }
+
+    console.log("[search-db] creating worker …");
+    let worker: WorkerHttpvfs;
+    try {
+      worker = await createDbWorker(
+        [
+          {
+            from: "jsonconfig",
+            configUrl: "/db/config.json",
+          },
+        ],
+        workerUrl,
+        wasmUrl,
+      );
+    } catch (err) {
+      console.error("[search-db] createDbWorker failed:", err);
+      throw err;
+    }
+    console.log("[search-db] worker ready");
 
     const db = worker.db as unknown as {
       exec(sql: string, params?: unknown): Promise<QueryResult[]>;
     };
+
+    // Smoke-test: run a trivial query to surface any load errors immediately.
+    try {
+      const ping = await db.exec("SELECT 1");
+      console.log("[search-db] smoke-test ok:", ping);
+    } catch (err) {
+      console.error("[search-db] smoke-test FAILED — DB may be corrupt or gzip-mangled:", err);
+      throw err;
+    }
 
     return {
       exec(sql: string, params?: Record<string, unknown> | unknown[]) {
@@ -130,6 +160,12 @@ async function getDb(): Promise<DbHandle> {
       },
     };
   })();
+
+  // Surface DB init errors loudly (don't let them silently poison future calls).
+  dbPromise.catch((err) => {
+    console.error("[search-db] DB initialisation failed — resetting promise:", err);
+    dbPromise = null;
+  });
 
   return dbPromise;
 }
@@ -322,7 +358,8 @@ async function doAutocomplete(query: string, registry: string): Promise<void> {
     } else {
       hideAutocomplete();
     }
-  } catch {
+  } catch (err) {
+    console.error("[search-db] autocomplete error:", err);
     if (seq !== searchSeq) return;
     hideAutocomplete();
   }
