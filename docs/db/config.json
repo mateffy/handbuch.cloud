@@ -1,6 +1,5 @@
 {
   "serverMode": "full",
-  "requestChunkSize": 270336,
-  "url": "/db/full.sqlite3",
-  "fileLength": 270336
+  "requestChunkSize": 4096,
+  "url": "https://static.handbuch.cloud/full.sqlite3"
 }

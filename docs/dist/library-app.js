@@ -332,6 +332,7 @@ var require_dist = __commonJS((exports, module) => {
 
 // scripts/library-app.ts
 var import_sql = __toESM(require_dist(), 1);
+var PAGE_SIZE = 50;
 var listEl = document.querySelector("#package-list");
 var countEl = document.querySelector("#package-count");
 var searchInput = document.querySelector("#filter-search");
@@ -365,17 +366,17 @@ function renderPackageCard(pkg) {
     </a>
   `;
 }
-function showLoading() {
+function showInitialLoading() {
   loadingEl.classList.remove("hidden");
   listEl.innerHTML = "";
   filtersEl.classList.add("opacity-50", "pointer-events-none");
 }
-function hideLoading() {
+function hideInitialLoading() {
   loadingEl.classList.add("hidden");
   filtersEl.classList.remove("opacity-50", "pointer-events-none");
 }
 function showError(message) {
-  hideLoading();
+  hideInitialLoading();
   listEl.innerHTML = `
     <div class="border border-red-200 bg-white p-6">
       <div class="flex items-start gap-3">
@@ -396,12 +397,7 @@ async function getDb() {
   dbPromise = (async () => {
     const workerUrl = new URL("/dist/sqlite.worker.js?v=5", window.location.origin).toString();
     const wasmUrl = new URL("/dist/sql-wasm.wasm?v=5", window.location.origin).toString();
-    const worker = await import_sql.createDbWorker([
-      {
-        from: "jsonconfig",
-        configUrl: "/db/config.json"
-      }
-    ], workerUrl, wasmUrl);
+    const worker = await import_sql.createDbWorker([{ from: "jsonconfig", configUrl: "/db/config.json" }], workerUrl, wasmUrl);
     const db = worker.db;
     return {
       exec(sql, params) {
@@ -409,75 +405,200 @@ async function getDb() {
       }
     };
   })();
+  dbPromise.catch((err) => {
+    console.error("[library-db] init failed:", err);
+    dbPromise = null;
+  });
   return dbPromise;
 }
-var allPackages = [];
-var allTags = [];
-async function loadPackages() {
-  showLoading();
-  try {
-    const db = await getDb();
-    const result = await db.exec(`SELECT
-         p.name,
-         p.registry,
-         p.updated_at,
-         GROUP_CONCAT(t.name, ',') AS tags
+async function fetchPage(filters, offset) {
+  const db = await getDb();
+  const { search, registry, category } = filters;
+  const hasSearch = search.length > 0;
+  const hasRegistry = registry.length > 0;
+  const hasCategory = category.length > 0;
+  let result;
+  if (hasSearch) {
+    result = await db.exec(`SELECT p.name, p.registry, p.updated_at, GROUP_CONCAT(t.name, ',') AS tags
+       FROM packages_fts f
+       JOIN packages p ON p.id = f.rowid
+       LEFT JOIN package_tags pt ON pt.package_id = p.id
+       LEFT JOIN tags t ON t.id = pt.tag_id
+       WHERE f.name MATCH $search
+         AND ($registry = '' OR p.registry = $registry)
+         AND ($category = '' OR EXISTS (
+           SELECT 1 FROM package_tags pt2
+           JOIN tags t2 ON t2.id = pt2.tag_id
+           WHERE pt2.package_id = p.id AND t2.name = $category
+         ))
+       GROUP BY p.id
+       ORDER BY rank, p.name
+       LIMIT $limit OFFSET $offset`, { $search: search, $registry: registry, $category: category, $limit: PAGE_SIZE, $offset: offset });
+  } else {
+    result = await db.exec(`SELECT p.name, p.registry, p.updated_at, GROUP_CONCAT(t.name, ',') AS tags
        FROM packages p
        LEFT JOIN package_tags pt ON pt.package_id = p.id
        LEFT JOIN tags t ON t.id = pt.tag_id
+       WHERE ($registry = '' OR p.registry = $registry)
+         AND ($category = '' OR EXISTS (
+           SELECT 1 FROM package_tags pt2
+           JOIN tags t2 ON t2.id = pt2.tag_id
+           WHERE pt2.package_id = p.id AND t2.name = $category
+         ))
        GROUP BY p.id
-       ORDER BY p.name`);
-    const rows = result?.[0]?.values ?? [];
-    allPackages = rows.map((row) => ({
-      name: row[0],
-      registry: row[1],
-      updatedAt: row[2],
-      tags: row[3] ? row[3].split(",").filter(Boolean) : []
-    }));
-    const tagSet = new Set;
-    for (const pkg of allPackages) {
-      for (const t of pkg.tags)
-        tagSet.add(t);
+       ORDER BY p.name
+       LIMIT $limit OFFSET $offset`, { $registry: registry, $category: category, $limit: PAGE_SIZE, $offset: offset });
+  }
+  const rows = result?.[0]?.values ?? [];
+  return rows.map((row) => ({
+    name: row[0],
+    registry: row[1],
+    updatedAt: row[2],
+    tags: row[3] ? row[3].split(",").filter(Boolean) : []
+  }));
+}
+async function fetchCount(filters) {
+  const db = await getDb();
+  const { search, registry, category } = filters;
+  let result;
+  if (search.length > 0) {
+    result = await db.exec(`SELECT COUNT(DISTINCT p.id)
+       FROM packages_fts f
+       JOIN packages p ON p.id = f.rowid
+       WHERE f.name MATCH $search
+         AND ($registry = '' OR p.registry = $registry)
+         AND ($category = '' OR EXISTS (
+           SELECT 1 FROM package_tags pt2
+           JOIN tags t2 ON t2.id = pt2.tag_id
+           WHERE pt2.package_id = p.id AND t2.name = $category
+         ))`, { $search: search, $registry: registry, $category: category });
+  } else {
+    result = await db.exec(`SELECT COUNT(*)
+       FROM packages p
+       WHERE ($registry = '' OR p.registry = $registry)
+         AND ($category = '' OR EXISTS (
+           SELECT 1 FROM package_tags pt2
+           JOIN tags t2 ON t2.id = pt2.tag_id
+           WHERE pt2.package_id = p.id AND t2.name = $category
+         ))`, { $registry: registry, $category: category });
+  }
+  return result?.[0]?.values?.[0]?.[0] ?? 0;
+}
+async function fetchAllTags() {
+  const db = await getDb();
+  const result = await db.exec("SELECT name FROM tags ORDER BY name");
+  const rows = result?.[0]?.values ?? [];
+  return rows.map((r) => r[0]);
+}
+var currentFilters = { search: "", registry: "", category: "" };
+var currentOffset = 0;
+var totalCount = 0;
+var isLoading = false;
+var hasMore = true;
+var sentinelEl = null;
+var observer = null;
+function getFilters() {
+  return {
+    search: searchInput.value.trim(),
+    registry: registrySelect.value,
+    category: categorySelect.value
+  };
+}
+function setLoadMoreVisible(visible) {
+  const btn = document.querySelector("#load-more-btn");
+  if (btn)
+    btn.style.display = visible ? "block" : "none";
+}
+function appendPackages(packages) {
+  const html = packages.map(renderPackageCard).join("");
+  const frag = document.createElement("div");
+  frag.className = "space-y-3";
+  frag.innerHTML = html;
+  if (sentinelEl && listEl.contains(sentinelEl)) {
+    listEl.insertBefore(frag, sentinelEl);
+  } else {
+    listEl.appendChild(frag);
+  }
+}
+async function loadMore() {
+  if (isLoading || !hasMore)
+    return;
+  isLoading = true;
+  try {
+    const packages = await fetchPage(currentFilters, currentOffset);
+    appendPackages(packages);
+    currentOffset += packages.length;
+    hasMore = packages.length === PAGE_SIZE;
+    setLoadMoreVisible(hasMore);
+    if (!hasMore && sentinelEl) {
+      observer?.unobserve(sentinelEl);
     }
-    allTags = Array.from(tagSet).sort((a, b) => a.localeCompare(b));
-    const currentCategory = categorySelect.value;
-    categorySelect.innerHTML = '<option value="">All categories</option>' + allTags.map((t) => `<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`).join("");
-    categorySelect.value = currentCategory;
-    renderPackages(allPackages);
-    hideLoading();
   } catch (err) {
-    console.error("Library load error:", err);
+    console.error("[library-db] loadMore error:", err);
+    setLoadMoreVisible(true);
+  } finally {
+    isLoading = false;
+  }
+}
+async function resetAndLoad() {
+  currentFilters = getFilters();
+  currentOffset = 0;
+  hasMore = true;
+  isLoading = false;
+  const cards = listEl.querySelectorAll(".space-y-3");
+  cards.forEach((el) => el.remove());
+  fetchCount(currentFilters).then((n) => {
+    totalCount = n;
+    countEl.textContent = `${n} package${n === 1 ? "" : "s"}`;
+  }).catch(() => {});
+  await loadMore();
+}
+function setupScrollObserver() {
+  if (!sentinelEl) {
+    sentinelEl = document.createElement("div");
+    sentinelEl.id = "scroll-sentinel";
+    sentinelEl.style.height = "1px";
+    listEl.appendChild(sentinelEl);
+  }
+  if ("IntersectionObserver" in window) {
+    observer?.disconnect();
+    observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting)
+        loadMore();
+    }, { rootMargin: "200px" });
+    observer.observe(sentinelEl);
+  }
+}
+async function init() {
+  showInitialLoading();
+  try {
+    const tags = await fetchAllTags();
+    const currentCategory = categorySelect.value;
+    categorySelect.innerHTML = '<option value="">All categories</option>' + tags.map((t) => `<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`).join("");
+    categorySelect.value = currentCategory;
+    hideInitialLoading();
+    setupScrollObserver();
+    await resetAndLoad();
+  } catch (err) {
+    console.error("[library-db] init error:", err);
     showError("Could not load package library. Check your connection and try again.");
   }
 }
-function renderPackages(packages) {
-  countEl.textContent = `${packages.length} package${packages.length === 1 ? "" : "s"}`;
-  if (packages.length === 0) {
-    listEl.innerHTML = `
-      <div class="border border-zinc-200 bg-white p-6 text-center">
-        <p class="text-zinc-500">No packages match your filters.</p>
-      </div>
-    `;
-    return;
-  }
-  listEl.innerHTML = `<div class="space-y-3">${packages.map(renderPackageCard).join("")}</div>`;
+var filterDebounce = null;
+function onFilterChange() {
+  if (filterDebounce)
+    clearTimeout(filterDebounce);
+  filterDebounce = setTimeout(() => void resetAndLoad(), 200);
 }
-function applyFilters() {
-  const search = searchInput.value.trim().toLowerCase();
-  const registry = registrySelect.value;
-  const category = categorySelect.value;
-  const filtered = allPackages.filter((pkg) => {
-    if (search && !pkg.name.toLowerCase().includes(search))
-      return false;
-    if (registry && pkg.registry !== registry)
-      return false;
-    if (category && !pkg.tags.includes(category))
-      return false;
-    return true;
-  });
-  renderPackages(filtered);
-}
-searchInput.addEventListener("input", applyFilters);
-registrySelect.addEventListener("change", applyFilters);
-categorySelect.addEventListener("change", applyFilters);
-loadPackages();
+searchInput.addEventListener("input", onFilterChange);
+registrySelect.addEventListener("change", onFilterChange);
+categorySelect.addEventListener("change", onFilterChange);
+var loadMoreBtn = document.createElement("button");
+loadMoreBtn.id = "load-more-btn";
+loadMoreBtn.type = "button";
+loadMoreBtn.className = "mt-6 w-full border border-zinc-300 bg-white px-4 py-3 text-sm font-medium text-zinc-700 hover:border-zinc-500 hover:bg-zinc-50 transition-colors";
+loadMoreBtn.textContent = "Load more";
+loadMoreBtn.style.display = "none";
+loadMoreBtn.addEventListener("click", () => void loadMore());
+listEl.insertAdjacentElement("afterend", loadMoreBtn);
+init();

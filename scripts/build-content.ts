@@ -25,6 +25,7 @@
  */
 
 import { readdirSync, readFileSync, mkdirSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
+import { S3Client } from "bun";
 import { join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Database, type Statement } from "bun:sqlite";
@@ -249,6 +250,17 @@ function createSchema(db: Database): void {
   db.run("CREATE INDEX idx_docs_package_id ON docs(package_id)");
   db.run("CREATE INDEX idx_package_tags_tag_id ON package_tags(tag_id)");
   db.run("CREATE INDEX idx_doc_tags_tag_id ON doc_tags(tag_id)");
+
+  // ── FTS5 full-text search (trigram tokenizer for infix matching) ──
+  // tokenize='trigram' → MATCH 'react' finds any name *containing* "react".
+  // Case-insensitive by default. registry is stored but not tokenized.
+  db.run(`
+    CREATE VIRTUAL TABLE packages_fts USING fts5(
+      name,
+      registry UNINDEXED,
+      tokenize = 'trigram'
+    )
+  `);
 }
 
 function insertData(db: Database, packages: FlatPackage[]): void {
@@ -335,7 +347,32 @@ function insertData(db: Database, packages: FlatPackage[]): void {
   })();
 }
 
-function buildDatabase(packages: FlatPackage[]): void {
+async function uploadToR2(dbPath: string, dbBytes: number): Promise<void> {
+  const accountId = process.env.R2_ACCOUNT_ID;
+  const accessKeyId = process.env.R2_ACCESS_KEY_ID;
+  const secretAccessKey = process.env.R2_SECRET_ACCESS_KEY;
+  const bucket = process.env.R2_BUCKET ?? "handbuch-db";
+
+  if (!accountId || !accessKeyId || !secretAccessKey) {
+    console.log("⚠   R2 credentials not set — skipping upload (local build)");
+    return;
+  }
+
+  const r2 = new S3Client({
+    accessKeyId,
+    secretAccessKey,
+    bucket,
+    endpoint: `https://${accountId}.r2.cloudflarestorage.com`,
+  });
+
+  console.log(`  Uploading full.sqlite3 (${(dbBytes / 1024).toFixed(0)} KB) → R2 bucket "${bucket}" …`);
+  await r2.write("full.sqlite3", Bun.file(dbPath), {
+    type: "application/octet-stream",
+  });
+  console.log(`✓  R2 upload complete`);
+}
+
+async function buildDatabase(packages: FlatPackage[]): Promise<void> {
   // Remove existing database so we build clean every time
   if (existsSync(DB_PATH)) unlinkSync(DB_PATH);
   mkdirSync(join(DB_PATH, ".."), { recursive: true });
@@ -348,6 +385,9 @@ function buildDatabase(packages: FlatPackage[]): void {
 
   createSchema(db);
   insertData(db, packages);
+
+  // ── Populate FTS5 index ────────────────────────────────────────
+  db.run("INSERT INTO packages_fts(rowid, name, registry) SELECT id, name, registry FROM packages");
 
   // ── Summary counts ──────────────────────────────────────────
   const pkgCount = getRow<{ c: number }>(
@@ -363,34 +403,20 @@ function buildDatabase(packages: FlatPackage[]): void {
   const dbSize = dbBytes / 1024;
 
   // ── HTTP-VFS config for sql.js-httpvfs ────────────────────
+  // DB is served from Cloudflare R2 which handles Range requests and
+  // HEAD responses correctly — no gzip mangling, proper 206 responses.
+  // requestChunkSize: 4096 enables real lazy loading (only fetches the
+  // SQLite pages each query actually needs).
   //
-  // GitHub Pages / Fastly stores the file gzip-compressed (79 KB) and
-  // serves Range requests against the *compressed* byte offsets, returning
-  // raw gzip bytes with Content-Encoding: gzip.  The browser's XHR engine
-  // tries to decompress a 4 KB slice of a gzip stream as a standalone gzip
-  // file → fails → sql.js sees corrupt pages → "database disk image is
-  // malformed".
-  //
-  // Cloudflare "disable compression" rules only affect Cloudflare's own
-  // layer; the upstream GitHub Pages / Fastly gzip is outside its reach.
-  //
-  // The escape hatch lives in lazyFile.ts:
-  //
-  //   if (this.length !== this.chunkSize)
-  //     xhr.setRequestHeader("Range", "bytes=" + from + "-" + to);
-  //
-  // When requestChunkSize === fileLength the library issues a plain GET
-  // (no Range header).  The browser transparently decompresses the full
-  // gzip response and XHR delivers valid, uncompressed SQLite bytes.
-  // For a ~270 KB database this is a single ~80 KB compressed transfer,
-  // cached after the first query — perfectly acceptable.
+  // R2_PUBLIC_URL env var → e.g. https://db.handbuch.cloud
+  // Falls back to /db/full.sqlite3 for local development.
+  const r2PublicUrl = process.env.R2_PUBLIC_URL;
+  const dbUrl = r2PublicUrl ? `${r2PublicUrl}/full.sqlite3` : "/db/full.sqlite3";
+
   const dbConfig = {
     serverMode: "full",
-    // Must equal fileLength so sql.js-httpvfs issues a plain GET instead
-    // of a Range request (see comment above).
-    requestChunkSize: dbBytes,
-    url: "/db/full.sqlite3",
-    fileLength: dbBytes,
+    requestChunkSize: 4096,
+    url: dbUrl,
   };
   writeFileSync(
     join(DB_PATH, "..", "config.json"),
@@ -400,6 +426,10 @@ function buildDatabase(packages: FlatPackage[]): void {
   console.log(
     `✓  db/full.sqlite3  (${dbSize.toFixed(0)} KB  •  ${pkgCount} packages  •  ${docCount} docs  •  ${tagCount} tags)`,
   );
+  console.log(`✓  db/config.json  →  ${dbUrl}`);
+
+  // ── Upload to Cloudflare R2 ─────────────────────────────────────
+  await uploadToR2(DB_PATH, dbBytes);
 }
 
 // ── JSON index builder ─────────────────────────────────────────────
@@ -674,7 +704,7 @@ function buildWellKnown(packages: FlatPackage[]): void {
 }
 
 // ── Main ───────────────────────────────────────────────────────────
-function main(): void {
+async function main(): Promise<void> {
   console.log("Scanning docs/ for package entries …\n");
 
   const packages = collectPackages(DOCS);
@@ -693,7 +723,7 @@ function main(): void {
   buildPackagePages(packages);
 
   console.log("\n── SQLite database ──");
-  buildDatabase(packages);
+  await buildDatabase(packages);
 
   console.log("\n── Sitemap ──");
   buildSitemap(packages);
@@ -718,4 +748,4 @@ function main(): void {
   );
 }
 
-main();
+await main();

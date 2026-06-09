@@ -436,28 +436,18 @@ async function getDb() {
 }
 async function queryAutocomplete(pattern, registry) {
   const db = await getDb();
-  const result = await db.exec(`SELECT name
-     FROM packages
-     WHERE registry = $registry
-       AND instr(lower(name), lower($pattern)) > 0
+  const result = await db.exec(`SELECT p.name
+     FROM packages_fts f
+     JOIN packages p ON p.id = f.rowid
+     WHERE f.name MATCH $pattern
+       AND p.registry = $registry
      ORDER BY
        CASE
-         WHEN lower(name) = lower($pattern) THEN 0
-         WHEN instr(lower(name), lower($pattern) || '-') = 1
-           OR instr(lower(name), lower($pattern) || '/') = 1
-           OR instr(lower(name), lower($pattern) || '.') = 1
-           OR instr(lower(name), lower($pattern) || '_') = 1
-           THEN 1
-         WHEN instr(lower(name), lower($pattern)) = 1 THEN 2
-         WHEN instr(lower(name), '-' || lower($pattern)) > 0
-           OR instr(lower(name), '/' || lower($pattern)) > 0
-           OR instr(lower(name), '.' || lower($pattern)) > 0
-           OR instr(lower(name), '_' || lower($pattern)) > 0
-           OR instr(lower(name), '@' || lower($pattern)) > 0
-           THEN 3
-         ELSE 4
+         WHEN lower(p.name) = lower($pattern) THEN 0
+         WHEN instr(lower(p.name), lower($pattern)) = 1 THEN 1
+         ELSE 2
        END ASC,
-       length(name) ASC
+       length(p.name) ASC
      LIMIT 5`, { $registry: registry, $pattern: pattern });
   const rows = result?.[0]?.values ?? [];
   return rows.map((r) => r[0]);

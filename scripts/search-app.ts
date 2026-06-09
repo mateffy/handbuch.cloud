@@ -171,12 +171,11 @@ async function getDb(): Promise<DbHandle> {
 }
 
 /** Query up to 5 package names matching the pattern for the given registry.
+ *  Uses FTS5 trigram index for fast infix (substring) matching.
  *  Ranking (best first):
  *    0 = exact match (case-insensitive)
- *    1 = starts with pattern + word separator (- / . _)
- *    2 = starts with pattern (any continuation)
- *    3 = contains pattern preceded by word separator or @
- *    4 = contains pattern anywhere
+ *    1 = starts with pattern (prefix)
+ *    2 = contains pattern anywhere
  *  Within each rank, shorter names come first.
  */
 async function queryAutocomplete(
@@ -186,28 +185,18 @@ async function queryAutocomplete(
   const db = await getDb();
 
   const result = await db.exec(
-    `SELECT name
-     FROM packages
-     WHERE registry = $registry
-       AND instr(lower(name), lower($pattern)) > 0
+    `SELECT p.name
+     FROM packages_fts f
+     JOIN packages p ON p.id = f.rowid
+     WHERE f.name MATCH $pattern
+       AND p.registry = $registry
      ORDER BY
        CASE
-         WHEN lower(name) = lower($pattern) THEN 0
-         WHEN instr(lower(name), lower($pattern) || '-') = 1
-           OR instr(lower(name), lower($pattern) || '/') = 1
-           OR instr(lower(name), lower($pattern) || '.') = 1
-           OR instr(lower(name), lower($pattern) || '_') = 1
-           THEN 1
-         WHEN instr(lower(name), lower($pattern)) = 1 THEN 2
-         WHEN instr(lower(name), '-' || lower($pattern)) > 0
-           OR instr(lower(name), '/' || lower($pattern)) > 0
-           OR instr(lower(name), '.' || lower($pattern)) > 0
-           OR instr(lower(name), '_' || lower($pattern)) > 0
-           OR instr(lower(name), '@' || lower($pattern)) > 0
-           THEN 3
-         ELSE 4
+         WHEN lower(p.name) = lower($pattern) THEN 0
+         WHEN instr(lower(p.name), lower($pattern)) = 1 THEN 1
+         ELSE 2
        END ASC,
-       length(name) ASC
+       length(p.name) ASC
      LIMIT 5`,
     { $registry: registry, $pattern: pattern },
   );

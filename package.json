@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build:content": "bun run scripts/build-content.ts",
+    "build:content": "op run --env-file=.env -- bun run scripts/build-content.ts",
     "build:assets": "bun run scripts/build-assets.ts",
     "build": "bun run build:content && bun run build:assets",
     "css": "NODE_ENV=production tailwindcss -i docs/input.css -o docs/output.css",
