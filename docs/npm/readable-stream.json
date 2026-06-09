@@ -18,5 +18,8 @@
         "streams"
       ]
     }
+  ],
+  "tags": [
+    "stream"
   ]
 }

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "derby",
+  "registry": "npm",
+  "updatedAt": "2026-06-07T11:46:49.000Z",
+  "checkedAt": "2026-06-07T11:46:49.000Z",
+  "readme": "https://raw.githubusercontent.com/derbyjs/derby/master/README.md",
+  "docs": [
+    {
+      "url": "https://derbyjs.com/",
+      "title": "DerbyJS Official Website",
+      "description": "Full-stack framework for writing modern web applications. MVC framework that runs in both Node.js and browsers with real-time collaboration.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "reference"
+      ]
+    },
+    {
+      "url": "https://derbyjs.com/started",
+      "title": "DerbyJS Getting Started",
+      "description": "Quick-start guide to creating your first DerbyJS app with MongoDB and real-time sync.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "tutorial",
+        "beginner"
+      ]
+    },
+    {
+      "url": "https://derbyjs.github.io/derby/routes",
+      "title": "DerbyJS Routes Documentation",
+      "description": "Route mapping, Express integration, and client-side routing in DerbyJS.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "api"
+      ]
+    }
+  ],
+  "tags": [
+    "framework",
+    "real-time"
+  ]
+}

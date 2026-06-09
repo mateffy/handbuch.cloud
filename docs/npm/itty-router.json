@@ -11,21 +11,35 @@
       "title": "itty-router Official Documentation",
       "description": "Ultra-tiny API microrouter (~450 bytes) designed for Cloudflare Workers and serverless environments. Zero dependencies, TypeScript, and route-parsing.",
       "kind": "official",
-      "tags": ["guide", "api", "reference"]
+      "tags": [
+        "guide",
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://itty.dev/itty-router/getting-started",
       "title": "itty-router Getting Started",
       "description": "Quick-start guide covering basic routing, middleware, error handling, and environment setup.",
       "kind": "official",
-      "tags": ["guide", "tutorial", "beginner"]
+      "tags": [
+        "guide",
+        "tutorial",
+        "beginner"
+      ]
     },
     {
       "url": "https://itty.dev/itty-router/guides/cloudflare-workers",
       "title": "itty-router for Cloudflare Workers",
       "description": "Guide to using itty-router specifically on Cloudflare Workers with export patterns.",
       "kind": "official",
-      "tags": ["guide"]
+      "tags": [
+        "guide"
+      ]
     }
+  ],
+  "tags": [
+    "micro-framework",
+    "http-server"
   ]
 }

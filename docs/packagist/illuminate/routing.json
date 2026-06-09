@@ -19,5 +19,9 @@
         "official"
       ]
     }
+  ],
+  "tags": [
+    "http-server",
+    "framework"
   ]
 }

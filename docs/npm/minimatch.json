@@ -18,5 +18,9 @@
         "glob"
       ]
     }
+  ],
+  "tags": [
+    "glob",
+    "utility"
   ]
 }

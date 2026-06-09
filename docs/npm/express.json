@@ -11,35 +11,55 @@
       "title": "Express.js Official Documentation",
       "description": "Fast, unopinionated, minimalist web framework for Node.js. Official site covers guides, API reference, middleware, and resources for v4 and v5.",
       "kind": "official",
-      "tags": ["guide", "api", "reference"]
+      "tags": [
+        "guide",
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://expressjs.com/en/guide/routing.html",
       "title": "Express Routing Guide",
       "description": "Comprehensive guide to route paths, parameters, handlers, and response methods.",
       "kind": "official",
-      "tags": ["guide", "beginner"]
+      "tags": [
+        "guide",
+        "beginner"
+      ]
     },
     {
       "url": "https://expressjs.com/en/guide/using-middleware.html",
       "title": "Express Middleware Guide",
       "description": "How to use application-level, router-level, error-handling, built-in, and third-party middleware.",
       "kind": "official",
-      "tags": ["guide"]
+      "tags": [
+        "guide"
+      ]
     },
     {
       "url": "https://expressjs.com/en/5x/api.html",
       "title": "Express v5 API Reference",
       "description": "Complete API documentation for Express v5, including application, request, response, and router objects.",
       "kind": "official",
-      "tags": ["api", "reference", "advanced"]
+      "tags": [
+        "api",
+        "reference",
+        "advanced"
+      ]
     },
     {
       "url": "https://expressjs.com/en/4x/api.html",
       "title": "Express v4 API Reference",
       "description": "Complete API documentation for Express v4, the long-term stable version widely used in production.",
       "kind": "official",
-      "tags": ["api", "reference"]
+      "tags": [
+        "api",
+        "reference"
+      ]
     }
+  ],
+  "tags": [
+    "framework",
+    "http-server"
   ]
 }

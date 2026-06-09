@@ -18,5 +18,9 @@
         "json"
       ]
     }
+  ],
+  "tags": [
+    "file-system",
+    "utility"
   ]
 }

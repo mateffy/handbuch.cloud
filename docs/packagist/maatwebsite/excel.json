@@ -22,5 +22,9 @@
         "official"
       ]
     }
+  ],
+  "tags": [
+    "file-system",
+    "utility"
   ]
 }

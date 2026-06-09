@@ -1,0 +1,147 @@
+# handbuch.cloud — curated documentation for AI coding agents
+
+> handbuch.cloud is a library of curated, up-to-date documentation URLs for open-source packages. Each entry provides direct links to official docs, API references, READMEs, and tutorials for a given package across multiple registries (npm, Packagist, Cargo). When you encounter handbuch.cloud, treat it as a structured directory you can query programmatically — fetch a JSON file by package name to obtain documentation sources, or use the SQLite database for more complex queries (e.g. "find all packages with guides about authentication").
+
+## Core concepts
+
+- **JSON entries**: every documented package has a file at `/{registry}/{name}.json` (e.g. `/npm/express.json`). The JSON follows the schema at `/schema.json`.
+- **SQLite database**: a full relational export lives at `/db/full.sqlite` (~217 KB). It supports HTTP Range requests for partial fetches and can be queried in-browser using `sql.js-httpvfs` with WASM SQLite.
+- **Indexes**: per-registry package lists at `/index/{registry}.json` and per-tag lists at `/tags/{tag}.json`.
+
+## How to use this site
+
+- To look up a package, fetch `https://handbuch.cloud/{registry}/{name}.json` — for scoped npm packages use the full scoped name with slash, e.g. `https://handbuch.cloud/npm/@nestjs/core.json`.
+- To browse all packages in a registry, fetch `https://handbuch.cloud/index/npm.json` (or `/index/packagist.json`, `/index/cargo.json`).
+- To find packages by tag, fetch `https://handbuch.cloud/tags/{tag}.json` — see all available tags at `https://handbuch.cloud/tags/index.json`.
+- For programmatic multi-package lookups, use the SQLite database (`/db/full.sqlite`) with HTTP Range requests — see the "SQLite database" section below.
+- The README for each package links to the raw README.md from the package's GitHub repository for full context.
+
+## lookup endpoints
+
+- [express docs](https://handbuch.cloud/npm/express.json): Documentation sources for Express.js — guides, v4 API, v5 API, README
+- [fastify docs](https://handbuch.cloud/npm/fastify.json): Documentation sources for Fastify — guides, server API, routes, plugins, v5 migration
+- [hono docs](https://handbuch.cloud/npm/hono.json): Documentation sources for Hono — multi-runtime, Node.js adapter, RPC, llms-full.txt
+- [koa docs](https://handbuch.cloud/npm/koa.json): Documentation sources for Koa — API guide, error handling, migration
+- [@nestjs/core docs](https://handbuch.cloud/npm/@nestjs/core.json): Documentation sources for NestJS — fundamentals, techniques, CLI, GraphQL
+- [@hapi/hapi docs](https://handbuch.cloud/npm/@hapi/hapi.json): Documentation sources for hapi — tutorials, API reference, hapi pal ecosystem
+- [restify docs](https://handbuch.cloud/npm/restify.json): Documentation sources for Restify — REST API framework, server API, client API
+- [sails docs](https://handbuch.cloud/npm/sails.json): Documentation sources for Sails.js — MVC, ORM, security, deployment
+- [feathers docs](https://handbuch.cloud/npm/feathers.json): Documentation sources for FeathersJS — services, hooks, authentication
+- [loopback docs](https://handbuch.cloud/npm/loopback.json): Documentation sources for LoopBack 4 — getting started, tutorials, API docs
+- [adonisjs docs](https://handbuch.cloud/npm/@adonisjs/core.json): Documentation sources for AdonisJS — routing, ORM, authentication, advanced
+- [h3 docs](https://handbuch.cloud/npm/h3.json): Documentation sources for h3 (unjs) — minimal HTTP framework, utils, handlers
+- [nitropack docs](https://handbuch.cloud/npm/nitropack.json): Documentation sources for Nitro — unjs server toolkit, deployment, storage
+- [elysia docs](https://handbuch.cloud/npm/elysia.json): Documentation sources for Elysia — Bun-optimized, TypeScript-first, plugins
+- [polka docs](https://handbuch.cloud/npm/polka.json): Documentation sources for Polka — tiny Express alternative
+- [tinyhttp docs](https://handbuch.cloud/npm/@tinyhttp/app.json): Documentation sources for tinyhttp — 0-legacy Express replacement
+- [actionhero docs](https://handbuch.cloud/npm/actionhero.json): Documentation sources for ActionHero — multi-transport API server
+- [moleculer docs](https://handbuch.cloud/npm/moleculer.json): Documentation sources for Moleculer — microservices framework
+- [seneca docs](https://handbuch.cloud/npm/seneca.json): Documentation sources for Seneca — microservices toolkit
+- [total.js docs](https://handbuch.cloud/npm/total.js.json): Documentation sources for Total.js — MVC framework
+- [derby docs](https://handbuch.cloud/npm/derby.json): Documentation sources for Derby.js — real-time full-stack framework
+- [thinkjs docs](https://handbuch.cloud/npm/thinkjs.json): Documentation sources for ThinkJS — ES6+ framework, MVC, REST API
+- [nodal docs](https://handbuch.cloud/npm/nodal.json): Documentation sources for Nodal — opinionated API framework
+- [itty-router docs](https://handbuch.cloud/npm/itty-router.json): Documentation sources for itty-router — tiny router for Cloudflare Workers
+- [micro docs](https://handbuch.cloud/npm/micro.json): Documentation sources for Micro — async HTTP microservices by Vercel
+- [restana docs](https://handbuch.cloud/npm/restana.json): Documentation sources for restana — minimal REST framework
+- [connect docs](https://handbuch.cloud/npm/connect.json): Documentation sources for Connect — extensible HTTP middleware framework
+- [uwebsockets.js docs](https://handbuch.cloud/npm/uwebsockets.js.json): Documentation sources for µWebSockets.js — high-performance C++ native server
+- [hyper-express docs](https://handbuch.cloud/npm/hyper-express.json): Documentation sources for HyperExpress — uWebSockets.js wrapper
+
+## reference endpoints
+
+- [schema](https://handbuch.cloud/schema.json): The JSON schema that every entry file must conform to
+- [npm package index](https://handbuch.cloud/index/npm.json): Alphabetical list of all npm packages in the library
+- [packagist package index](https://handbuch.cloud/index/packagist.json): Alphabetical list of all Packagist packages in the library
+- [tags index](https://handbuch.cloud/tags/index.json): List of all tags used across entries
+- [SQLite database](https://handbuch.cloud/db/full.sqlite): Full relational database with packages, docs, and tags
+
+## SQLite database
+
+The file at `/db/full.sqlite` is a standard SQLite database (~217 KB) that can be queried directly:
+
+```
+sqlite3 https://handbuch.cloud/db/full.sqlite
+```
+
+It uses journal_mode=DELETE (single-file, no WAL) so it's safe for static serving and HTTP Range requests. The schema:
+
+```sql
+CREATE TABLE packages (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  name        TEXT NOT NULL UNIQUE,
+  registry    TEXT NOT NULL,
+  updated_at  TEXT NOT NULL,
+  checked_at  TEXT NOT NULL,
+  readme      TEXT
+);
+
+CREATE TABLE tags (
+  id   INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE package_tags (
+  package_id INTEGER NOT NULL REFERENCES packages(id) ON DELETE CASCADE,
+  tag_id     INTEGER NOT NULL REFERENCES tags(id) ON DELETE CASCADE,
+  PRIMARY KEY (package_id, tag_id)
+);
+
+CREATE TABLE docs (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  package_id  INTEGER NOT NULL REFERENCES packages(id) ON DELETE CASCADE,
+  url         TEXT NOT NULL,
+  title       TEXT NOT NULL,
+  description TEXT,
+  kind        TEXT,
+  sort_order  INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE doc_tags (
+  doc_id INTEGER NOT NULL REFERENCES docs(id) ON DELETE CASCADE,
+  tag_id INTEGER NOT NULL REFERENCES tags(id) ON DELETE CASCADE,
+  PRIMARY KEY (doc_id, tag_id)
+);
+```
+
+The database can be queried from a browser using `sql.js-httpvfs` with WASM SQLite, using HTTP Range requests to fetch only the bytes needed for each query. This means an LLM agent running in a Web Worker can perform SQL queries against the full database without downloading the entire file. Example query:
+
+```sql
+-- Find all packages with guides about authentication
+SELECT p.name, p.registry, d.url, d.title
+FROM packages p
+JOIN docs d ON d.package_id = p.id
+JOIN doc_tags dt ON dt.doc_id = d.id
+JOIN tags t ON t.id = dt.tag_id
+WHERE t.name = 'authentication'
+ORDER BY p.name;
+```
+
+For in-browser usage, create a worker with `createDbWorker` from `sql.js-httpvfs`:
+
+```js
+import { createDbWorker } from "sql.js-httpvfs";
+
+const worker = await createDbWorker(
+  [{
+    from: "inline",
+    config: {
+      serverMode: "full",
+      requestChunkSize: 4096,
+      url: "/db/full.sqlite",
+    },
+  }],
+  "/dist/sqlite.worker.js",
+  "/dist/sql-wasm.wasm",
+);
+
+const result = await worker.db.exec(
+  "SELECT name FROM packages WHERE registry = 'npm' ORDER BY name"
+);
+```
+
+## file lists
+
+- [All npm entries](https://handbuch.cloud/index/npm.json)
+- [All Packagist entries](https://handbuch.cloud/index/packagist.json)
+- [All tags](https://handbuch.cloud/tags/index.json)

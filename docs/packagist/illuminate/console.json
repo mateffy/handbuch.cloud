@@ -19,5 +19,9 @@
         "official"
       ]
     }
+  ],
+  "tags": [
+    "cli",
+    "framework"
   ]
 }

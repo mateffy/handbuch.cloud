@@ -17,5 +17,9 @@
         "parser"
       ]
     }
+  ],
+  "tags": [
+    "parser",
+    "utility"
   ]
 }

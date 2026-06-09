@@ -20,5 +20,9 @@
         "official"
       ]
     }
+  ],
+  "tags": [
+    "monitoring",
+    "analytics"
   ]
 }

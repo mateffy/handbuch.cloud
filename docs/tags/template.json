@@ -1,0 +1,7 @@
+[
+  "ejs",
+  "illuminate/view",
+  "league/commonmark",
+  "spatie/laravel-html",
+  "spatie/laravel-markdown"
+]

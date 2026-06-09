@@ -1,0 +1,16 @@
+[
+  "@mateffy/sandkasten",
+  "barryvdh/laravel-debugbar",
+  "barryvdh/laravel-ide-helper",
+  "beyondcode/laravel-dump-server",
+  "beyondcode/laravel-query-detector",
+  "debug",
+  "larastan/larastan",
+  "laravel/telescope",
+  "nunomaduro/collision",
+  "source-map-support",
+  "spatie/laravel-ignition",
+  "spatie/laravel-model-info",
+  "spatie/laravel-package-tools",
+  "spatie/laravel-ray"
+]

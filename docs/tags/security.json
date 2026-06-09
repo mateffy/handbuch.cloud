@@ -1,0 +1,7 @@
+[
+  "fruitcake/laravel-cors",
+  "illuminate/hashing",
+  "jsonwebtoken",
+  "spatie/laravel-csp",
+  "tymon/jwt-auth"
+]

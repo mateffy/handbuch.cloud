@@ -30,5 +30,8 @@
         "api"
       ]
     }
+  ],
+  "tags": [
+    "real-time"
   ]
 }

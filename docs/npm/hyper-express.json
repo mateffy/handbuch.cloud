@@ -1,0 +1,34 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "hyper-express",
+  "registry": "npm",
+  "updatedAt": "2026-06-07T11:46:49.000Z",
+  "checkedAt": "2026-06-07T11:46:49.000Z",
+  "readme": "https://raw.githubusercontent.com/kartikk221/hyper-express/master/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/kartikk221/hyper-express",
+      "title": "HyperExpress GitHub",
+      "description": "High performance Node.js webserver with a simple-to-use API powered by uWebSockets.js. HTTP & WebSocket server for maximum throughput.",
+      "kind": "official",
+      "tags": [
+        "reference",
+        "api"
+      ]
+    },
+    {
+      "url": "https://github.com/kartikk221/hyper-express/tree/master/docs",
+      "title": "HyperExpress Docs",
+      "description": "Markdown docs covering routing, WebSocket, middleware, and configuration.",
+      "kind": "official",
+      "tags": [
+        "guide",
+        "reference"
+      ]
+    }
+  ],
+  "tags": [
+    "micro-framework",
+    "http-server"
+  ]
+}

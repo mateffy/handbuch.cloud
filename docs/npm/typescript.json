@@ -40,5 +40,9 @@
         "configuration"
       ]
     }
+  ],
+  "tags": [
+    "type-system",
+    "build-tool"
   ]
 }

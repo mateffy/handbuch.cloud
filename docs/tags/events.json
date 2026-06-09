@@ -1,0 +1,6 @@
+[
+  "eventemitter3",
+  "events",
+  "illuminate/events",
+  "rxjs"
+]

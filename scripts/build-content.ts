@@ -1,5 +1,5 @@
 /**
- * build-index.ts – Compile JSON indexes and a full SQLite database from docs JSON files.
+ * build-content.ts – Compile JSON indexes and a full SQLite database from docs JSON files.
  *
  * Scans every .json file under docs/ (except schema.json and the generated
  * index/ / tags/ / db/ directories themselves), extracts all metadata, and produces:
@@ -8,6 +8,9 @@
  *     docs/index/{registry}.json   – sorted array of package names per registry
  *     docs/tags/{tag}.json         – sorted array of package names per tag
  *     docs/tags/index.json         – sorted array of all known tag names
+ *
+ *   HTML:
+ *     docs/{registry}/{name}/index.html – static package detail page
  *
  *   SQLite:
  *     docs/db/full.sqlite          – relational database with tables:
@@ -18,20 +21,21 @@
  *       doc_tags                    many-to-many: docs ←→ tags (per-source tags)
  *
  * Usage:
- *   bun run scripts/build-index.ts
+ *   bun run scripts/build-content.ts
  */
 
 import { readdirSync, readFileSync, mkdirSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
-import { join, relative } from "node:path";
+import { join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Database, type Statement } from "bun:sqlite";
 
 // ── Paths ──────────────────────────────────────────────────────────
-const __dirname = fileURLToPath(new URL("..", import.meta.url));
-const DOCS = join(__dirname, "docs");
+const scriptDir = fileURLToPath(new URL(".", import.meta.url));
+const ROOT = resolve(scriptDir, "..");
+const DOCS = join(ROOT, "docs");
 const DB_PATH = join(DOCS, "db", "full.sqlite");
 
-const EXCLUDED_DIRS = new Set(["index", "tags", "db"]);
+const EXCLUDED_DIRS = new Set(["index", "tags", "db", ".well-known"]);
 const EXCLUDED_FILES = new Set(["schema.json"]);
 
 // ── Types ──────────────────────────────────────────────────────────
@@ -401,6 +405,233 @@ function buildJsonIndexes(packages: FlatPackage[]): void {
   console.log(`\n✓  tags/index.json  (${allTags.length} tag(s))`);
 }
 
+// ── Package detail page builder ──────────────────────────────────
+
+function buildPackagePages(packages: FlatPackage[]): void {
+  const escapeHtml = (str: string): string =>
+    str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  const kindBadge = (kind: string | null): string => {
+    const colors: Record<string, string> = {
+      official: "bg-zinc-800 text-white",
+      community: "bg-zinc-200 text-zinc-800",
+      tutorial: "bg-zinc-200 text-zinc-800",
+      api: "bg-zinc-200 text-zinc-800",
+      guide: "bg-zinc-200 text-zinc-800",
+      blog: "bg-zinc-200 text-zinc-800",
+      video: "bg-zinc-200 text-zinc-800",
+      course: "bg-zinc-200 text-zinc-800",
+      cheatsheet: "bg-zinc-200 text-zinc-800",
+    };
+    const cls = colors[kind ?? ""] ?? "bg-zinc-200 text-zinc-800";
+    return `<span class="text-[10px] uppercase tracking-wider px-1.5 py-0.5 ${cls}">${escapeHtml(kind ?? "doc")}</span>`;
+  };
+
+  const renderTag = (tag: string): string =>
+    `<span class="text-[10px] uppercase tracking-wider px-1.5 py-0.5 bg-zinc-100 border border-zinc-200 text-zinc-600">${escapeHtml(tag)}</span>`;
+
+  const renderDoc = (doc: DocSource): string => `
+    <a href="${escapeHtml(doc.url)}" target="_blank" class="group block border border-zinc-200 bg-white p-5 hover:border-zinc-400 transition-colors">
+      <div class="flex items-start justify-between gap-4 mb-2">
+        <h3 class="text-base font-semibold text-gray-800 group-hover:underline">${escapeHtml(doc.title)}</h3>
+        ${doc.kind ? kindBadge(doc.kind) : ""}
+      </div>
+      ${doc.description ? `<p class="text-sm text-zinc-600 mb-3 leading-relaxed">${escapeHtml(doc.description)}</p>` : ""}
+      <div class="flex flex-wrap gap-1.5">
+        ${(doc.tags ?? []).map(renderTag).join("")}
+      </div>
+    </a>
+  `;
+
+  for (const pkg of packages) {
+    const readmeLink = pkg.readme
+      ? `<a href="${escapeHtml(pkg.readme)}" target="_blank" class="underline hover:opacity-75 text-zinc-500">README</a>`
+      : "";
+
+    const metaItems = [
+      `<span class="text-zinc-500">${escapeHtml(pkg.registry.toUpperCase())}</span>`,
+      readmeLink,
+      `<span class="text-zinc-400">updated ${new Date(pkg.updatedAt).toLocaleDateString()}</span>`,
+    ].filter(Boolean);
+
+    const docsHtml = pkg.docs.map(renderDoc).join("");
+
+    const html = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>${escapeHtml(pkg.name)} — handbuch.cloud</title>
+<link rel="stylesheet" href="/output.css" />
+</head>
+<body class="font-mono min-h-screen bg-zinc-100 text-gray-800">
+<div class="mx-auto max-w-3xl py-10 px-5">
+<header class="w-full flex items-start justify-between">
+  <div class="text-left">
+    <a href="/" class="block">
+      <h1 class="text-3xl lowercase mb-1 font-display hover:opacity-75 transition-opacity">Handbuch</h1>
+    </a>
+    <p class="text-lg text-zinc-500">curated documentation <br />for AI coding agents</p>
+  </div>
+  <nav>
+    <ul class="text-right space-y-2">
+      <li><a href="/library" class="hover:underline hover:opacity-75">Library</a></li>
+      <li><a href="/" class="hover:underline hover:opacity-75">Search</a></li>
+      <li><a href="https://github.com/mateffy/handbuch" target="_blank" class="hover:underline hover:opacity-75">GitHub</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="flex flex-col w-full py-18">
+  <div class="mb-8">
+    <h2 class="text-2xl font-display font-bold text-gray-800 mb-1">${escapeHtml(pkg.name)}</h2>
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+      ${metaItems.join('<span class="text-zinc-300">·</span>')}
+    </div>
+  </div>
+  <div class="space-y-3">
+    ${docsHtml}
+  </div>
+</div>
+</div>
+</body>
+</html>
+`;
+
+    const dir = join(DOCS, pkg.registry, pkg.name);
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, "index.html"), html);
+  }
+
+  console.log(`✓  ${packages.length} package page(s)`);
+}
+
+// ── Sitemap builder ────────────────────────────────────────────────
+
+function buildSitemap(packages: FlatPackage[]): void {
+  const domain = "https://handbuch.cloud";
+  const now = new Date().toISOString().split("T")[0];
+
+  const urls: { loc: string; changefreq: string; priority: string }[] = [
+    { loc: `${domain}/`, changefreq: "weekly", priority: "1.0" },
+    { loc: `${domain}/library/`, changefreq: "weekly", priority: "0.9" },
+    { loc: `${domain}/schema.json`, changefreq: "monthly", priority: "0.8" },
+    { loc: `${domain}/llms.txt`, changefreq: "weekly", priority: "0.9" },
+    { loc: `${domain}/llms-full.txt`, changefreq: "weekly", priority: "0.9" },
+    { loc: `${domain}/robots.txt`, changefreq: "monthly", priority: "0.5" },
+    { loc: `${domain}/sitemap.xml`, changefreq: "weekly", priority: "0.5" },
+    { loc: `${domain}/index/npm.json`, changefreq: "weekly", priority: "0.7" },
+    { loc: `${domain}/index/packagist.json`, changefreq: "weekly", priority: "0.7" },
+    { loc: `${domain}/tags/index.json`, changefreq: "weekly", priority: "0.6" },
+    { loc: `${domain}/db/full.sqlite`, changefreq: "weekly", priority: "0.8" },
+  ];
+
+  // Add all package JSON entries and HTML detail pages
+  const registries = new Set(packages.map((p) => p.registry));
+  for (const pkg of packages) {
+    urls.push({
+      loc: `${domain}/${pkg.registry}/${pkg.name}.json`,
+      changefreq: "monthly",
+      priority: "0.6",
+    });
+    urls.push({
+      loc: `${domain}/${pkg.registry}/${pkg.name}/`,
+      changefreq: "monthly",
+      priority: "0.7",
+    });
+  }
+
+  // Also add all tag indexes
+  const tags = new Set<string>();
+  for (const pkg of packages) {
+    for (const t of pkg.tags) tags.add(t);
+  }
+  for (const tag of tags) {
+    urls.push({
+      loc: `${domain}/tags/${slugify(tag)}.json`,
+      changefreq: "monthly",
+      priority: "0.4",
+    });
+  }
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls
+  .map(
+    (u) => `  <url>
+    <loc>${u.loc}</loc>
+    <changefreq>${u.changefreq}</changefreq>
+    <priority>${u.priority}</priority>
+  </url>`,
+  )
+  .join("\n")}
+</urlset>\n`;
+
+  writeFileSync(join(DOCS, "sitemap.xml"), xml);
+  console.log(`✓  sitemap.xml  (${urls.length} URLs)`);
+}
+
+// ── Well-known endpoint builders ───────────────────────────────────
+
+function buildWellKnown(packages: FlatPackage[]): void {
+  const wkDir = join(DOCS, ".well-known");
+  mkdirSync(wkDir, { recursive: true });
+
+  // ── API Catalog (RFC 9727) ────────────────────────────────────
+  // Lists the documentation JSON endpoints as discoverable APIs
+  const catalog = {
+    linkset: [
+      {
+        anchor: "https://handbuch.cloud/",
+        "service-desc": [
+          { href: "https://handbuch.cloud/schema.json", title: "handbuch.cloud schema" },
+        ],
+        "service-doc": [
+          { href: "https://handbuch.cloud/llms.txt", title: "LLM entry point" },
+          { href: "https://handbuch.cloud/llms-full.txt", title: "Full LLM documentation" },
+        ],
+        "http://www.w3.org/ns/hydra/core#search": [
+          { href: "https://handbuch.cloud/index/npm.json", title: "npm package index" },
+          { href: "https://handbuch.cloud/index/packagist.json", title: "Packagist package index" },
+        ],
+      },
+    ],
+  };
+
+  writeFileSync(join(wkDir, "api-catalog"), JSON.stringify(catalog, null, 2) + "\n");
+  console.log(`✓  .well-known/api-catalog`);
+
+  // ── Agent Skills discovery index ──────────────────────────────
+  // https://github.com/cloudflare/agent-skills-discovery-rfc
+  //
+  // Note: The skills array is minimal since handbuch.cloud doesn't
+  // host skill artifacts — it's a documentation directory. The entry
+  // points agents to the llms.txt which serves a similar purpose.
+
+  const skills = {
+    $schema: "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+    skills: [
+      {
+        name: "handbuch-doc-lookup",
+        type: "skill-md",
+        description: "Look up curated documentation URLs for any open-source package",
+        url: "https://handbuch.cloud/llms.txt",
+        digest: "sha256:placeholder", // computed from file content at build time
+      },
+    ],
+  };
+
+  const skillsDir = join(wkDir, "agent-skills");
+  mkdirSync(skillsDir, { recursive: true });
+  writeFileSync(join(skillsDir, "index.json"), JSON.stringify(skills, null, 2) + "\n");
+  console.log(`✓  .well-known/agent-skills/index.json`);
+}
+
 // ── Main ───────────────────────────────────────────────────────────
 function main(): void {
   console.log("Scanning docs/ for package entries …\n");
@@ -417,8 +648,17 @@ function main(): void {
   console.log("── JSON indexes ──");
   buildJsonIndexes(packages);
 
+  console.log("\n── Package detail pages ──");
+  buildPackagePages(packages);
+
   console.log("\n── SQLite database ──");
   buildDatabase(packages);
+
+  console.log("\n── Sitemap ──");
+  buildSitemap(packages);
+
+  console.log("\n── Well-known endpoints ──");
+  buildWellKnown(packages);
 
   // ── Summary ──────────────────────────────────────────────────
   const registryCount = new Set(packages.map((p) => p.registry)).size;

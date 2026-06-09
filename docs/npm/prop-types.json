@@ -29,5 +29,9 @@
         "react"
       ]
     }
+  ],
+  "tags": [
+    "type-system",
+    "react"
   ]
 }

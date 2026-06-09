@@ -29,5 +29,9 @@
         "reference"
       ]
     }
+  ],
+  "tags": [
+    "async",
+    "promise"
   ]
 }

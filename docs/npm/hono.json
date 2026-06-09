@@ -11,49 +11,74 @@
       "title": "Hono Official Documentation",
       "description": "Ultrafast web framework built on Web Standards, running on any JS runtime (Node.js, Bun, Deno, Cloudflare Workers, AWS Lambda, etc.). Docs cover getting started, middleware, helpers, best practices, and API reference.",
       "kind": "official",
-      "tags": ["guide", "api", "reference"]
+      "tags": [
+        "guide",
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://hono.dev/docs/getting-started/basic",
       "title": "Hono Getting Started",
       "description": "Quick-start guide: create your first Hono application in minutes.",
       "kind": "official",
-      "tags": ["guide", "tutorial", "beginner"]
+      "tags": [
+        "guide",
+        "tutorial",
+        "beginner"
+      ]
     },
     {
       "url": "https://hono.dev/docs/getting-started/nodejs",
       "title": "Hono on Node.js",
       "description": "Running Hono on Node.js with the @hono/node-server adapter.",
       "kind": "official",
-      "tags": ["guide", "beginner"]
+      "tags": [
+        "guide",
+        "beginner"
+      ]
     },
     {
       "url": "https://hono.dev/docs/api/hono",
       "title": "Hono API Reference",
       "description": "Complete API reference for the Hono app object, routing methods, context, and request/response handling.",
       "kind": "official",
-      "tags": ["api", "reference"]
+      "tags": [
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://hono.dev/docs/guides/middleware",
       "title": "Hono Middleware Guide",
       "description": "How to use built-in and third-party middleware, including CORS, JWT, auth, compression, and more.",
       "kind": "official",
-      "tags": ["guide"]
+      "tags": [
+        "guide"
+      ]
     },
     {
       "url": "https://hono.dev/docs/guides/rpc",
       "title": "Hono RPC Guide",
       "description": "Type-safe RPC client built on Hono's route definitions — generate type-safe API clients from your server routes.",
       "kind": "official",
-      "tags": ["guide", "advanced"]
+      "tags": [
+        "guide",
+        "advanced"
+      ]
     },
     {
       "url": "https://hono.dev/llms-full.txt",
       "title": "Hono LLM Full Documentation",
       "description": "Complete Hono documentation in a single text file, purpose-built for LLM consumption.",
       "kind": "official",
-      "tags": ["reference"]
+      "tags": [
+        "reference"
+      ]
     }
+  ],
+  "tags": [
+    "micro-framework",
+    "http-server"
   ]
 }

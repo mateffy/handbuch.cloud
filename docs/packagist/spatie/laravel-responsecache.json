@@ -20,5 +20,8 @@
         "official"
       ]
     }
+  ],
+  "tags": [
+    "cache"
   ]
 }

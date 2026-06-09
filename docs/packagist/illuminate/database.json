@@ -31,5 +31,9 @@
         "database"
       ]
     }
+  ],
+  "tags": [
+    "database",
+    "framework"
   ]
 }

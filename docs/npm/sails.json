@@ -11,28 +11,45 @@
       "title": "Sails.js Official Documentation",
       "description": "Realtime MVC framework for Node.js. Covers concepts, API reference, deployment, and the Waterline ORM.",
       "kind": "official",
-      "tags": ["guide", "api", "reference"]
+      "tags": [
+        "guide",
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://sailsjs.com/get-started",
       "title": "Sails.js Getting Started",
       "description": "Quick-start guide to create a Sails app, generate APIs, and set up a database.",
       "kind": "official",
-      "tags": ["guide", "tutorial", "beginner"]
+      "tags": [
+        "guide",
+        "tutorial",
+        "beginner"
+      ]
     },
     {
       "url": "https://sailsjs.com/documentation/concepts",
       "title": "Sails.js Core Concepts",
       "description": "Architecture overview: routes, controllers, models, policies, and ORM with Waterline.",
       "kind": "official",
-      "tags": ["guide"]
+      "tags": [
+        "guide"
+      ]
     },
     {
       "url": "https://sailsjs.com/documentation/reference",
       "title": "Sails.js API Reference",
       "description": "Complete API reference for Application, Request, Response, WebSockets, and CLI.",
       "kind": "official",
-      "tags": ["api", "reference"]
+      "tags": [
+        "api",
+        "reference"
+      ]
     }
+  ],
+  "tags": [
+    "framework",
+    "http-server"
   ]
 }

@@ -1,0 +1,4 @@
+[
+  "fakerphp/faker",
+  "laravel/dusk"
+]

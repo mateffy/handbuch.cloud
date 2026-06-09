@@ -18,5 +18,9 @@
         "ast"
       ]
     }
+  ],
+  "tags": [
+    "parser",
+    "type-system"
   ]
 }

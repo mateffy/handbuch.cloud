@@ -1,0 +1,7 @@
+[
+  "axios",
+  "form-data",
+  "https-proxy-agent",
+  "node-fetch",
+  "undici-types"
+]

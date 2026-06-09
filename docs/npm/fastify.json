@@ -11,42 +11,67 @@
       "title": "Fastify Official Documentation",
       "description": "Fast and low overhead web framework for Node.js. Docs are split into Guides (tutorial-style) and Reference (formal API docs). Covers getting started, plugins, hooks, validation, serialization, and TypeScript.",
       "kind": "official",
-      "tags": ["guide", "api", "reference"]
+      "tags": [
+        "guide",
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://fastify.dev/docs/latest/Guides/Getting-Started/",
       "title": "Fastify Getting Started Guide",
       "description": "Quick-start tutorial covering installation, first server, routing, plugins, and logging.",
       "kind": "official",
-      "tags": ["guide", "tutorial", "beginner"]
+      "tags": [
+        "guide",
+        "tutorial",
+        "beginner"
+      ]
     },
     {
       "url": "https://fastify.dev/docs/latest/Reference/Server/",
       "title": "Fastify Server API Reference",
       "description": "Factory function and server instance API documentation — the core of Fastify.",
       "kind": "official",
-      "tags": ["api", "reference"]
+      "tags": [
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://fastify.dev/docs/latest/Reference/Routes/",
       "title": "Fastify Routes Reference",
       "description": "Complete route configuration, URL parameters, route constraints, and schema validation.",
       "kind": "official",
-      "tags": ["api", "reference"]
+      "tags": [
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://fastify.dev/docs/latest/Reference/Plugins/",
       "title": "Fastify Plugins Reference",
       "description": "How to create, register, and encapsulate plugins — the foundation of Fastify's architecture.",
       "kind": "official",
-      "tags": ["api", "reference", "advanced"]
+      "tags": [
+        "api",
+        "reference",
+        "advanced"
+      ]
     },
     {
       "url": "https://fastify.dev/docs/latest/Guides/Migration-Guide-V5/",
       "title": "Fastify v5 Migration Guide",
       "description": "Breaking changes and migration path from Fastify v4 to v5.",
       "kind": "official",
-      "tags": ["guide", "migration"]
+      "tags": [
+        "guide",
+        "migration"
+      ]
     }
+  ],
+  "tags": [
+    "micro-framework",
+    "http-server"
   ]
 }

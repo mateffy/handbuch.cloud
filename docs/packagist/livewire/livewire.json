@@ -31,5 +31,9 @@
         "guide"
       ]
     }
+  ],
+  "tags": [
+    "framework",
+    "micro-framework"
   ]
 }

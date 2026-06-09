@@ -11,21 +11,36 @@
       "title": "FeathersJS Official Documentation",
       "description": "The API and real-time application framework. Covers services, hooks, authentication, transports (REST, WebSocket, SSE), and database adapters.",
       "kind": "official",
-      "tags": ["guide", "api", "reference"]
+      "tags": [
+        "guide",
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://feathersjs-feathers.mintlify.app/quickstart",
       "title": "Feathers Quick Start",
       "description": "Create a Feathers app with CLI, scaffold services, and set up database and authentication.",
       "kind": "official",
-      "tags": ["guide", "tutorial", "beginner"]
+      "tags": [
+        "guide",
+        "tutorial",
+        "beginner"
+      ]
     },
     {
       "url": "https://crow.docs.feathersjs.com/api/",
       "title": "Feathers v5 API Reference",
       "description": "Complete API reference including core, server modules, client modules, transports, and authentication.",
       "kind": "official",
-      "tags": ["api", "reference"]
+      "tags": [
+        "api",
+        "reference"
+      ]
     }
+  ],
+  "tags": [
+    "framework",
+    "real-time"
   ]
 }

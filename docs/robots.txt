@@ -1,0 +1,55 @@
+# robots.txt for handbuch.cloud
+# https://www.rfc-editor.org/rfc/rfc9309
+#
+# This site is a documentation directory for AI coding agents.
+# All content is explicitly permitted for crawling and AI training.
+
+User-agent: *
+Allow: /
+
+# -- AI crawler rules --
+# All content on handbuch.cloud is intentionally designed for AI consumption.
+# Every endpoint is open for crawling, training, search, and agent use.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# -- Content Signals --
+# https://contentsignals.org/
+# https://datatracker.ietf.org/doc/draft-romm-aipref-contentsignals/
+#
+# ai-train=yes  : Content may be used for AI model training
+# search=yes    : Content may be used for AI search/indexing
+# ai-input=yes  : Content may be used as AI input/context
+
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
+# -- Sitemaps --
+Sitemap: https://handbuch.cloud/sitemap.xml

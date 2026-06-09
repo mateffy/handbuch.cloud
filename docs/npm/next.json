@@ -42,5 +42,10 @@
         "advanced"
       ]
     }
+  ],
+  "tags": [
+    "framework",
+    "react",
+    "build-tool"
   ]
 }

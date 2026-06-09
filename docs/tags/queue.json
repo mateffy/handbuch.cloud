@@ -1,0 +1,7 @@
+[
+  "illuminate/bus",
+  "illuminate/queue",
+  "laravel/horizon",
+  "spatie/laravel-failed-job-monitor",
+  "spatie/laravel-queueable-action"
+]

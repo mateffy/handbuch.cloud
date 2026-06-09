@@ -11,21 +11,35 @@
       "title": "Restify Official Documentation",
       "description": "Node.js web service framework optimized for building semantically correct RESTful web services for production at scale.",
       "kind": "official",
-      "tags": ["guide", "api", "reference"]
+      "tags": [
+        "guide",
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://github.com/restify/node-restify/blob/master/docs/guides/server.md",
       "title": "Restify Server Guide",
       "description": "Guide to setting up a Restify server, routes, and middleware.",
       "kind": "official",
-      "tags": ["guide", "beginner"]
+      "tags": [
+        "guide",
+        "beginner"
+      ]
     },
     {
       "url": "https://github.com/restify/node-restify/tree/master/docs",
       "title": "Restify GitHub Docs",
       "description": "Collection of markdown docs including guides for server setup, error handling, plugins, and more.",
       "kind": "official",
-      "tags": ["guide", "reference"]
+      "tags": [
+        "guide",
+        "reference"
+      ]
     }
+  ],
+  "tags": [
+    "http-server",
+    "api-server"
   ]
 }

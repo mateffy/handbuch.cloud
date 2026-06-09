@@ -1,0 +1,9 @@
+[
+  "fast-glob",
+  "glob",
+  "glob-parent",
+  "globby",
+  "micromatch",
+  "minimatch",
+  "picomatch"
+]

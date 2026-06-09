@@ -40,5 +40,8 @@
         "api"
       ]
     }
+  ],
+  "tags": [
+    "validation"
   ]
 }

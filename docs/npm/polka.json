@@ -11,14 +11,24 @@
       "title": "Polka README",
       "description": "A micro web server so fast, it'll make you dance. Minimal Express.js alternative with tiered middleware, sub-applications, and native HTTP server performance.",
       "kind": "official",
-      "tags": ["guide", "reference"]
+      "tags": [
+        "guide",
+        "reference"
+      ]
     },
     {
       "url": "https://www.npmjs.com/package/polka",
       "title": "Polka npm Package",
       "description": "npm page with API docs, comparison to Express, and usage examples.",
       "kind": "official",
-      "tags": ["reference", "api"]
+      "tags": [
+        "reference",
+        "api"
+      ]
     }
+  ],
+  "tags": [
+    "micro-framework",
+    "http-server"
   ]
 }

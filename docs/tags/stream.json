@@ -1,0 +1,7 @@
+[
+  "buffer",
+  "get-stream",
+  "readable-stream",
+  "string_decoder",
+  "through2"
+]

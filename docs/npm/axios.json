@@ -40,5 +40,8 @@
         "reference"
       ]
     }
+  ],
+  "tags": [
+    "http-client"
   ]
 }

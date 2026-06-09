@@ -40,5 +40,9 @@
         "advanced"
       ]
     }
+  ],
+  "tags": [
+    "linter",
+    "build-tool"
   ]
 }

@@ -28,5 +28,9 @@
         "specification"
       ]
     }
+  ],
+  "tags": [
+    "build-tool",
+    "utility"
   ]
 }

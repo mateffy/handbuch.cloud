@@ -19,5 +19,8 @@
         "proxy"
       ]
     }
+  ],
+  "tags": [
+    "http-client"
   ]
 }

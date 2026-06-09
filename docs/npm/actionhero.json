@@ -11,21 +11,36 @@
       "title": "ActionHero Official Documentation",
       "description": "Multi-transport API server with integrated cluster capabilities and delayed tasks. Supports HTTP, WebSockets, and TCP from a single codebase.",
       "kind": "official",
-      "tags": ["guide", "api", "reference"]
+      "tags": [
+        "guide",
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://www.actionherojs.com/",
       "title": "ActionHero Website",
       "description": "Project homepage with overview, features, and quick-start guide for generating a new project.",
       "kind": "official",
-      "tags": ["guide", "beginner"]
+      "tags": [
+        "guide",
+        "beginner"
+      ]
     },
     {
       "url": "https://docs.actionherojs.com/modules.html",
       "title": "ActionHero API Module Reference",
       "description": "Generated TypeDoc API reference for all ActionHero modules and types.",
       "kind": "official",
-      "tags": ["api", "reference"]
+      "tags": [
+        "api",
+        "reference"
+      ]
     }
+  ],
+  "tags": [
+    "framework",
+    "http-server",
+    "real-time"
   ]
 }

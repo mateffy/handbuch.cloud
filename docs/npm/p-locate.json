@@ -17,5 +17,9 @@
         "promise"
       ]
     }
+  ],
+  "tags": [
+    "async",
+    "cli"
   ]
 }

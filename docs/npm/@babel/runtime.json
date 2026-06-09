@@ -17,5 +17,9 @@
         "babel"
       ]
     }
+  ],
+  "tags": [
+    "build-tool",
+    "polyfill"
   ]
 }

@@ -1,0 +1,344 @@
+# handbuch.cloud — curated documentation for AI coding agents
+
+> handbuch.cloud is a library of curated, up-to-date documentation URLs for open-source packages. Each entry provides direct links to official docs, API references, READMEs, and tutorials for a given package across multiple registries (npm, Packagist, Cargo). The data is available as JSON files, as indexes, and as a SQLite database that supports HTTP Range requests and WASM-based in-browser querying.
+
+---
+
+## Table of Contents
+
+1. [How to use this site](#how-to-use-this-site)
+2. [JSON entry schema](#json-entry-schema)
+3. [Registry index endpoints](#registry-index-endpoints)
+4. [Tag-based filtering](#tag-based-filtering)
+5. [SQLite database](#sqlite-database)
+6. [Entry lookup reference](#entry-lookup-reference)
+7. [User-agent guidance](#user-agent-guidance)
+
+---
+
+## How to use this site
+
+handbuch.cloud is designed for programmatic consumption by LLMs, coding agents, and developer tools. There is no complex UI to parse — every resource is a well-known path returning either JSON, text, or SQLite bytes.
+
+**Look up a single package** by fetching its JSON entry file:
+
+```
+GET https://handbuch.cloud/{registry}/{package-name}.json
+```
+
+Examples:
+- `https://handbuch.cloud/npm/express.json`
+- `https://handbuch.cloud/npm/%40nestjs/core.json` (URL-encoded @ symbol for scoped packages, or just `@nestjs/core.json`)
+- `https://handbuch.cloud/packagist/laravel/framework.json`
+- `https://handbuch.cloud/cargo/serde.json`
+
+**Browse all packages** in a registry:
+
+```
+GET https://handbuch.cloud/index/{registry}.json
+```
+
+Returns a JSON array of package names, sorted alphabetically.
+
+**Find packages by tag** (e.g. "authentication", "testing", "database"):
+
+```
+GET https://handbuch.cloud/tags/{tag}.json
+GET https://handbuch.cloud/tags/index.json   # all available tags
+```
+
+**Full-text or multi-package queries**: Use the SQLite database (see SQLite section below).
+
+---
+
+## JSON entry schema
+
+The schema is defined at `https://handbuch.cloud/schema.json` and every entry file conforms to it:
+
+```json
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "express",
+  "registry": "npm",
+  "updatedAt": "2026-06-07T11:46:49.000Z",
+  "checkedAt": "2026-06-07T11:46:49.000Z",
+  "readme": "https://raw.githubusercontent.com/expressjs/express/master/Readme.md",
+  "docs": [
+    {
+      "url": "https://expressjs.com/en/starter/installing.html",
+      "title": "Express Getting Started Guide",
+      "description": "Learn how to install and set up Express.js, the most popular Node.js web framework.",
+      "kind": "official",
+      "tags": ["guide", "beginner"]
+    },
+    {
+      "url": "https://expressjs.com/en/api.html",
+      "title": "Express API Reference (v4)",
+      "description": "Complete API documentation for Express v4, including app, request, response, and router APIs.",
+      "kind": "official",
+      "tags": ["api", "reference"]
+    }
+  ]
+}
+```
+
+Fields:
+- **name** (string, required): Package name as registered in the registry.
+- **registry** (string, required): One of "npm", "packagist", "cargo".
+- **updatedAt / checkedAt** (ISO 8601, required): When the entry was last updated / verified.
+- **readme** (string, optional): Direct URL to the package's raw GitHub README.
+- **docs** (array, required): Documentation sources, each with url, title, description (optional), kind (optional — "official", "community", "api", "guide", "tutorial", etc.), and tags (optional string array).
+
+---
+
+## Registry index endpoints
+
+| Endpoint | Description | Example |
+|---|---|---|
+| `GET /index/{registry}.json` | Array of all package names in that registry | `GET /index/npm.json` → `["actionhero","axios","connect","elysia",...]` |
+| `GET /tags/{tag}.json` | Array of packages with a given top-level tag | `GET /tags/http-server.json` → list of HTTP server packages |
+| `GET /tags/index.json` | Array of all known tag names | `GET /tags/index.json` → `["api","authentication","beginner","guide","reference",...]` |
+
+---
+
+## Tag-based filtering
+
+Tags are used to categorize entries at the package level and at the individual documentation source level.
+
+Package-level tags describe what the package is or does (e.g. "http-server", "mvc", "database-driver").
+
+Doc-level tags describe what type of resource each documentation URL is (e.g. "api", "guide", "tutorial", "reference", "beginner", "advanced", "migration").
+
+You can find packages by tag using the index files. For more complex tag-based queries (e.g. "find all packages tagged with both 'http-server' and 'typescript'"), use the SQLite database.
+
+---
+
+## SQLite database
+
+The relational database at `/db/full.sqlite` (~217 KB) is the most powerful way to query handbuch.cloud. It contains all package metadata, documentation URLs, and tags in a normalized SQLite schema.
+
+### Schema
+
+```sql
+CREATE TABLE packages (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  name        TEXT NOT NULL UNIQUE,
+  registry    TEXT NOT NULL,
+  updated_at  TEXT NOT NULL,
+  checked_at  TEXT NOT NULL,
+  readme      TEXT
+);
+
+CREATE TABLE tags (
+  id   INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE package_tags (
+  package_id INTEGER NOT NULL REFERENCES packages(id) ON DELETE CASCADE,
+  tag_id     INTEGER NOT NULL REFERENCES tags(id) ON DELETE CASCADE,
+  PRIMARY KEY (package_id, tag_id)
+);
+
+CREATE TABLE docs (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  package_id  INTEGER NOT NULL REFERENCES packages(id) ON DELETE CASCADE,
+  url         TEXT NOT NULL,
+  title       TEXT NOT NULL,
+  description TEXT,
+  kind        TEXT,
+  sort_order  INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE doc_tags (
+  doc_id INTEGER NOT NULL REFERENCES docs(id) ON DELETE CASCADE,
+  tag_id INTEGER NOT NULL REFERENCES tags(id) ON DELETE CASCADE,
+  PRIMARY KEY (doc_id, tag_id)
+);
+
+CREATE INDEX idx_packages_registry ON packages(registry);
+CREATE INDEX idx_docs_package_id ON docs(package_id);
+CREATE INDEX idx_package_tags_tag_id ON package_tags(tag_id);
+CREATE INDEX idx_doc_tags_tag_id ON doc_tags(tag_id);
+```
+
+### Query examples
+
+```sql
+-- All npm packages
+SELECT name FROM packages WHERE registry = 'npm' ORDER BY name;
+
+-- Documentation URLs for a specific package
+SELECT d.url, d.title, d.kind
+FROM docs d
+JOIN packages p ON p.id = d.package_id
+WHERE p.name = 'express'
+ORDER BY d.sort_order;
+
+-- Packages with guides about authentication
+SELECT DISTINCT p.name, p.registry
+FROM packages p
+JOIN docs d ON d.package_id = p.id
+JOIN doc_tags dt ON dt.doc_id = d.id
+JOIN tags t ON t.id = dt.tag_id
+WHERE t.name = 'authentication'
+ORDER BY p.name;
+
+-- Find all documentation URLs with a given kind
+SELECT p.name, d.url, d.title, d.kind
+FROM docs d
+JOIN packages p ON p.id = d.package_id
+WHERE d.kind = 'api'
+ORDER BY p.name;
+
+-- Most recently updated packages
+SELECT name, registry, updated_at
+FROM packages
+ORDER BY updated_at DESC
+LIMIT 20;
+
+-- Packages with their tag counts (most cross-cutting first)
+SELECT p.name, COUNT(pt.tag_id) AS tag_count
+FROM packages p
+JOIN package_tags pt ON pt.package_id = p.id
+GROUP BY p.id
+ORDER BY tag_count DESC
+LIMIT 20;
+```
+
+### Querying via HTTP Range requests
+
+The database is a single file served with standard HTTP Range request support. You do NOT need to download the entire file to query it. Using `sql.js-httpvfs` (or any SQLite library that supports virtual filesystem from HTTP), you can:
+
+```js
+import { createDbWorker } from "sql.js-httpvfs";
+
+const worker = await createDbWorker(
+  [{
+    from: "inline",
+    config: {
+      serverMode: "full",
+      requestChunkSize: 4096, // fetch 4 KB pages on demand
+      url: "/db/full.sqlite",
+    },
+  }],
+  "/dist/sqlite.worker.js",    // pre-built worker
+  "/dist/sql-wasm.wasm",       // SQLite compiled to WASM
+);
+
+// Query without downloading the full database
+const result = await worker.db.exec(
+  `SELECT p.name, d.url, d.title
+   FROM packages p
+   JOIN docs d ON d.package_id = p.id
+   WHERE p.registry = 'npm' AND d.kind = 'api'
+   ORDER BY p.name`
+);
+```
+
+This uses `sql.js-httpvfs` (https://github.com/rhashimoto/ws-sql.js-httpvfs) which implements an SQLite VFS that fetches pages via HTTP Range requests on demand. Only the database pages needed for a query are fetched over the network.
+
+For LLMs that support tool calls or can execute JavaScript, the same approach works — spin up a Web Worker with the WASM SQLite binary, point the VFS at `/db/full.sqlite`, and execute standard SQL against the database.
+
+### Direct download
+
+The full database can also be downloaded directly:
+
+```
+wget https://handbuch.cloud/db/full.sqlite
+sqlite3 full.sqlite "SELECT COUNT(*) FROM packages"
+```
+
+It's a compact ~217 KB and contains all current entries.
+
+---
+
+## Entry lookup reference
+
+### npm — HTTP server frameworks
+
+| Package | JSON URL |
+|---|---|
+| express | `https://handbuch.cloud/npm/express.json` |
+| fastify | `https://handbuch.cloud/npm/fastify.json` |
+| hono | `https://handbuch.cloud/npm/hono.json` |
+| koa | `https://handbuch.cloud/npm/koa.json` |
+| @nestjs/core | `https://handbuch.cloud/npm/@nestjs/core.json` |
+| @hapi/hapi | `https://handbuch.cloud/npm/@hapi/hapi.json` |
+| restify | `https://handbuch.cloud/npm/restify.json` |
+| sails | `https://handbuch.cloud/npm/sails.json` |
+| polka | `https://handbuch.cloud/npm/polka.json` |
+| @tinyhttp/app | `https://handbuch.cloud/npm/@tinyhttp/app.json` |
+| h3 | `https://handbuch.cloud/npm/h3.json` |
+| elysia | `https://handbuch.cloud/npm/elysia.json` |
+| feathers | `https://handbuch.cloud/npm/feathers.json` |
+| loopback | `https://handbuch.cloud/npm/loopback.json` |
+| actionhero | `https://handbuch.cloud/npm/actionhero.json` |
+| @adonisjs/core | `https://handbuch.cloud/npm/@adonisjs/core.json` |
+| itty-router | `https://handbuch.cloud/npm/itty-router.json` |
+| nitropack | `https://handbuch.cloud/npm/nitropack.json` |
+| uwebsockets.js | `https://handbuch.cloud/npm/uwebsockets.js.json` |
+| hyper-express | `https://handbuch.cloud/npm/hyper-express.json` |
+| moleculer | `https://handbuch.cloud/npm/moleculer.json` |
+| seneca | `https://handbuch.cloud/npm/seneca.json` |
+| total.js | `https://handbuch.cloud/npm/total.js.json` |
+| restana | `https://handbuch.cloud/npm/restana.json` |
+| micro | `https://handbuch.cloud/npm/micro.json` |
+| thinkjs | `https://handbuch.cloud/npm/thinkjs.json` |
+| nodal | `https://handbuch.cloud/npm/nodal.json` |
+| connect | `https://handbuch.cloud/npm/connect.json` |
+| derby | `https://handbuch.cloud/npm/derby.json` |
+
+### npm — Core libraries & utilities
+
+| Package | JSON URL |
+|---|---|
+| axios | `https://handbuch.cloud/npm/axios.json` |
+| next | `https://handbuch.cloud/npm/next.json` |
+| react | `https://handbuch.cloud/npm/react.json` |
+| react-dom | `https://handbuch.cloud/npm/react-dom.json` |
+| typescript | `https://handbuch.cloud/npm/typescript.json` |
+| zod | (pending) |
+| ws | `https://handbuch.cloud/npm/ws.json` |
+| jsonwebtoken | `https://handbuch.cloud/npm/jsonwebtoken.json` |
+| undici-types | `https://handbuch.cloud/npm/undici-types.json` |
+
+*(For a complete list, fetch `https://handbuch.cloud/index/npm.json`)*
+
+### Packagist — PHP packages
+
+| Package | JSON URL |
+|---|---|
+| laravel/framework | `https://handbuch.cloud/packagist/laravel/framework.json` |
+
+*(For a complete list, fetch `https://handbuch.cloud/index/packagist.json`)*
+
+---
+
+## User-agent guidance
+
+When an LLM or AI coding agent encounters handbuch.cloud, the recommended workflow is:
+
+### Quick single-package lookup
+1. Construct the URL: `https://handbuch.cloud/{registry}/{name}.json`
+2. Fetch the JSON file; it contains a `readme` URL and a `docs` array with curated documentation links.
+3. Follow the docs links that are most relevant to the task.
+
+### Batch or analytical queries
+1. Fetch the SQLite database via HTTP Range requests (or download the full file).
+2. Use WASM SQLite (e.g. via `sql.js-httpvfs`) to run queries across all packages.
+3. This is useful for: finding all packages with a certain tag, comparing available docs across packages, or discovering packages by registry.
+
+### Context for agents
+- The JSON entries are manually curated — they prioritize official documentation over community sources.
+- Each entry has a `checkedAt` timestamp indicating when the URLs were last verified.
+- The `kind` field on each doc entry helps you decide which sources to prioritize: `official` > `community` > `api` > `guide` > `tutorial`.
+- If a package has an `llms.txt` or `llms-full.txt` URL in its docs, prefer that file for the most LLM-optimized documentation.
+
+### robots.txt compatibility
+
+handbuch.cloud does not block AI crawlers. All endpoints are publicly accessible. For the `llms.txt` standard compliance: the file you are reading right now is the authoritative LLM entry point.
+
+---
+
+*handbuch.cloud is open source. Entries can be contributed or corrected via pull requests at https://github.com/mateffy/handbuch*

@@ -18,5 +18,9 @@
         "filesystem"
       ]
     }
+  ],
+  "tags": [
+    "glob",
+    "utility"
   ]
 }

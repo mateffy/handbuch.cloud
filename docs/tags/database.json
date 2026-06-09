@@ -1,0 +1,9 @@
+[
+  "beyondcode/laravel-query-detector",
+  "illuminate/database",
+  "illuminate/pagination",
+  "spatie/laravel-model-info",
+  "spatie/laravel-model-states",
+  "spatie/laravel-multitenancy",
+  "spatie/laravel-query-builder"
+]

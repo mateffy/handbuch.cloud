@@ -1,0 +1,7 @@
+[
+  "async",
+  "bluebird",
+  "p-locate",
+  "pify",
+  "rxjs"
+]

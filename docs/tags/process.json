@@ -1,0 +1,6 @@
+[
+  "cross-spawn",
+  "execa",
+  "signal-exit",
+  "which"
+]

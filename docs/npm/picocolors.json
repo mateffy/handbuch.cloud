@@ -17,5 +17,9 @@
         "terminal"
       ]
     }
+  ],
+  "tags": [
+    "cli",
+    "utility"
   ]
 }

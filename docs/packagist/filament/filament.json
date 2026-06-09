@@ -31,5 +31,9 @@
         "admin-panel"
       ]
     }
+  ],
+  "tags": [
+    "framework",
+    "scaffolding"
   ]
 }

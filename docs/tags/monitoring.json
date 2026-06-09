@@ -1,0 +1,11 @@
+[
+  "laravel/horizon",
+  "laravel/pulse",
+  "laravel/telescope",
+  "sentry/sentry-laravel",
+  "spatie/laravel-activitylog",
+  "spatie/laravel-analytics",
+  "spatie/laravel-failed-job-monitor",
+  "spatie/laravel-health",
+  "spatie/laravel-uptime-monitor"
+]

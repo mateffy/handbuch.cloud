@@ -1,0 +1,7 @@
+[
+  "filament/filament",
+  "laravel/breeze",
+  "laravel/jetstream",
+  "laravel/ui",
+  "tightenco/jigsaw"
+]

@@ -1,0 +1,13 @@
+[
+  "@babel/core",
+  "@babel/parser",
+  "@babel/types",
+  "@typescript-eslint/parser",
+  "acorn",
+  "acorn-walk",
+  "js-tokens",
+  "js-yaml",
+  "json5",
+  "league/commonmark",
+  "yaml"
+]

@@ -17,5 +17,9 @@
         "buffer"
       ]
     }
+  ],
+  "tags": [
+    "polyfill",
+    "utility"
   ]
 }

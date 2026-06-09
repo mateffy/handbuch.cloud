@@ -1,0 +1,5 @@
+[
+  "illuminate/cache",
+  "lru-cache",
+  "spatie/laravel-responsecache"
+]

@@ -18,5 +18,9 @@
         "typescript"
       ]
     }
+  ],
+  "tags": [
+    "type-system",
+    "utility"
   ]
 }

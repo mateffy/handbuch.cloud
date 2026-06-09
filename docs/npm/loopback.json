@@ -11,28 +11,46 @@
       "title": "LoopBack 4 Official Documentation",
       "description": "A highly extensible Node.js and TypeScript framework for building APIs and microservices. Based on Express with OpenAPI generation, dependency injection, and database integration.",
       "kind": "official",
-      "tags": ["guide", "api", "reference"]
+      "tags": [
+        "guide",
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://loopback.io/doc/en/lb4/Getting-started.html",
       "title": "LoopBack 4 Getting Started",
       "description": "Quick-start guide to create a LoopBack 4 app, define models, create data sources and repositories.",
       "kind": "official",
-      "tags": ["guide", "tutorial", "beginner"]
+      "tags": [
+        "guide",
+        "tutorial",
+        "beginner"
+      ]
     },
     {
       "url": "https://loopback.io/doc/en/lb4/Tutorial-intro.html",
       "title": "LoopBack 4 Tutorials",
       "description": "Step-by-step tutorials for building todo apps, SOAP integration, and CLI usage.",
       "kind": "official",
-      "tags": ["tutorial", "beginner"]
+      "tags": [
+        "tutorial",
+        "beginner"
+      ]
     },
     {
       "url": "https://loopback.io/doc/en/lb4/apidocs.index.html",
       "title": "LoopBack 4 API Docs",
       "description": "Generated TypeDoc API reference for all @loopback/* packages.",
       "kind": "official",
-      "tags": ["api", "reference"]
+      "tags": [
+        "api",
+        "reference"
+      ]
     }
+  ],
+  "tags": [
+    "framework",
+    "http-server"
   ]
 }

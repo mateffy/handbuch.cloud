@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "build:index": "bun run scripts/build-index.ts",
+    "build:content": "bun run scripts/build-content.ts",
+    "build:assets": "bun run scripts/build-assets.ts",
+    "build": "bun run build:content && bun run build:assets",
     "css": "NODE_ENV=production tailwindcss -i docs/input.css -o docs/output.css",
     "css:watch": "NODE_ENV=development tailwindcss -i docs/input.css -o docs/output.css --watch"
   },
@@ -9,5 +11,8 @@
     "tailwindcss": "^4",
     "typescript": "^5.0.0",
     "@types/bun": "^1.0.0"
+  },
+  "dependencies": {
+    "sql.js-httpvfs": "^0.8.12"
   }
 }

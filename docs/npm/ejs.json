@@ -29,5 +29,8 @@
         "api"
       ]
     }
+  ],
+  "tags": [
+    "template"
   ]
 }

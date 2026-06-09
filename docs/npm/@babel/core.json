@@ -27,5 +27,9 @@
         "configuration"
       ]
     }
+  ],
+  "tags": [
+    "parser",
+    "build-tool"
   ]
 }

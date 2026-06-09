@@ -11,14 +11,25 @@
       "title": "tinyhttp Official Documentation",
       "description": "0-legacy, tiny & fast web framework as a replacement of Express. Covers route patterns, middleware, error handling, and request/response API.",
       "kind": "official",
-      "tags": ["guide", "api", "reference"]
+      "tags": [
+        "guide",
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://github.com/tinyhttp/tinyhttp",
       "title": "tinyhttp GitHub Repository",
       "description": "Source code, README with getting started guide, and middleware ecosystem for tinyhttp.",
       "kind": "official",
-      "tags": ["guide", "reference"]
+      "tags": [
+        "guide",
+        "reference"
+      ]
     }
+  ],
+  "tags": [
+    "micro-framework",
+    "http-server"
   ]
 }

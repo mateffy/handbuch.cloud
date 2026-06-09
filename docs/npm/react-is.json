@@ -17,5 +17,9 @@
         "react"
       ]
     }
+  ],
+  "tags": [
+    "react",
+    "utility"
   ]
 }

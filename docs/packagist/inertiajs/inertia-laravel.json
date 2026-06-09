@@ -31,5 +31,9 @@
         "beginner"
       ]
     }
+  ],
+  "tags": [
+    "framework",
+    "react"
   ]
 }

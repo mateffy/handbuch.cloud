@@ -11,28 +11,45 @@
       "title": "AdonisJS Official Documentation",
       "description": "Full-featured Node.js framework with a rich ecosystem. Covers routing, controllers, ORM (Lucid), authentication, validation, testing, and deployment.",
       "kind": "official",
-      "tags": ["guide", "api", "reference"]
+      "tags": [
+        "guide",
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://docs.adonisjs.com/installation",
       "title": "AdonisJS Installation Guide",
       "description": "Set up a new AdonisJS application from scratch, including prerequisites and project creation.",
       "kind": "official",
-      "tags": ["guide", "tutorial", "beginner"]
+      "tags": [
+        "guide",
+        "tutorial",
+        "beginner"
+      ]
     },
     {
       "url": "https://docs.adonisjs.com/guides/routing",
       "title": "AdonisJS Routing Guide",
       "description": "Routes, route groups, route parameters, and controller binding in AdonisJS.",
       "kind": "official",
-      "tags": ["guide"]
+      "tags": [
+        "guide"
+      ]
     },
     {
       "url": "https://docs.adonisjs.com/guides/digging-deeper",
       "title": "AdonisJS Advanced Guides",
       "description": "Digging deeper into encryption, hashing, events, mail, queues, and more.",
       "kind": "official",
-      "tags": ["guide", "advanced"]
+      "tags": [
+        "guide",
+        "advanced"
+      ]
     }
+  ],
+  "tags": [
+    "framework",
+    "http-server"
   ]
 }

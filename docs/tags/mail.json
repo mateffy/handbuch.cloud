@@ -1,0 +1,4 @@
+[
+  "illuminate/mail",
+  "laravel/slack-notification-channel"
+]

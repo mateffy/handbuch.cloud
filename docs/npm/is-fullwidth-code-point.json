@@ -17,5 +17,9 @@
         "unicode"
       ]
     }
+  ],
+  "tags": [
+    "string",
+    "cli"
   ]
 }

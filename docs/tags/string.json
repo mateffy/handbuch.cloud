@@ -1,0 +1,10 @@
+[
+  "ansi-regex",
+  "color-name",
+  "emoji-regex",
+  "escape-string-regexp",
+  "is-fullwidth-code-point",
+  "string-width",
+  "strip-ansi",
+  "wrap-ansi"
+]

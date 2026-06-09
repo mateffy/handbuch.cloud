@@ -18,5 +18,8 @@
         "configuration"
       ]
     }
+  ],
+  "tags": [
+    "build-tool"
   ]
 }

@@ -1,0 +1,19 @@
+[
+  "fast-glob",
+  "find-up",
+  "fs-extra",
+  "glob",
+  "globby",
+  "graceful-fs",
+  "illuminate/filesystem",
+  "jsonfile",
+  "league/flysystem",
+  "locate-path",
+  "maatwebsite/excel",
+  "mkdirp",
+  "path-exists",
+  "rimraf",
+  "spatie/laravel-backup",
+  "spatie/laravel-medialibrary",
+  "spatie/simple-excel"
+]

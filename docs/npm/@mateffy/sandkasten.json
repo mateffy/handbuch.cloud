@@ -11,7 +11,14 @@
       "title": "NPM Package Page",
       "description": "General documentation, usage instructions, and API overview on the NPM registry page.",
       "kind": "official",
-      "tags": ["reference", "npm"]
+      "tags": [
+        "reference",
+        "npm"
+      ]
     }
+  ],
+  "tags": [
+    "utility",
+    "dev-tool"
   ]
 }

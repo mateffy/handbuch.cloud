@@ -1,0 +1,10 @@
+[
+  "actionhero",
+  "beyondcode/laravel-websockets",
+  "derby",
+  "feathers",
+  "laravel/echo",
+  "laravel/reverb",
+  "uwebsockets.js",
+  "ws"
+]

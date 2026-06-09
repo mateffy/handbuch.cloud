@@ -1,0 +1,8 @@
+[
+  "intervention/image",
+  "intervention/image-laravel",
+  "league/glide",
+  "spatie/browsershot",
+  "spatie/laravel-medialibrary",
+  "spatie/laravel-pdf"
+]

@@ -19,5 +19,9 @@
         "security"
       ]
     }
+  ],
+  "tags": [
+    "security",
+    "auth"
   ]
 }

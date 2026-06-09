@@ -28,5 +28,8 @@
         "beginner"
       ]
     }
+  ],
+  "tags": [
+    "http-client"
   ]
 }

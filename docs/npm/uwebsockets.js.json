@@ -1,0 +1,24 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "uwebsockets.js",
+  "registry": "npm",
+  "updatedAt": "2026-06-07T11:46:49.000Z",
+  "checkedAt": "2026-06-07T11:46:49.000Z",
+  "readme": "https://raw.githubusercontent.com/uNetworking/uWebSockets.js/master/README.md",
+  "docs": [
+    {
+      "url": "https://github.com/uNetworking/uWebSockets.js",
+      "title": "µWebSockets.js GitHub",
+      "description": "Standards-compliant web server written in C++ exposed as a native Node.js addon. Performs 10x+ faster than Socket.IO and 8.5x faster than Fastify.",
+      "kind": "official",
+      "tags": [
+        "reference",
+        "api"
+      ]
+    }
+  ],
+  "tags": [
+    "http-server",
+    "real-time"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://handbuch.cloud/",
+      "service-desc": [
+        {
+          "href": "https://handbuch.cloud/schema.json",
+          "title": "handbuch.cloud schema"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://handbuch.cloud/llms.txt",
+          "title": "LLM entry point"
+        },
+        {
+          "href": "https://handbuch.cloud/llms-full.txt",
+          "title": "Full LLM documentation"
+        }
+      ],
+      "http://www.w3.org/ns/hydra/core#search": [
+        {
+          "href": "https://handbuch.cloud/index/npm.json",
+          "title": "npm package index"
+        },
+        {
+          "href": "https://handbuch.cloud/index/packagist.json",
+          "title": "Packagist package index"
+        }
+      ]
+    }
+  ]
+}

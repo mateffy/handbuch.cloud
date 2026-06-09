@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "handbuch-doc-lookup",
+      "type": "skill-md",
+      "description": "Look up curated documentation URLs for any open-source package",
+      "url": "https://handbuch.cloud/llms.txt",
+      "digest": "sha256:placeholder"
+    }
+  ]
+}

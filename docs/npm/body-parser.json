@@ -19,5 +19,8 @@
         "middleware"
       ]
     }
+  ],
+  "tags": [
+    "http-server"
   ]
 }

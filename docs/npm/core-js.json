@@ -28,5 +28,9 @@
         "community"
       ]
     }
+  ],
+  "tags": [
+    "polyfill",
+    "build-tool"
   ]
 }

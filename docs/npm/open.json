@@ -18,5 +18,8 @@
         "cli"
       ]
     }
+  ],
+  "tags": [
+    "utility"
   ]
 }

@@ -18,5 +18,10 @@
         "eslint"
       ]
     }
+  ],
+  "tags": [
+    "linter",
+    "parser",
+    "type-system"
   ]
 }

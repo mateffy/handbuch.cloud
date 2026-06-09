@@ -19,5 +19,8 @@
         "official"
       ]
     }
+  ],
+  "tags": [
+    "dev-tool"
   ]
 }

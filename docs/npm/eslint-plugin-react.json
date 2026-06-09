@@ -29,5 +29,9 @@
         "rules"
       ]
     }
+  ],
+  "tags": [
+    "linter",
+    "react"
   ]
 }

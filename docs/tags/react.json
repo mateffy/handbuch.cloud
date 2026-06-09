@@ -1,0 +1,9 @@
+[
+  "eslint-plugin-react",
+  "inertiajs/inertia-laravel",
+  "next",
+  "prop-types",
+  "react",
+  "react-dom",
+  "react-is"
+]

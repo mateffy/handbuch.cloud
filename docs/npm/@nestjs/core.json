@@ -11,35 +11,54 @@
       "title": "NestJS Official Documentation",
       "description": "A progressive Node.js framework for building efficient, reliable, and scalable server-side applications with TypeScript. Covers fundamentals, techniques, recipes, CLI, and GraphQL/microservices integration.",
       "kind": "official",
-      "tags": ["guide", "api", "reference"]
+      "tags": [
+        "guide",
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://docs.nestjs.com/first-steps",
       "title": "NestJS Getting Started",
       "description": "First steps tutorial: controllers, providers, modules, and bootstrapping a NestJS application.",
       "kind": "official",
-      "tags": ["guide", "tutorial", "beginner"]
+      "tags": [
+        "guide",
+        "tutorial",
+        "beginner"
+      ]
     },
     {
       "url": "https://docs.nestjs.com/controllers",
       "title": "NestJS Controllers",
       "description": "Guide to routing, request objects, response handling, and status codes in NestJS.",
       "kind": "official",
-      "tags": ["guide"]
+      "tags": [
+        "guide"
+      ]
     },
     {
       "url": "https://docs.nestjs.com/providers",
       "title": "NestJS Providers",
       "description": "Dependency injection, scopes, custom providers, and optional providers in NestJS.",
       "kind": "official",
-      "tags": ["guide", "advanced"]
+      "tags": [
+        "guide",
+        "advanced"
+      ]
     },
     {
       "url": "https://docs.nestjs.com/openapi/introduction",
       "title": "NestJS OpenAPI (Swagger)",
       "description": "Generate OpenAPI specifications from NestJS decorators and TypeScript types.",
       "kind": "official",
-      "tags": ["guide"]
+      "tags": [
+        "guide"
+      ]
     }
+  ],
+  "tags": [
+    "framework",
+    "http-server"
   ]
 }

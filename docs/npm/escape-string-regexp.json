@@ -17,5 +17,9 @@
         "utility"
       ]
     }
+  ],
+  "tags": [
+    "string",
+    "utility"
   ]
 }

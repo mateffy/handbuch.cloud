@@ -11,42 +11,63 @@
       "title": "Koa API Documentation",
       "description": "Complete API reference for Application, Context, Request, and Response objects, plus middleware composition.",
       "kind": "official",
-      "tags": ["api", "reference"]
+      "tags": [
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://koajs.com/",
       "title": "Koa Official Website",
       "description": "Next generation web framework for Node.js. Single-page docs site covering introduction, application, context, request, and response APIs.",
       "kind": "official",
-      "tags": ["guide", "api", "reference"]
+      "tags": [
+        "guide",
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://github.com/koajs/koa/blob/master/docs/guide.md",
       "title": "Koa Guide",
       "description": "Guide covering Koa concepts including async middleware, error handling, and application patterns.",
       "kind": "official",
-      "tags": ["guide"]
+      "tags": [
+        "guide"
+      ]
     },
     {
       "url": "https://github.com/koajs/koa/blob/master/docs/error-handling.md",
       "title": "Koa Error Handling",
       "description": "Best practices for error handling in Koa applications.",
       "kind": "official",
-      "tags": ["guide"]
+      "tags": [
+        "guide"
+      ]
     },
     {
       "url": "https://github.com/koajs/koa/blob/master/docs/koa-vs-express.md",
       "title": "Koa vs Express",
       "description": "Comparison between Koa and Express, explaining design philosophy and API differences.",
       "kind": "official",
-      "tags": ["guide", "cheatsheet"]
+      "tags": [
+        "guide",
+        "cheatsheet"
+      ]
     },
     {
       "url": "https://github.com/koajs/koa/blob/master/docs/migration-v2-to-v3.md",
       "title": "Koa v2 to v3 Migration Guide",
       "description": "Breaking changes and migration steps from Koa v2 to v3.",
       "kind": "official",
-      "tags": ["guide", "migration"]
+      "tags": [
+        "guide",
+        "migration"
+      ]
     }
+  ],
+  "tags": [
+    "micro-framework",
+    "http-server"
   ]
 }

@@ -1,0 +1,9 @@
+[
+  "dotenv",
+  "laravel/envoy",
+  "laravel/octane",
+  "laravel/sail",
+  "laravel/valet",
+  "spatie/laravel-backup",
+  "spatie/laravel-multitenancy"
+]

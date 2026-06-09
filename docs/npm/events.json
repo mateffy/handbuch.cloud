@@ -18,5 +18,8 @@
         "browser"
       ]
     }
+  ],
+  "tags": [
+    "events"
   ]
 }

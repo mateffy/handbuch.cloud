@@ -20,5 +20,9 @@
         "official"
       ]
     }
+  ],
+  "tags": [
+    "parser",
+    "template"
   ]
 }

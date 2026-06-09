@@ -17,5 +17,9 @@
         "debugging"
       ]
     }
+  ],
+  "tags": [
+    "dev-tool",
+    "build-tool"
   ]
 }

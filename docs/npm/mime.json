@@ -18,5 +18,9 @@
         "http"
       ]
     }
+  ],
+  "tags": [
+    "http-server",
+    "utility"
   ]
 }

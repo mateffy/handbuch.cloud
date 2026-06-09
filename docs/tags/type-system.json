@@ -1,0 +1,16 @@
+[
+  "@babel/types",
+  "@types/node",
+  "@typescript-eslint/eslint-plugin",
+  "@typescript-eslint/parser",
+  "globals",
+  "larastan/larastan",
+  "prop-types",
+  "spatie/laravel-data",
+  "spatie/laravel-model-states",
+  "spatie/laravel-typescript-transformer",
+  "ts-node",
+  "tslib",
+  "type-fest",
+  "typescript"
+]

@@ -19,5 +19,9 @@
         "filesystem"
       ]
     }
+  ],
+  "tags": [
+    "glob",
+    "file-system"
   ]
 }

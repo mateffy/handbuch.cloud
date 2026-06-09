@@ -17,5 +17,9 @@
         "filesystem"
       ]
     }
+  ],
+  "tags": [
+    "file-system",
+    "utility"
   ]
 }

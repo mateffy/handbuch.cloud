@@ -18,5 +18,8 @@
         "child-process"
       ]
     }
+  ],
+  "tags": [
+    "process"
   ]
 }

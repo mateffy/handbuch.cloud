@@ -1,0 +1,9 @@
+[
+  "@babel/runtime",
+  "buffer",
+  "core-js",
+  "inherits",
+  "isarray",
+  "object-assign",
+  "safe-buffer"
+]

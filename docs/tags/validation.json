@@ -1,0 +1,5 @@
+[
+  "ajv",
+  "illuminate/validation",
+  "spatie/laravel-data"
+]

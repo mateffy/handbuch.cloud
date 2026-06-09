@@ -11,35 +11,55 @@
       "title": "ElysiaJS Official Documentation",
       "description": "Ergonomic TypeScript framework for humans. Bun-optimized with end-to-end type safety, OpenAPI generation from TypeScript, and plugin support. Also runs on Node.js.",
       "kind": "official",
-      "tags": ["guide", "api", "reference"]
+      "tags": [
+        "guide",
+        "api",
+        "reference"
+      ]
     },
     {
       "url": "https://elysiajs.com/quick-start",
       "title": "Elysia Quick Start",
       "description": "Get started with Elysia: installation, routing, handlers, and lifecycle events.",
       "kind": "official",
-      "tags": ["guide", "tutorial", "beginner"]
+      "tags": [
+        "guide",
+        "tutorial",
+        "beginner"
+      ]
     },
     {
       "url": "https://elysiajs.com/essential/life-cycle.html",
       "title": "Elysia Lifecycle Hooks",
       "description": "Event-based middleware system: onRequest, beforeHandle, afterHandle, and onResponse hooks.",
       "kind": "official",
-      "tags": ["guide", "advanced"]
+      "tags": [
+        "guide",
+        "advanced"
+      ]
     },
     {
       "url": "https://elysiajs.com/plugins/overview.html",
       "title": "Elysia Plugins",
       "description": "Plugin ecosystem overview including auth, CORS, Swagger, and GraphQL plugins.",
       "kind": "official",
-      "tags": ["guide"]
+      "tags": [
+        "guide"
+      ]
     },
     {
       "url": "https://elysiajs.com/eden/overview.html",
       "title": "Elysia Eden RPC Client",
       "description": "Type-safe RPC client that generates client-side types directly from server route definitions.",
       "kind": "official",
-      "tags": ["guide", "advanced"]
+      "tags": [
+        "guide",
+        "advanced"
+      ]
     }
+  ],
+  "tags": [
+    "micro-framework",
+    "http-server"
   ]
 }

@@ -31,5 +31,9 @@
         "http"
       ]
     }
+  ],
+  "tags": [
+    "http-server",
+    "framework"
   ]
 }

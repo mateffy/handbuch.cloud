@@ -28,5 +28,9 @@
         "api"
       ]
     }
+  ],
+  "tags": [
+    "parser",
+    "utility"
   ]
 }

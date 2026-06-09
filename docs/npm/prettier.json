@@ -39,5 +39,9 @@
         "configuration"
       ]
     }
+  ],
+  "tags": [
+    "formatter",
+    "build-tool"
   ]
 }

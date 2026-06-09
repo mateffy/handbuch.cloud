@@ -28,5 +28,9 @@
         "beginner"
       ]
     }
+  ],
+  "tags": [
+    "cli",
+    "utility"
   ]
 }
