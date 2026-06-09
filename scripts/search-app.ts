@@ -296,6 +296,44 @@ async function doAutocomplete(query: string, registry: string): Promise<void> {
   }
 }
 
+// ── Keyboard helpers ──────────────────────────────────────────────
+
+/** Return focus to the input and clear any dropdown highlight. */
+function focusInput(): void {
+  input.focus();
+  input.removeAttribute("aria-activedescendant");
+  activeIndex = -1;
+  const buttons = autocompleteEl.querySelectorAll<HTMLButtonElement>(".autocomplete-item");
+  buttons.forEach((btn) => {
+    btn.classList.remove("bg-zinc-100");
+    btn.setAttribute("aria-selected", "false");
+  });
+}
+
+/** Move highlight down; wraps from last item back to input. */
+function moveDown(): void {
+  if (!autocompleteVisible || autocompleteItems.length === 0) return;
+  if (activeIndex === -1) {
+    highlightItem(0);
+  } else if (activeIndex === autocompleteItems.length - 1) {
+    focusInput();
+  } else {
+    highlightItem(activeIndex + 1);
+  }
+}
+
+/** Move highlight up; from first item returns to input. */
+function moveUp(): void {
+  if (!autocompleteVisible || autocompleteItems.length === 0) return;
+  if (activeIndex === -1) {
+    highlightItem(autocompleteItems.length - 1);
+  } else if (activeIndex === 0) {
+    focusInput();
+  } else {
+    highlightItem(activeIndex - 1);
+  }
+}
+
 // ── Event handlers ────────────────────────────────────────────────
 
 // Input typing — only trigger autocomplete
@@ -340,21 +378,22 @@ form.addEventListener("submit", async (e: Event) => {
   }
 });
 
-// Keyboard navigation for autocomplete
+// Input keydown — arrow navigation when dropdown is open
 input.addEventListener("keydown", (e: KeyboardEvent) => {
   if (!autocompleteVisible) {
-    // Allow normal Enter behavior (form submit → exact match check)
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      moveDown();
+    }
     return;
   }
 
   if (e.key === "ArrowDown") {
     e.preventDefault();
-    const next = activeIndex < autocompleteItems.length - 1 ? activeIndex + 1 : 0;
-    highlightItem(next);
+    moveDown();
   } else if (e.key === "ArrowUp") {
     e.preventDefault();
-    const prev = activeIndex > 0 ? activeIndex - 1 : autocompleteItems.length - 1;
-    highlightItem(prev);
+    moveUp();
   } else if (e.key === "Enter") {
     if (activeIndex >= 0 && activeIndex < autocompleteItems.length) {
       e.preventDefault();
@@ -363,7 +402,45 @@ input.addEventListener("keydown", (e: KeyboardEvent) => {
     // If no active selection, let form submit handle it (exact match)
   } else if (e.key === "Escape") {
     hideAutocomplete();
-    input.focus();
+    focusInput();
+  }
+});
+
+// Suggestion-button keydown (delegated on autocomplete container)
+autocompleteEl.addEventListener("keydown", (e: KeyboardEvent) => {
+  const target = (e.target as HTMLElement).closest<HTMLButtonElement>(".autocomplete-item");
+  if (!target) return;
+
+  if (e.key === "ArrowDown") {
+    e.preventDefault();
+    moveDown();
+  } else if (e.key === "ArrowUp") {
+    e.preventDefault();
+    moveUp();
+  } else if (e.key === "Enter") {
+    e.preventDefault();
+    const index = parseInt(target.dataset.index ?? "", 10);
+    selectSuggestion(index);
+  } else if (e.key === "Escape") {
+    e.preventDefault();
+    hideAutocomplete();
+    focusInput();
+  } else if ((e.key === "a" || e.key === "A") && (e.ctrlKey || e.metaKey)) {
+    // Ctrl+A / Cmd+A from a suggestion → focus input & select all
+    e.preventDefault();
+    focusInput();
+    input.select();
+  }
+});
+
+// Global: Ctrl+A / Cmd+A when any non-input inside the form is focused
+form.addEventListener("keydown", (e: KeyboardEvent) => {
+  if ((e.key === "a" || e.key === "A") && (e.ctrlKey || e.metaKey)) {
+    if (document.activeElement !== input && document.activeElement !== registrySelect) {
+      e.preventDefault();
+      focusInput();
+      input.select();
+    }
   }
 });
 
@@ -392,3 +469,7 @@ registrySelect.addEventListener("change", () => {
     void doAutocomplete(query, registrySelect.value);
   }
 });
+
+// ── Init ───────────────────────────────────────────────────────────
+
+input.focus();

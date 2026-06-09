@@ -519,6 +519,38 @@ async function doAutocomplete(query, registry) {
     hideAutocomplete();
   }
 }
+function focusInput() {
+  input.focus();
+  input.removeAttribute("aria-activedescendant");
+  activeIndex = -1;
+  const buttons = autocompleteEl.querySelectorAll(".autocomplete-item");
+  buttons.forEach((btn) => {
+    btn.classList.remove("bg-zinc-100");
+    btn.setAttribute("aria-selected", "false");
+  });
+}
+function moveDown() {
+  if (!autocompleteVisible || autocompleteItems.length === 0)
+    return;
+  if (activeIndex === -1) {
+    highlightItem(0);
+  } else if (activeIndex === autocompleteItems.length - 1) {
+    focusInput();
+  } else {
+    highlightItem(activeIndex + 1);
+  }
+}
+function moveUp() {
+  if (!autocompleteVisible || autocompleteItems.length === 0)
+    return;
+  if (activeIndex === -1) {
+    highlightItem(autocompleteItems.length - 1);
+  } else if (activeIndex === 0) {
+    focusInput();
+  } else {
+    highlightItem(activeIndex - 1);
+  }
+}
 input.addEventListener("input", () => {
   const query = input.value.trim();
   const registry = registrySelect.value;
@@ -552,16 +584,18 @@ form.addEventListener("submit", async (e) => {
 });
 input.addEventListener("keydown", (e) => {
   if (!autocompleteVisible) {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      moveDown();
+    }
     return;
   }
   if (e.key === "ArrowDown") {
     e.preventDefault();
-    const next = activeIndex < autocompleteItems.length - 1 ? activeIndex + 1 : 0;
-    highlightItem(next);
+    moveDown();
   } else if (e.key === "ArrowUp") {
     e.preventDefault();
-    const prev = activeIndex > 0 ? activeIndex - 1 : autocompleteItems.length - 1;
-    highlightItem(prev);
+    moveUp();
   } else if (e.key === "Enter") {
     if (activeIndex >= 0 && activeIndex < autocompleteItems.length) {
       e.preventDefault();
@@ -569,7 +603,40 @@ input.addEventListener("keydown", (e) => {
     }
   } else if (e.key === "Escape") {
     hideAutocomplete();
-    input.focus();
+    focusInput();
+  }
+});
+autocompleteEl.addEventListener("keydown", (e) => {
+  const target = e.target.closest(".autocomplete-item");
+  if (!target)
+    return;
+  if (e.key === "ArrowDown") {
+    e.preventDefault();
+    moveDown();
+  } else if (e.key === "ArrowUp") {
+    e.preventDefault();
+    moveUp();
+  } else if (e.key === "Enter") {
+    e.preventDefault();
+    const index = parseInt(target.dataset.index ?? "", 10);
+    selectSuggestion(index);
+  } else if (e.key === "Escape") {
+    e.preventDefault();
+    hideAutocomplete();
+    focusInput();
+  } else if ((e.key === "a" || e.key === "A") && (e.ctrlKey || e.metaKey)) {
+    e.preventDefault();
+    focusInput();
+    input.select();
+  }
+});
+form.addEventListener("keydown", (e) => {
+  if ((e.key === "a" || e.key === "A") && (e.ctrlKey || e.metaKey)) {
+    if (document.activeElement !== input && document.activeElement !== registrySelect) {
+      e.preventDefault();
+      focusInput();
+      input.select();
+    }
   }
 });
 autocompleteEl.addEventListener("click", (e) => {
@@ -592,3 +659,4 @@ registrySelect.addEventListener("change", () => {
     doAutocomplete(query, registrySelect.value);
   }
 });
+input.focus();

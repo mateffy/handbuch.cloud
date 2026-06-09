@@ -467,6 +467,10 @@ function buildPackagePages(packages: FlatPackage[]): void {
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>${escapeHtml(pkg.name)} — handbuch.cloud</title>
+<style>
+html { background-color: #f4f4f5; scrollbar-gutter: stable; }
+@view-transition { navigation: auto; }
+</style>
 <link rel="stylesheet" href="/output.css" />
 </head>
 <body class="font-mono min-h-screen bg-zinc-100 text-gray-800">
