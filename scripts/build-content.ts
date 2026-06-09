@@ -33,7 +33,7 @@ import { Database, type Statement } from "bun:sqlite";
 const scriptDir = fileURLToPath(new URL(".", import.meta.url));
 const ROOT = resolve(scriptDir, "..");
 const DOCS = join(ROOT, "docs");
-const DB_PATH = join(DOCS, "db", "full.sqlite");
+const DB_PATH = join(DOCS, "db", "full.sqlite3");
 
 const EXCLUDED_DIRS = new Set(["index", "tags", "db", ".well-known"]);
 const EXCLUDED_FILES = new Set(["schema.json"]);
@@ -368,7 +368,7 @@ function buildDatabase(packages: FlatPackage[]): void {
   const dbConfig = {
     serverMode: "full",
     requestChunkSize: 4096,
-    url: "/db/full.sqlite",
+    url: "/db/full.sqlite3",
     fileLength: dbBytes,
   };
   writeFileSync(
@@ -377,7 +377,7 @@ function buildDatabase(packages: FlatPackage[]): void {
   );
 
   console.log(
-    `✓  db/full.sqlite  (${dbSize.toFixed(0)} KB  •  ${pkgCount} packages  •  ${docCount} docs  •  ${tagCount} tags)`,
+    `✓  db/full.sqlite3  (${dbSize.toFixed(0)} KB  •  ${pkgCount} packages  •  ${docCount} docs  •  ${tagCount} tags)`,
   );
 }
 
@@ -548,7 +548,7 @@ function buildSitemap(packages: FlatPackage[]): void {
     { loc: `${domain}/index/npm.json`, changefreq: "weekly", priority: "0.7" },
     { loc: `${domain}/index/packagist.json`, changefreq: "weekly", priority: "0.7" },
     { loc: `${domain}/tags/index.json`, changefreq: "weekly", priority: "0.6" },
-    { loc: `${domain}/db/full.sqlite`, changefreq: "weekly", priority: "0.8" },
+    { loc: `${domain}/db/full.sqlite3`, changefreq: "weekly", priority: "0.8" },
   ];
 
   // Add all package JSON entries and HTML detail pages

@@ -388,8 +388,8 @@ async function getDb() {
   if (dbPromise)
     return dbPromise;
   dbPromise = (async () => {
-    const workerUrl = new URL("/dist/sqlite.worker.js?v=3", window.location.origin).toString();
-    const wasmUrl = new URL("/dist/sql-wasm.wasm?v=3", window.location.origin).toString();
+    const workerUrl = new URL("/dist/sqlite.worker.js?v=5", window.location.origin).toString();
+    const wasmUrl = new URL("/dist/sql-wasm.wasm?v=5", window.location.origin).toString();
     const worker = await import_sql.createDbWorker([
       {
         from: "jsonconfig",
@@ -494,27 +494,6 @@ function selectSuggestion(index) {
   hideAutocomplete();
   navigateToPackage(selected, registrySelect.value);
 }
-async function doAutocomplete(query, registry) {
-  if (!query.trim()) {
-    hideAutocomplete();
-    return;
-  }
-  const seq = ++searchSeq;
-  try {
-    const suggestions = await queryAutocomplete(query.trim(), registry);
-    if (seq !== searchSeq)
-      return;
-    if (suggestions.length > 0 && document.activeElement === input) {
-      showAutocomplete(suggestions);
-    } else {
-      hideAutocomplete();
-    }
-  } catch {
-    if (seq !== searchSeq)
-      return;
-    hideAutocomplete();
-  }
-}
 function focusInput() {
   input.focus();
   input.removeAttribute("aria-activedescendant");
@@ -545,6 +524,27 @@ function moveUp() {
     focusInput();
   } else {
     highlightItem(activeIndex - 1);
+  }
+}
+async function doAutocomplete(query, registry) {
+  if (!query.trim()) {
+    hideAutocomplete();
+    return;
+  }
+  const seq = ++searchSeq;
+  try {
+    const suggestions = await queryAutocomplete(query.trim(), registry);
+    if (seq !== searchSeq)
+      return;
+    if (suggestions.length > 0 && document.activeElement === input) {
+      showAutocomplete(suggestions);
+    } else {
+      hideAutocomplete();
+    }
+  } catch {
+    if (seq !== searchSeq)
+      return;
+    hideAutocomplete();
   }
 }
 input.addEventListener("input", () => {

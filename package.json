@@ -14,6 +14,7 @@
     "@types/bun": "^1.0.0"
   },
   "dependencies": {
+    "sql.js": "^1.14.1",
     "sql.js-httpvfs": "^0.8.12"
   }
 }

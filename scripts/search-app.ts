@@ -101,11 +101,11 @@ async function getDb(): Promise<DbHandle> {
 
   dbPromise = (async () => {
     const workerUrl = new URL(
-      "/dist/sqlite.worker.js?v=3",
+      "/dist/sqlite.worker.js?v=5",
       window.location.origin,
     ).toString();
     const wasmUrl = new URL(
-      "/dist/sql-wasm.wasm?v=3",
+      "/dist/sql-wasm.wasm?v=5",
       window.location.origin,
     ).toString();
 
@@ -266,34 +266,6 @@ function selectSuggestion(index: number): void {
   navigateToPackage(selected, registrySelect.value);
 }
 
-// ── Autocomplete search ───────────────────────────────────────────
-
-async function doAutocomplete(query: string, registry: string): Promise<void> {
-  if (!query.trim()) {
-    hideAutocomplete();
-    return;
-  }
-
-  const seq = ++searchSeq;
-
-  try {
-    const suggestions = await queryAutocomplete(query.trim(), registry);
-
-    if (seq !== searchSeq) return;
-
-    if (suggestions.length > 0 && document.activeElement === input) {
-      showAutocomplete(suggestions);
-    } else {
-      hideAutocomplete();
-    }
-  } catch {
-    if (seq !== searchSeq) return;
-    hideAutocomplete();
-  }
-}
-
-// ── Keyboard helpers ──────────────────────────────────────────────
-
 /** Return focus to the input and clear any dropdown highlight. */
 function focusInput(): void {
   input.focus();
@@ -327,6 +299,32 @@ function moveUp(): void {
     focusInput();
   } else {
     highlightItem(activeIndex - 1);
+  }
+}
+
+// ── Autocomplete search ───────────────────────────────────────────
+
+async function doAutocomplete(query: string, registry: string): Promise<void> {
+  if (!query.trim()) {
+    hideAutocomplete();
+    return;
+  }
+
+  const seq = ++searchSeq;
+
+  try {
+    const suggestions = await queryAutocomplete(query.trim(), registry);
+
+    if (seq !== searchSeq) return;
+
+    if (suggestions.length > 0 && document.activeElement === input) {
+      showAutocomplete(suggestions);
+    } else {
+      hideAutocomplete();
+    }
+  } catch {
+    if (seq !== searchSeq) return;
+    hideAutocomplete();
   }
 }
 
@@ -422,7 +420,6 @@ autocompleteEl.addEventListener("keydown", (e: KeyboardEvent) => {
     hideAutocomplete();
     focusInput();
   } else if ((e.key === "a" || e.key === "A") && (e.ctrlKey || e.metaKey)) {
-    // Ctrl+A / Cmd+A from a suggestion → focus input & select all
     e.preventDefault();
     focusInput();
     input.select();

@@ -394,8 +394,8 @@ async function getDb() {
   if (dbPromise)
     return dbPromise;
   dbPromise = (async () => {
-    const workerUrl = new URL("/dist/sqlite.worker.js?v=3", window.location.origin).toString();
-    const wasmUrl = new URL("/dist/sql-wasm.wasm?v=3", window.location.origin).toString();
+    const workerUrl = new URL("/dist/sqlite.worker.js?v=5", window.location.origin).toString();
+    const wasmUrl = new URL("/dist/sql-wasm.wasm?v=5", window.location.origin).toString();
     const worker = await import_sql.createDbWorker([
       {
         from: "jsonconfig",

@@ -111,11 +111,11 @@ async function getDb(): Promise<DbHandle> {
 
   dbPromise = (async () => {
     const workerUrl = new URL(
-      "/dist/sqlite.worker.js?v=3",
+      "/dist/sqlite.worker.js?v=5",
       window.location.origin,
     ).toString();
     const wasmUrl = new URL(
-      "/dist/sql-wasm.wasm?v=3",
+      "/dist/sql-wasm.wasm?v=5",
       window.location.origin,
     ).toString();
 
