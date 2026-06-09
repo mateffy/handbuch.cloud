@@ -1,0 +1,32 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "ant-design-vue",
+  "registry": "npm",
+  "updatedAt": "2026-06-09T00:00:00.000Z",
+  "checkedAt": "2026-06-09T00:00:00.000Z",
+  "readme": "https://raw.githubusercontent.com/ant-design/ant-design-vue/main/README.md",
+  "docs": [
+    {
+      "url": "https://www.antdv.com/",
+      "title": "Ant Design Vue Documentation",
+      "description": "Documentation for Ant Design Vue, a Vue.js implementation of Ant Design.",
+      "kind": "official",
+      "tags": ["guide", "api", "reference", "ui-components", "official"]
+    },
+    {
+      "url": "https://www.antdv.com/components/",
+      "title": "Component Library",
+      "description": "Complete component library with all Ant Design Vue components.",
+      "kind": "official",
+      "tags": ["components", "ui", "design-system", "enterprise"]
+    }
+  ],
+  "tags": [
+    "vue",
+    "ui-components",
+    "design-system",
+    "javascript",
+    "frontend",
+    "enterprise"
+  ]
+}

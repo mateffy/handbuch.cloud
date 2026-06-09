@@ -16,5 +16,6 @@
   "tightenco/jigsaw",
   "ts-node",
   "typescript",
+  "vite",
   "webpack"
 ]

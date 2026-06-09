@@ -1,0 +1,31 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "vue-router",
+  "registry": "npm",
+  "updatedAt": "2026-06-09T00:00:00.000Z",
+  "checkedAt": "2026-06-09T00:00:00.000Z",
+  "readme": "https://raw.githubusercontent.com/vuejs/router/main/README.md",
+  "docs": [
+    {
+      "url": "https://router.vuejs.org/",
+      "title": "Vue Router Documentation",
+      "description": "Official documentation for the official router for Vue.js.",
+      "kind": "official",
+      "tags": ["guide", "api", "reference", "router", "official"]
+    },
+    {
+      "url": "https://router.vuejs.org/guide/",
+      "title": "Vue Router Guide",
+      "description": "Complete guide to using Vue Router for single-page application routing.",
+      "kind": "official",
+      "tags": ["guide", "tutorial", "routing", "spa"]
+    }
+  ],
+  "tags": [
+    "vue",
+    "router",
+    "javascript",
+    "frontend",
+    "navigation"
+  ]
+}

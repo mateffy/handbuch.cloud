@@ -1456,6 +1456,26 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://handbuch.cloud/npm/vitest.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/vitest/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/nuxt.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/nuxt/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://handbuch.cloud/npm/moleculer.json</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1856,6 +1876,36 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://handbuch.cloud/npm/@vue/cli.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/@vue/cli/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/@vue/test-utils.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/@vue/test-utils/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/@vue/devtools.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/@vue/devtools/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://handbuch.cloud/npm/ws.json</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1976,6 +2026,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://handbuch.cloud/npm/vueuse.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/vueuse/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://handbuch.cloud/npm/loopback.json</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -2032,6 +2092,16 @@
   </url>
   <url>
     <loc>https://handbuch.cloud/npm/h3/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/element-plus.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/element-plus/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2146,6 +2216,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://handbuch.cloud/npm/pinia.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/pinia/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://handbuch.cloud/npm/path-to-regexp.json</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -2182,6 +2262,16 @@
   </url>
   <url>
     <loc>https://handbuch.cloud/npm/derby/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/vuetify.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/vuetify/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2292,6 +2382,16 @@
   </url>
   <url>
     <loc>https://handbuch.cloud/npm/yargs/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/vue-router.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/vue-router/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2456,6 +2556,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://handbuch.cloud/npm/ant-design-vue.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/ant-design-vue/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://handbuch.cloud/npm/arg.json</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -2496,12 +2606,32 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://handbuch.cloud/npm/vite.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/vite/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://handbuch.cloud/npm/picomatch.json</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://handbuch.cloud/npm/picomatch/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/vue.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/vue/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2522,6 +2652,16 @@
   </url>
   <url>
     <loc>https://handbuch.cloud/npm/glob-parent/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/vue-class-component.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/npm/vue-class-component/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2811,6 +2951,36 @@
     <priority>0.4</priority>
   </url>
   <url>
+    <loc>https://handbuch.cloud/tags/javascript.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/unit-testing.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/e2e-testing.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/vue.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/frontend.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/fullstack.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
     <loc>https://handbuch.cloud/tags/microservices.json</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
@@ -2832,6 +3002,96 @@
   </url>
   <url>
     <loc>https://handbuch.cloud/tags/promise.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/tooling.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/devtools.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/debugging.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/browser-extension.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/development.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/utilities.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/composition-api.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/ui-components.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/design-system.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/state-management.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/store.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/router.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/navigation.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/enterprise.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/bundler.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/ui.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/class-components.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://handbuch.cloud/tags/typescript.json</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>

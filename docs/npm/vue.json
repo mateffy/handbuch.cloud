@@ -1,0 +1,38 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "vue",
+  "registry": "npm",
+  "updatedAt": "2026-06-09T00:00:00.000Z",
+  "checkedAt": "2026-06-09T00:00:00.000Z",
+  "readme": "https://raw.githubusercontent.com/vuejs/core/main/README.md",
+  "docs": [
+    {
+      "url": "https://vuejs.org/",
+      "title": "Vue.js Documentation",
+      "description": "Official documentation for the progressive JavaScript framework for building user interfaces.",
+      "kind": "official",
+      "tags": ["guide", "api", "reference", "framework", "official"]
+    },
+    {
+      "url": "https://vuejs.org/guide/",
+      "title": "Vue.js Guide",
+      "description": "Comprehensive guide covering all aspects of Vue.js from basics to advanced topics.",
+      "kind": "official",
+      "tags": ["guide", "tutorial", "beginner", "intermediate", "advanced"]
+    },
+    {
+      "url": "https://vuejs.org/examples/",
+      "title": "Vue Examples",
+      "description": "Interactive examples demonstrating various Vue.js features and patterns.",
+      "kind": "official",
+      "tags": ["examples", "interactive", "demo"]
+    }
+  ],
+  "tags": [
+    "vue",
+    "javascript",
+    "framework",
+    "frontend",
+    "ui"
+  ]
+}

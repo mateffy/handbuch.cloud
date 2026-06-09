@@ -1,0 +1,38 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "vite",
+  "registry": "npm",
+  "updatedAt": "2026-06-09T00:00:00.000Z",
+  "checkedAt": "2026-06-09T00:00:00.000Z",
+  "readme": "https://raw.githubusercontent.com/vitejs/vite/main/README.md",
+  "docs": [
+    {
+      "url": "https://vitejs.dev/",
+      "title": "Vite Documentation",
+      "description": "Official documentation for Vite, next generation frontend tooling.",
+      "kind": "official",
+      "tags": ["guide", "api", "reference", "build-tool", "official"]
+    },
+    {
+      "url": "https://vitejs.dev/guide/",
+      "title": "Vite Guide",
+      "description": "Comprehensive guide covering Vite features, configuration, and workflows.",
+      "kind": "official",
+      "tags": ["guide", "tutorial", "build-tool", "development"]
+    },
+    {
+      "url": "https://vitejs.dev/plugins/",
+      "title": "Vite Plugins",
+      "description": "Official and community plugins for extending Vite functionality.",
+      "kind": "official",
+      "tags": ["plugins", "extensions", "ecosystem"]
+    }
+  ],
+  "tags": [
+    "build-tool",
+    "javascript",
+    "frontend",
+    "development",
+    "bundler"
+  ]
+}

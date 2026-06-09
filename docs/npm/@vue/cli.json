@@ -1,0 +1,31 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "@vue/cli",
+  "registry": "npm",
+  "updatedAt": "2026-06-09T00:00:00.000Z",
+  "checkedAt": "2026-06-09T00:00:00.000Z",
+  "readme": "https://raw.githubusercontent.com/vuejs/vue-cli/main/README.md",
+  "docs": [
+    {
+      "url": "https://cli.vuejs.org/",
+      "title": "Vue CLI Documentation",
+      "description": "Documentation for Vue CLI, the standard tooling for Vue.js development.",
+      "kind": "official",
+      "tags": ["guide", "api", "reference", "cli", "official"]
+    },
+    {
+      "url": "https://cli.vuejs.org/guide/",
+      "title": "Vue CLI Guide",
+      "description": "Complete guide to using Vue CLI for project setup and development.",
+      "kind": "official",
+      "tags": ["guide", "tutorial", "cli", "project-setup"]
+    }
+  ],
+  "tags": [
+    "vue",
+    "cli",
+    "tooling",
+    "javascript",
+    "frontend"
+  ]
+}

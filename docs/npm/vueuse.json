@@ -1,0 +1,31 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "vueuse",
+  "registry": "npm",
+  "updatedAt": "2026-06-09T00:00:00.000Z",
+  "checkedAt": "2026-06-09T00:00:00.000Z",
+  "readme": "https://raw.githubusercontent.com/vueuse/vueuse/main/README.md",
+  "docs": [
+    {
+      "url": "https://vueuse.org/",
+      "title": "VueUse Documentation",
+      "description": "Collection of composition utilities for Vue 3.",
+      "kind": "official",
+      "tags": ["guide", "api", "reference", "utilities", "official"]
+    },
+    {
+      "url": "https://vueuse.org/core/",
+      "title": "Core Functions",
+      "description": "Core composition utilities for Vue 3.",
+      "kind": "official",
+      "tags": ["api", "utilities", "composition", "reactive"]
+    }
+  ],
+  "tags": [
+    "vue",
+    "utilities",
+    "composition-api",
+    "javascript",
+    "frontend"
+  ]
+}

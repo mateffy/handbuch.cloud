@@ -1,0 +1,38 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "nuxt",
+  "registry": "npm",
+  "updatedAt": "2026-06-09T00:00:00.000Z",
+  "checkedAt": "2026-06-09T00:00:00.000Z",
+  "readme": "https://raw.githubusercontent.com/nuxt/nuxt/main/README.md",
+  "docs": [
+    {
+      "url": "https://nuxt.com/",
+      "title": "Nuxt Documentation",
+      "description": "Official documentation for Nuxt, the intuitive Vue framework.",
+      "kind": "official",
+      "tags": ["guide", "api", "reference", "framework", "official"]
+    },
+    {
+      "url": "https://nuxt.com/docs/getting-started/introduction",
+      "title": "Getting Started",
+      "description": "Quick start guide and introduction to Nuxt framework.",
+      "kind": "official",
+      "tags": ["guide", "tutorial", "installation", "beginner"]
+    },
+    {
+      "url": "https://nuxt.com/docs/guide/directory-structure",
+      "title": "Directory Structure",
+      "description": "Learn about Nuxt's directory structure and conventions.",
+      "kind": "official",
+      "tags": ["guide", "structure", "conventions"]
+    }
+  ],
+  "tags": [
+    "vue",
+    "framework",
+    "javascript",
+    "frontend",
+    "fullstack"
+  ]
+}

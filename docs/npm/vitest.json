@@ -1,0 +1,31 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "vitest",
+  "registry": "npm",
+  "updatedAt": "2026-06-09T00:00:00.000Z",
+  "checkedAt": "2026-06-09T00:00:00.000Z",
+  "readme": "https://raw.githubusercontent.com/vitest-dev/vitest/main/README.md",
+  "docs": [
+    {
+      "url": "https://vitest.dev/",
+      "title": "Vitest Documentation",
+      "description": "Next generation testing framework powered by Vite.",
+      "kind": "official",
+      "tags": ["guide", "api", "reference", "testing", "official"]
+    },
+    {
+      "url": "https://vitest.dev/guide/",
+      "title": "Vitest Guide",
+      "description": "Comprehensive guide to using Vitest for modern JavaScript testing.",
+      "kind": "official",
+      "tags": ["guide", "tutorial", "testing", "unit", "e2e"]
+    }
+  ],
+  "tags": [
+    "testing",
+    "javascript",
+    "framework",
+    "unit-testing",
+    "e2e-testing"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "vuetify",
+  "registry": "npm",
+  "updatedAt": "2026-06-09T00:00:00.000Z",
+  "checkedAt": "2026-06-09T00:00:00.000Z",
+  "readme": "https://raw.githubusercontent.com/vuetifyjs/vuetify/main/README.md",
+  "docs": [
+    {
+      "url": "https://vuetifyjs.com/",
+      "title": "Vuetify Documentation",
+      "description": "Documentation for Vuetify, a Vue UI Component Framework.",
+      "kind": "official",
+      "tags": ["guide", "api", "reference", "ui-components", "official"]
+    },
+    {
+      "url": "https://vuetifyjs.com/en/getting-started/",
+      "title": "Getting Started",
+      "description": "Quick start guide and installation instructions for Vuetify.",
+      "kind": "official",
+      "tags": ["guide", "tutorial", "installation", "beginner"]
+    }
+  ],
+  "tags": [
+    "vue",
+    "ui-components",
+    "design-system",
+    "javascript",
+    "frontend"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "element-plus",
+  "registry": "npm",
+  "updatedAt": "2026-06-09T00:00:00.000Z",
+  "checkedAt": "2026-06-09T00:00:00.000Z",
+  "readme": "https://raw.githubusercontent.com/element-plus/element-plus/main/README.md",
+  "docs": [
+    {
+      "url": "https://element-plus.org/",
+      "title": "Element Plus Documentation",
+      "description": "Documentation for Element Plus, a Vue 3 UI component library for desktop applications.",
+      "kind": "official",
+      "tags": ["guide", "api", "reference", "ui-components", "official"]
+    },
+    {
+      "url": "https://element-plus.org/en-US/component/",
+      "title": "Component Library",
+      "description": "Complete component library with all Element Plus components and usage examples.",
+      "kind": "official",
+      "tags": ["components", "ui", "design-system", "vue3"]
+    }
+  ],
+  "tags": [
+    "vue",
+    "ui-components",
+    "design-system",
+    "javascript",
+    "frontend"
+  ]
+}

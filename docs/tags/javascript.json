@@ -1,0 +1,15 @@
+[
+  "@vue/cli",
+  "@vue/test-utils",
+  "ant-design-vue",
+  "element-plus",
+  "nuxt",
+  "pinia",
+  "vite",
+  "vitest",
+  "vue",
+  "vue-class-component",
+  "vue-router",
+  "vuetify",
+  "vueuse"
+]

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "@vue/test-utils",
+  "registry": "npm",
+  "updatedAt": "2026-06-09T00:00:00.000Z",
+  "checkedAt": "2026-06-09T00:00:00.000Z",
+  "readme": "https://raw.githubusercontent.com/vuejs/test-utils/main/README.md",
+  "docs": [
+    {
+      "url": "https://test-utils.vuejs.org/",
+      "title": "Vue Test Utils Documentation",
+      "description": "Official documentation for Vue.js component testing utilities.",
+      "kind": "official",
+      "tags": ["guide", "api", "reference", "testing", "official"]
+    },
+    {
+      "url": "https://test-utils.vuejs.org/guide/",
+      "title": "Vue Test Utils Guide",
+      "description": "Complete guide to testing Vue.js components with Vue Test Utils.",
+      "kind": "official",
+      "tags": ["guide", "tutorial", "testing", "component-testing"]
+    }
+  ],
+  "tags": [
+    "vue",
+    "testing",
+    "javascript",
+    "frontend",
+    "unit-testing"
+  ]
+}

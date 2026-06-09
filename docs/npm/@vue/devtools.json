@@ -1,0 +1,31 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "@vue/devtools",
+  "registry": "npm",
+  "updatedAt": "2026-06-09T00:00:00.000Z",
+  "checkedAt": "2026-06-09T00:00:00.000Z",
+  "readme": "https://raw.githubusercontent.com/vuejs/devtools/main/README.md",
+  "docs": [
+    {
+      "url": "https://devtools.vuejs.org/",
+      "title": "Vue DevTools Documentation",
+      "description": "Official documentation for the Vue.js developer tools browser extension and standalone app.",
+      "kind": "official",
+      "tags": ["guide", "api", "reference", "development-tools", "official"]
+    },
+    {
+      "url": "https://devtools.vuejs.org/guide/",
+      "title": "Vue DevTools Guide",
+      "description": "Learn how to use Vue DevTools for debugging and inspecting Vue applications.",
+      "kind": "official",
+      "tags": ["guide", "tutorial", "debugging", "development"]
+    }
+  ],
+  "tags": [
+    "vue",
+    "devtools",
+    "debugging",
+    "browser-extension",
+    "development"
+  ]
+}

@@ -34,9 +34,12 @@
   "moleculer",
   "next",
   "nodal",
+  "nuxt",
   "react",
   "sails",
   "seneca",
   "thinkjs",
-  "total.js"
+  "total.js",
+  "vitest",
+  "vue"
 ]

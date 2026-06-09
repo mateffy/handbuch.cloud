@@ -1,4 +1,5 @@
 [
+  "@vue/cli",
   "ansi-regex",
   "arg",
   "argparse",

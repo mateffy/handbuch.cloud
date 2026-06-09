@@ -1,0 +1,31 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "vue-class-component",
+  "registry": "npm",
+  "updatedAt": "2026-06-09T00:00:00.000Z",
+  "checkedAt": "2026-06-09T00:00:00.000Z",
+  "readme": "https://raw.githubusercontent.com/vuejs/vue-class-component/main/README.md",
+  "docs": [
+    {
+      "url": "https://class-component.vuejs.org/",
+      "title": "Vue Class Component Documentation",
+      "description": "Documentation for Vue Class Component, supporting class-style Vue components.",
+      "kind": "official",
+      "tags": ["guide", "api", "reference", "official"]
+    },
+    {
+      "url": "https://class-component.vuejs.org/",
+      "title": "Usage Guide",
+      "description": "Guide on using class-style components with Vue.",
+      "kind": "official",
+      "tags": ["guide", "tutorial", "class-components"]
+    }
+  ],
+  "tags": [
+    "vue",
+    "class-components",
+    "javascript",
+    "frontend",
+    "typescript"
+  ]
+}

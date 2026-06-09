@@ -1,0 +1,31 @@
+{
+  "$schema": "https://handbuch.cloud/schema.json",
+  "name": "pinia",
+  "registry": "npm",
+  "updatedAt": "2026-06-09T00:00:00.000Z",
+  "checkedAt": "2026-06-09T00:00:00.000Z",
+  "readme": "https://raw.githubusercontent.com/vuejs/pinia/main/README.md",
+  "docs": [
+    {
+      "url": "https://pinia.vuejs.org/",
+      "title": "Pinia Documentation",
+      "description": "Official documentation for Pinia, intuitive, light and flexible Vue.js state management.",
+      "kind": "official",
+      "tags": ["guide", "api", "reference", "state-management", "official"]
+    },
+    {
+      "url": "https://pinia.vuejs.org/core-concepts/",
+      "title": "Pinia Core Concepts",
+      "description": "Learn about stores, actions, getters, and state in Pinia.",
+      "kind": "official",
+      "tags": ["guide", "tutorial", "state-management", "concepts"]
+    }
+  ],
+  "tags": [
+    "vue",
+    "state-management",
+    "javascript",
+    "frontend",
+    "store"
+  ]
+}

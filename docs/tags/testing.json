@@ -1,4 +1,6 @@
 [
+  "@vue/test-utils",
   "fakerphp/faker",
-  "laravel/dusk"
+  "laravel/dusk",
+  "vitest"
 ]
