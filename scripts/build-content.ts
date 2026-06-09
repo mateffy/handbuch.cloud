@@ -382,10 +382,9 @@ async function buildDatabase(packages: FlatPackage[]): Promise<void> {
   // requestChunkSize: 4096 enables real lazy loading (only fetches the
   // SQLite pages each query actually needs).
   //
-  // R2_PUBLIC_URL env var → e.g. https://db.handbuch.cloud
-  // Falls back to /db/full.sqlite3 for local development.
-  const r2PublicUrl = process.env.R2_PUBLIC_URL;
-  const dbUrl = r2PublicUrl ? `${r2PublicUrl}/full.sqlite3` : "/db/full.sqlite3";
+  // Production URL is hardcoded. The dev-server.ts overrides this locally
+  // so local development never hits R2.
+  const dbUrl = "https://static.handbuch.cloud/full.sqlite3";
 
   const dbConfig = {
     serverMode: "full",
