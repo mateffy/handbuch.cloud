@@ -31,20 +31,20 @@
 
             <div class="flex flex-col w-full py-18">
                 <div class="mb-6">
-                    <h2 class="text-2xl font-display font-bold text-gray-800 mb-1">Library</h2>
+                    <h2 class="text-xl font-display font-bold text-gray-800 mb-1">Library</h2>
                     <p class="text-zinc-500">Browse all <span id="package-count">0 packages</span> in the collection.</p>
                 </div>
 
-                <div id="library-filters" class="flex flex-wrap items-center gap-2 w-full mb-6">
+                <div id="library-filters" class="flex items-center gap-2 w-full mb-10">
                     <input
                         id="filter-search"
                         type="search"
                         placeholder="Filter by name…"
-                        class="flex-1 min-w-[200px] h-10 text-base px-3 bg-white border-zinc-200 border shadow-inner ring-zinc-300 focus:ring-1 focus:outline-none"
+                        class="flex-1 w-full h-12 text-xl px-3 bg-white border-zinc-200 border shadow-inner ring-zinc-300 focus:ring-1 focus:outline-none"
                     />
                     <select
                         id="filter-registry"
-                        class="text-base h-10 px-2 pr-4 bg-white border-zinc-200 border shadow-inner ring-zinc-300 focus:ring-1 focus:outline-none"
+                        class="text-xl h-12 px-1 pr-3 bg-white border-zinc-200 border shadow-inner ring-zinc-300 focus:ring-1 focus:outline-none"
                     >
                         <option value="">All registries</option>
                         <option value="npm">NPM</option>
@@ -53,7 +53,7 @@
                     </select>
                     <select
                         id="filter-category"
-                        class="text-base h-10 px-2 pr-4 bg-white border-zinc-200 border shadow-inner ring-zinc-300 focus:ring-1 focus:outline-none"
+                        class="text-xl h-12 px-1 pr-3 bg-white border-zinc-200 border shadow-inner ring-zinc-300 focus:ring-1 focus:outline-none"
                     >
                         <option value="">All categories</option>
                     </select>

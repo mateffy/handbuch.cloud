@@ -4,7 +4,8 @@
     "build:assets": "bun run scripts/build-assets.ts",
     "build": "bun run build:content && bun run build:assets",
     "css": "NODE_ENV=production tailwindcss -i docs/input.css -o docs/output.css",
-    "css:watch": "NODE_ENV=development tailwindcss -i docs/input.css -o docs/output.css --watch"
+    "css:watch": "NODE_ENV=development tailwindcss -i docs/input.css -o docs/output.css --watch",
+    "dev": "bun run scripts/dev-server.ts"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.0",

@@ -33,7 +33,7 @@
                 </div>
 
                 <form
-                    class="flex items-center gap-2 w-full mb-10"
+                    class="flex items-center gap-2 w-full mb-10 relative"
                     id="search-form"
                 >
                     <input
@@ -41,6 +41,7 @@
                         min="1"
                         type="search"
                         placeholder="react, @babel/core, express, etc."
+                        autocomplete="off"
                         class="flex-1 w-full h-12 text-xl px-3 bg-white border-zinc-200 border shadow-inner ring-zinc-300 focus:ring-1 focus:outline-none"
                     />
                     <select
@@ -51,6 +52,12 @@
                         <option value="packagist">Packagist</option>
                         <option value="cargo">Cargo</option>
                     </select>
+                    <div
+                        id="autocomplete-list"
+                        role="listbox"
+                        aria-label="Package suggestions"
+                        class="absolute left-0 right-0 top-full z-10 bg-white border border-zinc-200 shadow-lg hidden"
+                    ></div>
                 </form>
 
                 <div
@@ -85,176 +92,6 @@
             </div>
         </div>
 
-        <script type="module">
-            const form = document.querySelector("#search-form");
-            const input = form.querySelector('input[type="search"]');
-            const registrySelect = document.querySelector("#registry-select");
-            const resultsEl = document.querySelector("#results");
-
-            function buildUrl(registry, query) {
-                const base = registry.toLowerCase();
-                // Handle scoped packages like @babel/core -> @babel/core.json
-                if (query.startsWith("@")) {
-                    return `/${base}/${query}.json`;
-                }
-                return `/${base}/${encodeURIComponent(query)}.json`;
-            }
-
-            function setLoading(isLoading) {
-                if (isLoading) {
-                    resultsEl.innerHTML = `
-                        <div class="flex items-center gap-3 text-zinc-500 py-8">
-                            <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                            <span class="text-base">Looking up documentation…</span>
-                        </div>
-                    `;
-                }
-            }
-
-            function showError(message, submessage = "") {
-                resultsEl.innerHTML = `
-                    <div class="border border-red-200 bg-white p-6">
-                        <div class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-red-500 mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-                            </svg>
-                            <div>
-                                <p class="font-semibold text-gray-800">${message}</p>
-                                ${submessage ? `<p class="mt-1 text-zinc-500">${submessage}</p>` : ""}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-
-            function showNotFound(query, registry) {
-                resultsEl.innerHTML = `
-                    <div class="border border-zinc-200 bg-white p-6">
-                        <div class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-zinc-400 mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-                            </svg>
-                            <div>
-                                <p class="font-semibold text-gray-800">No documentation found</p>
-                                <p class="mt-1 text-zinc-500">
-                                    We don't have a curated entry for <code class="bg-zinc-100 px-1 py-0.5 text-xs border border-zinc-200">${escapeHtml(query)}</code> on ${escapeHtml(registry)} yet.
-                                </p>
-                                <p class="mt-3 text-zinc-500">
-                                    <a href="https://github.com/mateffy/handbuch" target="_blank" class="underline hover:opacity-75">Open a PR on GitHub</a> to add it.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-
-            function escapeHtml(str) {
-                return str
-                    .replace(/&/g, "&amp;")
-                    .replace(/</g, "&lt;")
-                    .replace(/>/g, "&gt;")
-                    .replace(/"/g, "&quot;")
-                    .replace(/'/g, "&#039;");
-            }
-
-            function kindBadge(kind) {
-                const colors = {
-                    official: "bg-zinc-800 text-white",
-                    community: "bg-zinc-200 text-zinc-800",
-                    tutorial: "bg-zinc-200 text-zinc-800",
-                    api: "bg-zinc-200 text-zinc-800",
-                    guide: "bg-zinc-200 text-zinc-800",
-                    blog: "bg-zinc-200 text-zinc-800",
-                    video: "bg-zinc-200 text-zinc-800",
-                    course: "bg-zinc-200 text-zinc-800",
-                    cheatsheet: "bg-zinc-200 text-zinc-800",
-                };
-                const cls = colors[kind] || "bg-zinc-200 text-zinc-800";
-                return `<span class="text-[10px] uppercase tracking-wider px-1.5 py-0.5 ${cls}">${escapeHtml(kind || "doc")}</span>`;
-            }
-
-            function renderTag(tag) {
-                return `<span class="text-[10px] uppercase tracking-wider px-1.5 py-0.5 bg-zinc-100 border border-zinc-200 text-zinc-600">${escapeHtml(tag)}</span>`;
-            }
-
-            function renderDoc(doc) {
-                return `
-                    <a href="${escapeHtml(doc.url)}" target="_blank" class="group block border border-zinc-200 bg-white p-5 hover:border-zinc-400 transition-colors">
-                        <div class="flex items-start justify-between gap-4 mb-2">
-                            <h3 class="text-base font-semibold text-gray-800 group-hover:underline">${escapeHtml(doc.title)}</h3>
-                            ${doc.kind ? kindBadge(doc.kind) : ""}
-                        </div>
-                        ${doc.description ? `<p class="text-sm text-zinc-600 mb-3 leading-relaxed">${escapeHtml(doc.description)}</p>` : ""}
-                        <div class="flex flex-wrap gap-1.5">
-                            ${(doc.tags || []).map(renderTag).join("")}
-                        </div>
-                    </a>
-                `;
-            }
-
-            function renderResult(data) {
-                const readmeLink = data.readme
-                    ? `<a href="${escapeHtml(data.readme)}" target="_blank" class="underline hover:opacity-75 text-zinc-500">README</a>`
-                    : "";
-
-                const metaItems = [
-                    `<span class="text-zinc-500">${escapeHtml(data.registry.toUpperCase())}</span>`,
-                    readmeLink,
-                    `<span class="text-zinc-400">updated ${new Date(data.updatedAt).toLocaleDateString()}</span>`,
-                ].filter(Boolean);
-
-                resultsEl.innerHTML = `
-                    <div class="mb-8">
-                        <h2 class="text-2xl font-display font-bold text-gray-800 mb-1">${escapeHtml(data.name)}</h2>
-                        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
-                            ${metaItems.join('<span class="text-zinc-300">·</span>')}
-                        </div>
-                    </div>
-
-                    <div class="space-y-3">
-                        ${data.docs.map(renderDoc).join("")}
-                    </div>
-                `;
-            }
-
-            form.addEventListener("submit", async (e) => {
-                e.preventDefault();
-                const query = input.value.trim();
-                const registry = registrySelect.value;
-                if (!query) return;
-
-                setLoading(true);
-
-                const url = buildUrl(registry, query);
-
-                try {
-                    const res = await fetch(url, { method: "GET" });
-
-                    if (res.status === 404) {
-                        showNotFound(query, registry);
-                        return;
-                    }
-
-                    if (!res.ok) {
-                        showError(
-                            `Server error (${res.status})`,
-                            "Something went wrong fetching the documentation. Please try again."
-                        );
-                        return;
-                    }
-
-                    const data = await res.json();
-                    renderResult(data);
-                } catch (err) {
-                    showError(
-                        "Network error",
-                        "Could not reach handbuch.cloud. Check your connection and try again."
-                    );
-                }
-            });
-        </script>
+        <script type="module" src="dist/search-app.js"></script>
     </body>
 </html>
