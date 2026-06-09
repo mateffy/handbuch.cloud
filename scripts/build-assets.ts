@@ -9,7 +9,7 @@
  *   bun run scripts/build-assets.ts
  */
 
-import { copyFileSync, mkdirSync, existsSync } from "node:fs";
+import { copyFileSync, readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -72,6 +72,23 @@ for (const [name, src] of ASSETS) {
   copyFileSync(src, dest);
   const kb = (Bun.file(dest).size / 1024).toFixed(0);
   console.log(`✓  docs/dist/${name}  (${kb} KB)`);
+}
+
+// Step 3 — patch sqlite.worker.js so fileLength works in serverMode:"full"
+// The upstream lib ignores fileLength for full mode, causing HEAD/gzip
+// failures on static hosts like GitHub Pages. See:
+// https://github.com/phiresky/sql.js-httpvfs/issues/51
+const workerDest = join(DIST, "sqlite.worker.js");
+const workerSrc = readFileSync(workerDest, "utf-8");
+const patched = workerSrc.replace(
+  'fileLength:"chunked"===e.serverMode?e.databaseLengthBytes:void 0',
+  'fileLength:e.fileLength||("chunked"===e.serverMode?e.databaseLengthBytes:void 0)',
+);
+if (patched === workerSrc) {
+  console.warn("⚠  Could not apply sqlite.worker.js patch — fileLength may not work for serverMode:full");
+} else {
+  writeFileSync(workerDest, patched);
+  console.log("✓  Patched sqlite.worker.js (fileLength now respected for serverMode:full)");
 }
 
 console.log("\nDone  •  search app ready in docs/dist/");
