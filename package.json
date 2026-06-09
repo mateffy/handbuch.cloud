@@ -3,6 +3,7 @@
     "build:content": "op run --env-file=.env -- bun run scripts/build-content.ts",
     "build:assets": "bun run scripts/build-assets.ts",
     "build": "bun run build:content && bun run build:assets",
+    "push-db": "op run --env-file=.env -- bun run scripts/push-db.ts",
     "css": "NODE_ENV=production tailwindcss -i docs/input.css -o docs/output.css",
     "css:watch": "NODE_ENV=development tailwindcss -i docs/input.css -o docs/output.css --watch",
     "dev": "bun run scripts/dev-server.ts"

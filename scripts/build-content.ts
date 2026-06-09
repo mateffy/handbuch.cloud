@@ -25,7 +25,6 @@
  */
 
 import { readdirSync, readFileSync, mkdirSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
-import { S3Client } from "bun";
 import { join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Database, type Statement } from "bun:sqlite";
@@ -347,31 +346,6 @@ function insertData(db: Database, packages: FlatPackage[]): void {
   })();
 }
 
-async function uploadToR2(dbPath: string, dbBytes: number): Promise<void> {
-  const accountId = process.env.R2_ACCOUNT_ID;
-  const accessKeyId = process.env.R2_ACCESS_KEY_ID;
-  const secretAccessKey = process.env.R2_SECRET_ACCESS_KEY;
-  const bucket = process.env.R2_BUCKET ?? "handbuch-db";
-
-  if (!accountId || !accessKeyId || !secretAccessKey) {
-    console.log("⚠   R2 credentials not set — skipping upload (local build)");
-    return;
-  }
-
-  const r2 = new S3Client({
-    accessKeyId,
-    secretAccessKey,
-    bucket,
-    endpoint: `https://${accountId}.r2.cloudflarestorage.com`,
-  });
-
-  console.log(`  Uploading full.sqlite3 (${(dbBytes / 1024).toFixed(0)} KB) → R2 bucket "${bucket}" …`);
-  await r2.write("full.sqlite3", Bun.file(dbPath), {
-    type: "application/octet-stream",
-  });
-  console.log(`✓  R2 upload complete`);
-}
-
 async function buildDatabase(packages: FlatPackage[]): Promise<void> {
   // Remove existing database so we build clean every time
   if (existsSync(DB_PATH)) unlinkSync(DB_PATH);
@@ -427,9 +401,6 @@ async function buildDatabase(packages: FlatPackage[]): Promise<void> {
     `✓  db/full.sqlite3  (${dbSize.toFixed(0)} KB  •  ${pkgCount} packages  •  ${docCount} docs  •  ${tagCount} tags)`,
   );
   console.log(`✓  db/config.json  →  ${dbUrl}`);
-
-  // ── Upload to Cloudflare R2 ─────────────────────────────────────
-  await uploadToR2(DB_PATH, dbBytes);
 }
 
 // ── JSON index builder ─────────────────────────────────────────────
@@ -745,6 +716,10 @@ async function main(): Promise<void> {
 
   console.log(
     `\nDone  •  ${packages.length} packages  •  ${registryCount} registr(ies/y)  •  ${topLevelTagCount} top-level tag(s)  •  ${docCount} docs  •  ${docTagCount} doc-level tag(s)`,
+  );
+
+  console.log(
+    `\n⚠  DB NOT pushed to R2 yet. Run: bun run scripts/push-db.ts  (or  op run --env-file=.env -- bun run scripts/push-db.ts)`,
   );
 }
 
